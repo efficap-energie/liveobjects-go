@@ -10,19 +10,51 @@ Method | HTTP request | Description
 
 ## GetMyTenantUsingGET
 
-> Tenant GetMyTenantUsingGET(ctx, xAPIKEY)
+> Tenant GetMyTenantUsingGET(ctx).XAPIKEY(xAPIKEY).Execute()
 
 Get details of your account
 
-<p><strong>Beware</strong>: The information contained in the following 3 fields is restricted to Live Objects Portal application only. It may change without notice, no backward compatibility is guaranteed to customer applications<ul><li>\"offerSettings\"<li>\"technicalSettings\"<li>\"userSettings\"<ul>
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.TenantAccountsApi.GetMyTenantUsingGET(context.Background()).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `TenantAccountsApi.GetMyTenantUsingGET``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetMyTenantUsingGET`: Tenant
+    fmt.Fprintf(os.Stdout, "Response from `TenantAccountsApi.GetMyTenantUsingGET`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetMyTenantUsingGETRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 

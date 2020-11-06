@@ -14,20 +14,55 @@ Method | HTTP request | Description
 
 ## DeleteUsingDELETE11
 
-> DeleteUsingDELETE11(ctx, pipelineId, xAPIKEY)
+> DeleteUsingDELETE11(ctx, pipelineId).XAPIKEY(xAPIKEY).Execute()
 
 Delete a DataMessage pipeline
 
-Usage of this API will be reported in your access log under 'data_pipeline' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pipelineId := "pipelineId_example" // string | id of the pipeline to delete
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DataManagementCustomPipelinesApi.DeleteUsingDELETE11(context.Background(), pipelineId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DataManagementCustomPipelinesApi.DeleteUsingDELETE11``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**pipelineId** | **string**| id of the pipeline to delete | 
-**xAPIKEY** | **string**| a valid API key | 
+**pipelineId** | **string** | id of the pipeline to delete | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteUsingDELETE11Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -49,20 +84,57 @@ No authorization required
 
 ## GetUsingGET12
 
-> Pipeline GetUsingGET12(ctx, pipelineId, xAPIKEY)
+> Pipeline GetUsingGET12(ctx, pipelineId).XAPIKEY(xAPIKEY).Execute()
 
 Retrieve a DataMessage pipeline
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pipelineId := "pipelineId_example" // string | id of the pipeline to retrieve
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DataManagementCustomPipelinesApi.GetUsingGET12(context.Background(), pipelineId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DataManagementCustomPipelinesApi.GetUsingGET12``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsingGET12`: Pipeline
+    fmt.Fprintf(os.Stdout, "Response from `DataManagementCustomPipelinesApi.GetUsingGET12`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**pipelineId** | **string**| id of the pipeline to retrieve | 
-**xAPIKEY** | **string**| a valid API key | 
+**pipelineId** | **string** | id of the pipeline to retrieve | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetUsingGET12Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -84,19 +156,51 @@ No authorization required
 
 ## ListUsingGET13
 
-> []Pipeline ListUsingGET13(ctx, xAPIKEY)
+> []Pipeline ListUsingGET13(ctx).XAPIKEY(xAPIKEY).Execute()
 
 Retrieve the list of DataMessage pipelines, ordered by priorityLevel
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DataManagementCustomPipelinesApi.ListUsingGET13(context.Background()).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DataManagementCustomPipelinesApi.ListUsingGET13``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListUsingGET13`: []Pipeline
+    fmt.Fprintf(os.Stdout, "Response from `DataManagementCustomPipelinesApi.ListUsingGET13`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListUsingGET13Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -118,30 +222,53 @@ No authorization required
 
 ## PostUsingPOST12
 
-> Pipeline PostUsingPOST12(ctx, xAPIKEY, optional)
+> Pipeline PostUsingPOST12(ctx).XAPIKEY(xAPIKEY).PipelineDescription(pipelineDescription).Execute()
 
 Create a DataMessage pipeline
 
-Usage of this API will be reported in your access log under 'data_pipeline' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    pipelineDescription := *openapiclient.NewPipeline(false, "Name_example", int64(123), []PipelineStep{*openapiclient.NewPipelineStep())) // Pipeline | pipeline to create (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DataManagementCustomPipelinesApi.PostUsingPOST12(context.Background()).XAPIKEY(xAPIKEY).PipelineDescription(pipelineDescription).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DataManagementCustomPipelinesApi.PostUsingPOST12``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PostUsingPOST12`: Pipeline
+    fmt.Fprintf(os.Stdout, "Response from `DataManagementCustomPipelinesApi.PostUsingPOST12`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostUsingPOST12Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***PostUsingPOST12Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a PostUsingPOST12Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **pipelineDescription** | [**optional.Interface of Pipeline**](Pipeline.md)| pipeline to create | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **pipelineDescription** | [**Pipeline**](Pipeline.md) | pipeline to create | 
 
 ### Return type
 
@@ -163,32 +290,59 @@ No authorization required
 
 ## UpdateUsingPUT6
 
-> Pipeline UpdateUsingPUT6(ctx, pipelineId, xAPIKEY, optional)
+> Pipeline UpdateUsingPUT6(ctx, pipelineId).XAPIKEY(xAPIKEY).PipelineDescription(pipelineDescription).Execute()
 
 Update a DataMessage pipeline
 
-Usage of this API will be reported in your access log under 'data_pipeline' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pipelineId := "pipelineId_example" // string | id of the pipeline to update
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    pipelineDescription := *openapiclient.NewPipeline(false, "Name_example", int64(123), []PipelineStep{*openapiclient.NewPipelineStep())) // Pipeline | pipeline to update (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DataManagementCustomPipelinesApi.UpdateUsingPUT6(context.Background(), pipelineId).XAPIKEY(xAPIKEY).PipelineDescription(pipelineDescription).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DataManagementCustomPipelinesApi.UpdateUsingPUT6``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateUsingPUT6`: Pipeline
+    fmt.Fprintf(os.Stdout, "Response from `DataManagementCustomPipelinesApi.UpdateUsingPUT6`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**pipelineId** | **string**| id of the pipeline to update | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***UpdateUsingPUT6Opts** | optional parameters | nil if no parameters
+**pipelineId** | **string** | id of the pipeline to update | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a UpdateUsingPUT6Opts struct
+Other parameters are passed through a pointer to a apiUpdateUsingPUT6Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **pipelineDescription** | [**optional.Interface of Pipeline**](Pipeline.md)| pipeline to update | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **pipelineDescription** | [**Pipeline**](Pipeline.md) | pipeline to update | 
 
 ### Return type
 

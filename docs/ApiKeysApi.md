@@ -16,30 +16,53 @@ Method | HTTP request | Description
 
 ## CreateApiKeyUsingPOST
 
-> ApiKey CreateApiKeyUsingPOST(ctx, xAPIKEY, optional)
+> ApiKey CreateApiKeyUsingPOST(ctx).XAPIKEY(xAPIKEY).ApiKeyCreationRequest(apiKeyCreationRequest).Execute()
 
 Create an API key
 
-Usage of this API will be reported in your access log under 'api_key' category.<br><br>Restricted to API keys with at least one of the following roles : API_KEY_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    apiKeyCreationRequest := *openapiclient.NewApiKeyCreationReqWeb("ParentId_example", []string{"Roles_example")) // ApiKeyCreationReqWeb | body for create API key (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.ApiKeysApi.CreateApiKeyUsingPOST(context.Background()).XAPIKEY(xAPIKEY).ApiKeyCreationRequest(apiKeyCreationRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysApi.CreateApiKeyUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateApiKeyUsingPOST`: ApiKey
+    fmt.Fprintf(os.Stdout, "Response from `ApiKeysApi.CreateApiKeyUsingPOST`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateApiKeyUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***CreateApiKeyUsingPOSTOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a CreateApiKeyUsingPOSTOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **apiKeyCreationRequest** | [**optional.Interface of ApiKeyCreationReqWeb**](ApiKeyCreationReqWeb.md)| body for create API key | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **apiKeyCreationRequest** | [**ApiKeyCreationReqWeb**](ApiKeyCreationReqWeb.md) | body for create API key | 
 
 ### Return type
 
@@ -61,32 +84,57 @@ No authorization required
 
 ## DeleteApiKeyUsingDELETE
 
-> DeleteApiKeyUsingDELETE(ctx, apiKeyId, xAPIKEY, optional)
+> DeleteApiKeyUsingDELETE(ctx, apiKeyId).XAPIKEY(xAPIKEY).TenantId(tenantId).Execute()
 
 Delete an API key
 
-Usage of this API will be reported in your access log under 'api_key' category.<br><br>Restricted to API keys with at least one of the following roles : API_KEY_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    apiKeyId := "apiKeyId_example" // string | identifier of your API key. Expected identifier (max 24 characters)
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    tenantId := "tenantId_example" // string | identifier of tenant account (optionnal) ex: \"57xxxxxxxxxxxxxxxxxxxxxx\". Expected identifier (max 24 characters) (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.ApiKeysApi.DeleteApiKeyUsingDELETE(context.Background(), apiKeyId).XAPIKEY(xAPIKEY).TenantId(tenantId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysApi.DeleteApiKeyUsingDELETE``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**apiKeyId** | **string**| identifier of your API key. Expected identifier (max 24 characters) | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***DeleteApiKeyUsingDELETEOpts** | optional parameters | nil if no parameters
+**apiKeyId** | **string** | identifier of your API key. Expected identifier (max 24 characters) | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a DeleteApiKeyUsingDELETEOpts struct
+Other parameters are passed through a pointer to a apiDeleteApiKeyUsingDELETERequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **tenantId** | **optional.String**| identifier of tenant account (optionnal) ex: \&quot;57xxxxxxxxxxxxxxxxxxxxxx\&quot;. Expected identifier (max 24 characters) | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **tenantId** | **string** | identifier of tenant account (optionnal) ex: \&quot;57xxxxxxxxxxxxxxxxxxxxxx\&quot;. Expected identifier (max 24 characters) | 
 
 ### Return type
 
@@ -108,17 +156,49 @@ No authorization required
 
 ## GetApiKeyFromAuthenticationUsingGET3
 
-> ApiKey GetApiKeyFromAuthenticationUsingGET3(ctx, xAPIKEY)
+> ApiKey GetApiKeyFromAuthenticationUsingGET3(ctx).XAPIKEY(xAPIKEY).Execute()
 
 getApiKeyFromAuthentication
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.ApiKeysApi.GetApiKeyFromAuthenticationUsingGET3(context.Background()).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysApi.GetApiKeyFromAuthenticationUsingGET3``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetApiKeyFromAuthenticationUsingGET3`: ApiKey
+    fmt.Fprintf(os.Stdout, "Response from `ApiKeysApi.GetApiKeyFromAuthenticationUsingGET3`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetApiKeyFromAuthenticationUsingGET3Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -140,32 +220,59 @@ No authorization required
 
 ## GetApiKeyUsingGET3
 
-> ApiKey GetApiKeyUsingGET3(ctx, apiKeyId, xAPIKEY, optional)
+> ApiKey GetApiKeyUsingGET3(ctx, apiKeyId).XAPIKEY(xAPIKEY).TenantId(tenantId).Execute()
 
 Get an API key
 
-Restricted to API keys with at least one of the following roles : API_KEY_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    apiKeyId := "apiKeyId_example" // string | the id of your API key. Expected identifier (max 24 characters)
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    tenantId := "tenantId_example" // string | identifier of tenant account (optionnal) ex: \"57xxxxxxxxxxxxxxxxxxxxxx\". Expected identifier (max 24 characters) (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.ApiKeysApi.GetApiKeyUsingGET3(context.Background(), apiKeyId).XAPIKEY(xAPIKEY).TenantId(tenantId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysApi.GetApiKeyUsingGET3``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetApiKeyUsingGET3`: ApiKey
+    fmt.Fprintf(os.Stdout, "Response from `ApiKeysApi.GetApiKeyUsingGET3`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**apiKeyId** | **string**| the id of your API key. Expected identifier (max 24 characters) | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***GetApiKeyUsingGET3Opts** | optional parameters | nil if no parameters
+**apiKeyId** | **string** | the id of your API key. Expected identifier (max 24 characters) | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a GetApiKeyUsingGET3Opts struct
+Other parameters are passed through a pointer to a apiGetApiKeyUsingGET3Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **tenantId** | **optional.String**| identifier of tenant account (optionnal) ex: \&quot;57xxxxxxxxxxxxxxxxxxxxxx\&quot;. Expected identifier (max 24 characters) | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **tenantId** | **string** | identifier of tenant account (optionnal) ex: \&quot;57xxxxxxxxxxxxxxxxxxxxxx\&quot;. Expected identifier (max 24 characters) | 
 
 ### Return type
 
@@ -187,36 +294,65 @@ No authorization required
 
 ## GetApiKeysUsingGET3
 
-> PageableApiKey GetApiKeysUsingGET3(ctx, xAPIKEY, optional)
+> PageableApiKey GetApiKeysUsingGET3(ctx).XAPIKEY(xAPIKEY).Size(size).Page(page).TenantId(tenantId).ParentId(parentId).ShowSessionKeys(showSessionKeys).Roles(roles).ShowMasterKey(showMasterKey).Execute()
 
 List API keys
 
-Restricted to API keys with at least one of the following roles : API_KEY_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    size := 987 // int32 | the maximum number of items per page (optional) (optional) (default to 20)
+    page := 987 // int32 | the requested page number (optional) (optional) (default to 0)
+    tenantId := "tenantId_example" // string | identifier of tenant account (optionnal) ex: \"57xxxxxxxxxxxxxxxxxxxxxx\". Expected identifier (max 24 characters) (optional)
+    parentId := "parentId_example" // string | the id of your parent (optional)  ex: \"57xxxxxxxxxxxxxxxxxxxxxx\". Expected identifier (max 24 characters) (optional)
+    showSessionKeys := true // bool | include the session Keys (optional) (optional) (default to false)
+    roles := []string{"Inner_example"} // []string | list of API Key associated roles (optional). Basic roles are \"USER_R\", \"USER_W\", \"API_KEY_R\", \"API_KEY_W\" or any role string supplied at tenant account creation time. Expected array of role name (max all roles, role value max 255 characters) (optional)
+    showMasterKey := true // bool | Boolean to show or not the master api key (optional) (default to true)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.ApiKeysApi.GetApiKeysUsingGET3(context.Background()).XAPIKEY(xAPIKEY).Size(size).Page(page).TenantId(tenantId).ParentId(parentId).ShowSessionKeys(showSessionKeys).Roles(roles).ShowMasterKey(showMasterKey).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysApi.GetApiKeysUsingGET3``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetApiKeysUsingGET3`: PageableApiKey
+    fmt.Fprintf(os.Stdout, "Response from `ApiKeysApi.GetApiKeysUsingGET3`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetApiKeysUsingGET3Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***GetApiKeysUsingGET3Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a GetApiKeysUsingGET3Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **size** | **optional.Int32**| the maximum number of items per page (optional) | [default to 20]
- **page** | **optional.Int32**| the requested page number (optional) | [default to 0]
- **tenantId** | **optional.String**| identifier of tenant account (optionnal) ex: \&quot;57xxxxxxxxxxxxxxxxxxxxxx\&quot;. Expected identifier (max 24 characters) | 
- **parentId** | **optional.String**| the id of your parent (optional)  ex: \&quot;57xxxxxxxxxxxxxxxxxxxxxx\&quot;. Expected identifier (max 24 characters) | 
- **showSessionKeys** | **optional.Bool**| include the session Keys (optional) | [default to false]
- **roles** | [**optional.Interface of []string**](string.md)| list of API Key associated roles (optional). Basic roles are \&quot;USER_R\&quot;, \&quot;USER_W\&quot;, \&quot;API_KEY_R\&quot;, \&quot;API_KEY_W\&quot; or any role string supplied at tenant account creation time. Expected array of role name (max all roles, role value max 255 characters) | 
- **showMasterKey** | **optional.Bool**| Boolean to show or not the master api key | [default to true]
+ **xAPIKEY** | **string** | a valid API key | 
+ **size** | **int32** | the maximum number of items per page (optional) | [default to 20]
+ **page** | **int32** | the requested page number (optional) | [default to 0]
+ **tenantId** | **string** | identifier of tenant account (optionnal) ex: \&quot;57xxxxxxxxxxxxxxxxxxxxxx\&quot;. Expected identifier (max 24 characters) | 
+ **parentId** | **string** | the id of your parent (optional)  ex: \&quot;57xxxxxxxxxxxxxxxxxxxxxx\&quot;. Expected identifier (max 24 characters) | 
+ **showSessionKeys** | **bool** | include the session Keys (optional) | [default to false]
+ **roles** | [**[]string**](string.md) | list of API Key associated roles (optional). Basic roles are \&quot;USER_R\&quot;, \&quot;USER_W\&quot;, \&quot;API_KEY_R\&quot;, \&quot;API_KEY_W\&quot; or any role string supplied at tenant account creation time. Expected array of role name (max all roles, role value max 255 characters) | 
+ **showMasterKey** | **bool** | Boolean to show or not the master api key | [default to true]
 
 ### Return type
 
@@ -238,32 +374,59 @@ No authorization required
 
 ## SetApiKeyDebugModeUsingPUT3
 
-> ApiKey SetApiKeyDebugModeUsingPUT3(ctx, apiKeyId, xAPIKEY, optional)
+> ApiKey SetApiKeyDebugModeUsingPUT3(ctx, apiKeyId).XAPIKEY(xAPIKEY).SetApiKeyDebugModeRequest(setApiKeyDebugModeRequest).Execute()
 
 Activate/Deactivate the debug mode on an API key
 
-Usage of this API will be reported in your access log under 'api_key' category.<br><br>Restricted to API keys with at least one of the following roles : API_KEY_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    apiKeyId := "apiKeyId_example" // string | identifier of your API key. Expected identifier (max 24 characters)
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    setApiKeyDebugModeRequest := *openapiclient.NewApiKeySetDebugModeReqWeb(false) // ApiKeySetDebugModeReqWeb | body for API key debug mode (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.ApiKeysApi.SetApiKeyDebugModeUsingPUT3(context.Background(), apiKeyId).XAPIKEY(xAPIKEY).SetApiKeyDebugModeRequest(setApiKeyDebugModeRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysApi.SetApiKeyDebugModeUsingPUT3``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SetApiKeyDebugModeUsingPUT3`: ApiKey
+    fmt.Fprintf(os.Stdout, "Response from `ApiKeysApi.SetApiKeyDebugModeUsingPUT3`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**apiKeyId** | **string**| identifier of your API key. Expected identifier (max 24 characters) | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***SetApiKeyDebugModeUsingPUT3Opts** | optional parameters | nil if no parameters
+**apiKeyId** | **string** | identifier of your API key. Expected identifier (max 24 characters) | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a SetApiKeyDebugModeUsingPUT3Opts struct
+Other parameters are passed through a pointer to a apiSetApiKeyDebugModeUsingPUT3Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **setApiKeyDebugModeRequest** | [**optional.Interface of ApiKeySetDebugModeReqWeb**](ApiKeySetDebugModeReqWeb.md)| body for API key debug mode | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **setApiKeyDebugModeRequest** | [**ApiKeySetDebugModeReqWeb**](ApiKeySetDebugModeReqWeb.md) | body for API key debug mode | 
 
 ### Return type
 
@@ -285,32 +448,59 @@ No authorization required
 
 ## UpdateApiKeyUsingPOST1
 
-> ApiKey UpdateApiKeyUsingPOST1(ctx, apiKeyId, xAPIKEY, optional)
+> ApiKey UpdateApiKeyUsingPOST1(ctx, apiKeyId).XAPIKEY(xAPIKEY).ApiKeyUpdateRequest(apiKeyUpdateRequest).Execute()
 
 Update an API key
 
-Update a set of properties of the selected API key<br><br>Usage of this API will be reported in your access log under 'api_key' category.<br><br>Restricted to API keys with at least one of the following roles : API_KEY_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    apiKeyId := "apiKeyId_example" // string | the id of your API key. Expected identifier (max 24 characters)
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    apiKeyUpdateRequest := *openapiclient.NewApiKeyUpdateReqWeb() // ApiKeyUpdateReqWeb | body for update API key (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.ApiKeysApi.UpdateApiKeyUsingPOST1(context.Background(), apiKeyId).XAPIKEY(xAPIKEY).ApiKeyUpdateRequest(apiKeyUpdateRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ApiKeysApi.UpdateApiKeyUsingPOST1``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateApiKeyUsingPOST1`: ApiKey
+    fmt.Fprintf(os.Stdout, "Response from `ApiKeysApi.UpdateApiKeyUsingPOST1`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**apiKeyId** | **string**| the id of your API key. Expected identifier (max 24 characters) | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***UpdateApiKeyUsingPOST1Opts** | optional parameters | nil if no parameters
+**apiKeyId** | **string** | the id of your API key. Expected identifier (max 24 characters) | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a UpdateApiKeyUsingPOST1Opts struct
+Other parameters are passed through a pointer to a apiUpdateApiKeyUsingPOST1Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **apiKeyUpdateRequest** | [**optional.Interface of ApiKeyUpdateReqWeb**](ApiKeyUpdateReqWeb.md)| body for update API key | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **apiKeyUpdateRequest** | [**ApiKeyUpdateReqWeb**](ApiKeyUpdateReqWeb.md) | body for update API key | 
 
 ### Return type
 

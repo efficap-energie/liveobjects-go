@@ -13,20 +13,55 @@ Method | HTTP request | Description
 
 ## DeleteUsingDELETE17
 
-> DeleteUsingDELETE17(ctx, zoneId, xAPIKEY)
+> DeleteUsingDELETE17(ctx, zoneId).XAPIKEY(xAPIKEY).Execute()
 
 delete a geographic zone
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    zoneId := "zoneId_example" // string | the id of the zone to delete
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingGeozoneApi.DeleteUsingDELETE17(context.Background(), zoneId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingGeozoneApi.DeleteUsingDELETE17``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**zoneId** | **string**| the id of the zone to delete | 
-**xAPIKEY** | **string**| a valid API key | 
+**zoneId** | **string** | the id of the zone to delete | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteUsingDELETE17Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -48,20 +83,57 @@ No authorization required
 
 ## GetUsingGET16
 
-> GeozoneContainer GetUsingGET16(ctx, zoneId, xAPIKEY)
+> GeozoneContainer GetUsingGET16(ctx, zoneId).XAPIKEY(xAPIKEY).Execute()
 
 retrieve a geozone from repository
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    zoneId := "zoneId_example" // string | the user-defined id of the zone to retrieve
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingGeozoneApi.GetUsingGET16(context.Background(), zoneId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingGeozoneApi.GetUsingGET16``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsingGET16`: GeozoneContainer
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingGeozoneApi.GetUsingGET16`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**zoneId** | **string**| the user-defined id of the zone to retrieve | 
-**xAPIKEY** | **string**| a valid API key | 
+**zoneId** | **string** | the user-defined id of the zone to retrieve | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetUsingGET16Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -83,31 +155,55 @@ No authorization required
 
 ## ListUsingGET19
 
-> []GeozoneContainer ListUsingGET19(ctx, xAPIKEY, optional)
+> []GeozoneContainer ListUsingGET19(ctx).XAPIKEY(xAPIKEY).Page(page).Size(size).Execute()
 
 retrieve paginated list of geozones
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    page := 987 // int32 | The requested page number. Starts from 0. (optional) (default to 0)
+    size := 987 // int32 | The maximum number of items per page. Must be between 1 and 1000. (optional) (default to 20)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingGeozoneApi.ListUsingGET19(context.Background()).XAPIKEY(xAPIKEY).Page(page).Size(size).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingGeozoneApi.ListUsingGET19``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListUsingGET19`: []GeozoneContainer
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingGeozoneApi.ListUsingGET19`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListUsingGET19Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***ListUsingGET19Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a ListUsingGET19Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **page** | **optional.Int32**| The requested page number. Starts from 0. | [default to 0]
- **size** | **optional.Int32**| The maximum number of items per page. Must be between 1 and 1000. | [default to 20]
+ **xAPIKEY** | **string** | a valid API key | 
+ **page** | **int32** | The requested page number. Starts from 0. | [default to 0]
+ **size** | **int32** | The maximum number of items per page. Must be between 1 and 1000. | [default to 20]
 
 ### Return type
 
@@ -129,32 +225,57 @@ No authorization required
 
 ## SaveUsingPUT1
 
-> SaveUsingPUT1(ctx, zoneId, xAPIKEY, optional)
+> SaveUsingPUT1(ctx, zoneId).XAPIKEY(xAPIKEY).GeozoneContainerBase(geozoneContainerBase).Execute()
 
 Save a geographic zone
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    zoneId := "zoneId_example" // string | the id of the zone to save
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    geozoneContainerBase := *openapiclient.NewGeozoneContainerBase() // GeozoneContainerBase | JSON geo zone object to add (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingGeozoneApi.SaveUsingPUT1(context.Background(), zoneId).XAPIKEY(xAPIKEY).GeozoneContainerBase(geozoneContainerBase).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingGeozoneApi.SaveUsingPUT1``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**zoneId** | **string**| the id of the zone to save | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***SaveUsingPUT1Opts** | optional parameters | nil if no parameters
+**zoneId** | **string** | the id of the zone to save | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a SaveUsingPUT1Opts struct
+Other parameters are passed through a pointer to a apiSaveUsingPUT1Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **geozoneContainerBase** | [**optional.Interface of GeozoneContainerBase**](GeozoneContainerBase.md)| JSON geo zone object to add | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **geozoneContainerBase** | [**GeozoneContainerBase**](GeozoneContainerBase.md) | JSON geo zone object to add | 
 
 ### Return type
 

@@ -16,20 +16,55 @@ Method | HTTP request | Description
 
 ## DeleteUsingDELETE14
 
-> DeleteUsingDELETE14(ctx, activityRuleId, xAPIKEY)
+> DeleteUsingDELETE14(ctx, activityRuleId).XAPIKEY(xAPIKEY).Execute()
 
 Delete an ActivityRule
 
-Usage of this API will be reported in your access log under 'alarming' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    activityRuleId := "activityRuleId_example" // string | id of the ActivityRule to delete
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingActivityApi.DeleteUsingDELETE14(context.Background(), activityRuleId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingActivityApi.DeleteUsingDELETE14``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**activityRuleId** | **string**| id of the ActivityRule to delete | 
-**xAPIKEY** | **string**| a valid API key | 
+**activityRuleId** | **string** | id of the ActivityRule to delete | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteUsingDELETE14Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -51,33 +86,59 @@ No authorization required
 
 ## GetStatesUsingGET
 
-> []ActivityState GetStatesUsingGET(ctx, xAPIKEY, optional)
+> []ActivityState GetStatesUsingGET(ctx).XAPIKEY(xAPIKEY).DeviceId(deviceId).ActivityRuleId(activityRuleId).Limit(limit).BookmarkDeviceId(bookmarkDeviceId).Execute()
 
 Retrieve the list of all the ActivityStates linked to a specific device and/or rule
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    deviceId := "deviceId_example" // string | id of the device targeted by the states to retrieve. At least one of deviceId/activityRuleId must be set. (optional)
+    activityRuleId := "activityRuleId_example" // string | id of the rule targeted by the states to retrieve. At least one of deviceId/activityRuleId must be set. (optional)
+    limit := 987 // int32 | when listing by activityRuleId, thousands of devices could be targeted. Indicates the number of AvtivityStates to return (one per targeted device). Default is 20, max is 1000. To get next results use bookmarkDeviceId field. (optional)
+    bookmarkDeviceId := "bookmarkDeviceId_example" // string | 'bookmark' of previous listing by activityRuleId request : this is the last deviceId retrieved in previous request. If null, first ActivtyStates results will be returned. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingActivityApi.GetStatesUsingGET(context.Background()).XAPIKEY(xAPIKEY).DeviceId(deviceId).ActivityRuleId(activityRuleId).Limit(limit).BookmarkDeviceId(bookmarkDeviceId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingActivityApi.GetStatesUsingGET``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetStatesUsingGET`: []ActivityState
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingActivityApi.GetStatesUsingGET`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetStatesUsingGETRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***GetStatesUsingGETOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a GetStatesUsingGETOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **deviceId** | **optional.String**| id of the device targeted by the states to retrieve. At least one of deviceId/activityRuleId must be set. | 
- **activityRuleId** | **optional.String**| id of the rule targeted by the states to retrieve. At least one of deviceId/activityRuleId must be set. | 
- **limit** | **optional.Int32**| when listing by activityRuleId, thousands of devices could be targeted. Indicates the number of AvtivityStates to return (one per targeted device). Default is 20, max is 1000. To get next results use bookmarkDeviceId field. | 
- **bookmarkDeviceId** | **optional.String**| &#39;bookmark&#39; of previous listing by activityRuleId request : this is the last deviceId retrieved in previous request. If null, first ActivtyStates results will be returned. | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **deviceId** | **string** | id of the device targeted by the states to retrieve. At least one of deviceId/activityRuleId must be set. | 
+ **activityRuleId** | **string** | id of the rule targeted by the states to retrieve. At least one of deviceId/activityRuleId must be set. | 
+ **limit** | **int32** | when listing by activityRuleId, thousands of devices could be targeted. Indicates the number of AvtivityStates to return (one per targeted device). Default is 20, max is 1000. To get next results use bookmarkDeviceId field. | 
+ **bookmarkDeviceId** | **string** | &#39;bookmark&#39; of previous listing by activityRuleId request : this is the last deviceId retrieved in previous request. If null, first ActivtyStates results will be returned. | 
 
 ### Return type
 
@@ -99,20 +160,57 @@ No authorization required
 
 ## GetUsingGET13
 
-> ActivityRule GetUsingGET13(ctx, activityRuleId, xAPIKEY)
+> ActivityRule GetUsingGET13(ctx, activityRuleId).XAPIKEY(xAPIKEY).Execute()
 
 Retrieve an ActivityRule
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    activityRuleId := "activityRuleId_example" // string | id of the ActivityRule to retrieve
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingActivityApi.GetUsingGET13(context.Background(), activityRuleId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingActivityApi.GetUsingGET13``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsingGET13`: ActivityRule
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingActivityApi.GetUsingGET13`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**activityRuleId** | **string**| id of the ActivityRule to retrieve | 
-**xAPIKEY** | **string**| a valid API key | 
+**activityRuleId** | **string** | id of the ActivityRule to retrieve | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetUsingGET13Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -134,30 +232,53 @@ No authorization required
 
 ## ListUsingGET16
 
-> []ActivityRule ListUsingGET16(ctx, xAPIKEY, optional)
+> []ActivityRule ListUsingGET16(ctx).XAPIKEY(xAPIKEY).Name(name).Execute()
 
 Retrieve the list of all the ActivityRules or get an ActivityRule by its name
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    name := "name_example" // string | name of the ActivityRule to retrieve (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingActivityApi.ListUsingGET16(context.Background()).XAPIKEY(xAPIKEY).Name(name).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingActivityApi.ListUsingGET16``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListUsingGET16`: []ActivityRule
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingActivityApi.ListUsingGET16`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListUsingGET16Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***ListUsingGET16Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a ListUsingGET16Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **name** | **optional.String**| name of the ActivityRule to retrieve | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **name** | **string** | name of the ActivityRule to retrieve | 
 
 ### Return type
 
@@ -179,20 +300,53 @@ No authorization required
 
 ## MuteUsingPUT
 
-> int64 MuteUsingPUT(ctx, xAPIKEY, nextAlarmRequest)
+> int64 MuteUsingPUT(ctx).XAPIKEY(xAPIKEY).NextAlarmRequest(nextAlarmRequest).Execute()
 
 Mute or reset nextAlarm of ActivityStates targeted by a specific deviceId/activityRuleId
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    nextAlarmRequest := *openapiclient.NewActivityStateMuteRequest("NextAlarmOrder_example") // ActivityStateMuteRequest | nextAlarmRequest
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingActivityApi.MuteUsingPUT(context.Background()).XAPIKEY(xAPIKEY).NextAlarmRequest(nextAlarmRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingActivityApi.MuteUsingPUT``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `MuteUsingPUT`: int64
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingActivityApi.MuteUsingPUT`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiMuteUsingPUTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
-**nextAlarmRequest** | [**ActivityStateMuteRequest**](ActivityStateMuteRequest.md)| nextAlarmRequest | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **nextAlarmRequest** | [**ActivityStateMuteRequest**](ActivityStateMuteRequest.md) | nextAlarmRequest | 
 
 ### Return type
 
@@ -214,30 +368,53 @@ No authorization required
 
 ## PostUsingPOST13
 
-> ActivityRule PostUsingPOST13(ctx, xAPIKEY, optional)
+> ActivityRule PostUsingPOST13(ctx).XAPIKEY(xAPIKEY).ActivityRule(activityRule).Execute()
 
 Create an ActivityRule
 
-Total number of ActivityRules is limited. Contact the commercial team or see developer guide to get more information.<br><br>Usage of this API will be reported in your access log under 'alarming' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    activityRule := *openapiclient.NewActivityRule("Name_example", *openapiclient.NewSilentPolicy("Duration_example"), *openapiclient.NewTargets()) // ActivityRule | ActivityRule to add (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingActivityApi.PostUsingPOST13(context.Background()).XAPIKEY(xAPIKEY).ActivityRule(activityRule).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingActivityApi.PostUsingPOST13``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PostUsingPOST13`: ActivityRule
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingActivityApi.PostUsingPOST13`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostUsingPOST13Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***PostUsingPOST13Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a PostUsingPOST13Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **activityRule** | [**optional.Interface of ActivityRule**](ActivityRule.md)| ActivityRule to add | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **activityRule** | [**ActivityRule**](ActivityRule.md) | ActivityRule to add | 
 
 ### Return type
 
@@ -259,32 +436,57 @@ No authorization required
 
 ## UpdateUsingPUT7
 
-> UpdateUsingPUT7(ctx, activityRuleId, xAPIKEY, optional)
+> UpdateUsingPUT7(ctx, activityRuleId).XAPIKEY(xAPIKEY).ActivityRule(activityRule).Execute()
 
 Update an ActivityRule
 
-Usage of this API will be reported in your access log under 'alarming' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    activityRuleId := "activityRuleId_example" // string | id of the ActivityRule to update
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    activityRule := *openapiclient.NewActivityRule("Name_example", *openapiclient.NewSilentPolicy("Duration_example"), *openapiclient.NewTargets()) // ActivityRule | updated ActivityRule (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingActivityApi.UpdateUsingPUT7(context.Background(), activityRuleId).XAPIKEY(xAPIKEY).ActivityRule(activityRule).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingActivityApi.UpdateUsingPUT7``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**activityRuleId** | **string**| id of the ActivityRule to update | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***UpdateUsingPUT7Opts** | optional parameters | nil if no parameters
+**activityRuleId** | **string** | id of the ActivityRule to update | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a UpdateUsingPUT7Opts struct
+Other parameters are passed through a pointer to a apiUpdateUsingPUT7Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **activityRule** | [**optional.Interface of ActivityRule**](ActivityRule.md)| updated ActivityRule | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **activityRule** | [**ActivityRule**](ActivityRule.md) | updated ActivityRule | 
 
 ### Return type
 

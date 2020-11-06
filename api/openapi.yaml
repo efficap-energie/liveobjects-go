@@ -5,8 +5,8 @@ info:
     name: Live Objects Team
   description: API description for Live Objects service
   termsOfService: http://opensource.itn.ftgroup/index.php/Orange_Source
-  title: Live Objects REST API Guide v2.12.2
-  version: 2.12.2
+  title: Live Objects REST API Guide v2.13.3
+  version: 2.13.3
 servers:
 - url: https://liveobjects.orange-business.com/
 tags:
@@ -44,18 +44,20 @@ tags:
   name: Device management - Configuration - V1
 - description: Connector Nodes Controller
   name: Device management - Connector nodes - V1
-- description: Devices firmwares
-  name: Device management - Devices firmwares (resources)
 - description: Group management
   name: Device management - Groups - V1
 - description: Devices' interfaces management
   name: Device management - Interfaces - V1
 - description: Devices inventory
   name: Device management - Inventory - V1
+- description: Devices resources
+  name: Device management - Resources - V1
+- description: Resources management
+  name: Device management - Resources management
 - description: COAP/LWM2M device management
   name: Device management for COAP/LWM2M (beta)
 - description: Lora Connector Controller
-  name: Device management for LPWA
+  name: Device management for LoRa
 - description: ActivityRule management
   name: Event processing - Activity
 - description: Context management
@@ -88,6 +90,8 @@ tags:
   name: Users management
 - description: binding topics / fifo
   name: _(deprecated) Bus management router
+- description: Devices firmwares
+  name: _(deprecated) Device management - Devices firmwares
 - description: asset commands
   name: _(deprecated) Device management command - V0 (use Device management - Commands
     - V1 instead)
@@ -96,6 +100,9 @@ tags:
     - V1 instead)
 - description: asset parameters
   name: _(deprecated) Device management parameter - V0 (use Device management - Configuration
+    - V1 instead)
+- description: asset resources
+  name: _(deprecated) Device management resource - V0 (use Device management - Resource
     - V1 instead)
 - description: group management
   name: _(deprecated) Group management - V0 (use Device management - Groups - V1 instead)
@@ -124,6 +131,8 @@ tags:
   name: asset-param-item-controller
 - description: asset parameters
   name: asset-params-controller
+- description: asset resources
+  name: asset-resource-manager-controller
 - description: assets inventory
   name: assets-controller
 - description: Search through your AuditLog messages
@@ -138,7 +147,7 @@ tags:
   name: ca-certificate-controller
 - description: Management of actions on a fleet of devices
   name: campaign-controller
-- description: Devices commands
+- description: asset commands
   name: commands-controller
 - description: Connector Nodes Controller
   name: connector-nodes-controller
@@ -162,6 +171,8 @@ tags:
   name: device-firmwares-controller
 - description: Devices' interfaces management
   name: device-interfaces-controller
+- description: Devices resources
+  name: device-resources-controller
 - description: Devices inventory
   name: devices-controller
 - description: Action policies on event and messages
@@ -182,7 +193,7 @@ tags:
   name: event-processing-state-processing-controller
 - description: FIFO management and publication
   name: fifo-controller
-- description: group management
+- description: Group management
   name: group-controller
 - description: assets inventory
   name: inventory-asset-namespaces-controller
@@ -204,7 +215,7 @@ tags:
   name: payload-description-controller
 - description: public decoder management
   name: public-payload-description-controller
-- description: Devices firmwares
+- description: Resources management
   name: resource-manager-controller
 - description: Router topic management
   name: router-controller
@@ -547,6 +558,7 @@ paths:
       x-codegen-request-body-name: setApiKeyDebugModeRequest
   /api/v0/assets:
     get:
+      deprecated: true
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
       operationId: listAssetsUsingGET
@@ -658,6 +670,7 @@ paths:
       - _(deprecated) Device management inventory - V0 (use Device management - Inventory
         - V1 instead)
     post:
+      deprecated: true
       description: 'Usage of this API will be reported in your access log under ''device_inventory''
         category.<br><br>Restricted to API keys with at least one of the following
         roles : DEVICE_W.'
@@ -715,6 +728,7 @@ paths:
       x-codegen-request-body-name: body
   /api/v0/assets/{assetNamespace}/{assetId}:
     delete:
+      deprecated: true
       description: 'Usage of this API will be reported in your access log under ''device_inventory''
         category.<br><br>Restricted to API keys with at least one of the following
         roles : DEVICE_W.'
@@ -769,6 +783,7 @@ paths:
       - _(deprecated) Device management inventory - V0 (use Device management - Inventory
         - V1 instead)
     get:
+      deprecated: true
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
       operationId: getAssetStatusUsingGET
@@ -823,6 +838,7 @@ paths:
       - _(deprecated) Device management inventory - V0 (use Device management - Inventory
         - V1 instead)
     put:
+      deprecated: true
       description: 'Usage of this API will be reported in your access log under ''device_inventory''
         category.<br><br>Restricted to API keys with at least one of the following
         roles : DEVICE_W.'
@@ -888,6 +904,7 @@ paths:
       x-codegen-request-body-name: body
   /api/v0/assets/{assetNamespace}/{assetId}/commands:
     get:
+      deprecated: true
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
       operationId: getAssetCommandsUsingGET
@@ -956,6 +973,7 @@ paths:
       - _(deprecated) Device management command - V0 (use Device management - Commands
         - V1 instead)
     post:
+      deprecated: true
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_W.'
       operationId: addCommandUsingPOST
@@ -1020,6 +1038,7 @@ paths:
       x-codegen-request-body-name: command
   /api/v0/assets/{assetNamespace}/{assetId}/params:
     get:
+      deprecated: true
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
       operationId: getAssetParamsUsingGET
@@ -1071,6 +1090,7 @@ paths:
       - _(deprecated) Device management parameter - V0 (use Device management - Configuration
         - V1 instead)
     post:
+      deprecated: true
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_W.'
       operationId: setAssetParamsUsingPOST
@@ -1138,6 +1158,7 @@ paths:
       x-codegen-request-body-name: newParamValues
   /api/v0/assets/{assetNamespace}/{assetId}/params/status:
     put:
+      deprecated: true
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_W.'
       operationId: setDeviceParamsUpdateStatusUsingPUT
@@ -1212,6 +1233,7 @@ paths:
       x-codegen-request-body-name: reqWeb
   /api/v0/assets/{assetNamespace}/{assetId}/params/{paramKey}:
     get:
+      deprecated: true
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
       operationId: getAssetParamUsingGET
@@ -1275,6 +1297,7 @@ paths:
         - V1 instead)
   /api/v0/assets/{assetNamespace}/{assetId}/params/{paramKey}/status:
     put:
+      deprecated: true
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_W.'
       operationId: setDeviceParamUpdateStatusUsingPUT
@@ -1788,7 +1811,7 @@ paths:
     delete:
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_W.'
-      operationId: deleteCommandUsingDELETE_1
+      operationId: deleteCommandUsingDELETE
       parameters:
       - description: identifier of specific command. Expected identifier (max 24 characters)
         in: path
@@ -1825,7 +1848,7 @@ paths:
     get:
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
-      operationId: getCommandUsingGET_1
+      operationId: getCommandUsingGET
       parameters:
       - description: identifier of specific command. Expected identifier (max 24 characters)
         in: path
@@ -1866,7 +1889,7 @@ paths:
     get:
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
-      operationId: getCommandStatusUsingGET_1
+      operationId: getCommandStatusUsingGET
       parameters:
       - description: identifier of specific command. Expected identifier (max 24 characters)
         in: path
@@ -1906,7 +1929,7 @@ paths:
     put:
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_W.'
-      operationId: setCommandStatusUsingPUT_1
+      operationId: setCommandStatusUsingPUT
       parameters:
       - description: identifier of specific command. Expected identifier (max 24 characters)
         in: path
@@ -3112,7 +3135,7 @@ paths:
     get:
       description: 'Restricted to API keys with at least one of the following roles
         : DATA_PROCESSING_R.'
-      operationId: listUsingGET_15
+      operationId: listUsingGET_14
       parameters:
       - description: Filter on ActionPolicy trigger type. Can be either "rules" or
           "messages".
@@ -3158,7 +3181,7 @@ paths:
         generated by the service as an UUID.<br><br>Usage of this API will be reported
         in your access log under ''routing'' category.<br><br>Restricted to API keys
         with at least one of the following roles : DATA_PROCESSING_W.'
-      operationId: createUsingPOST_2
+      operationId: createUsingPOST_1
       parameters:
       - description: a valid API key
         in: header
@@ -3189,7 +3212,7 @@ paths:
       description: 'Usage of this API will be reported in your access log under ''routing''
         category.<br><br>Restricted to API keys with at least one of the following
         roles : DATA_PROCESSING_W.'
-      operationId: deleteUsingDELETE_13
+      operationId: deleteUsingDELETE_12
       parameters:
       - description: id of the action to delete
         in: path
@@ -3216,7 +3239,7 @@ paths:
     get:
       description: 'Restricted to API keys with at least one of the following roles
         : DATA_PROCESSING_R.'
-      operationId: retrieveUsingGET_2
+      operationId: retrieveUsingGET_1
       parameters:
       - description: id of the action to retrieve
         in: path
@@ -3249,7 +3272,7 @@ paths:
         the `id` specified in the path. Otherwise an HTTP 400 will be issued.<br><br>Usage
         of this API will be reported in your access log under ''routing'' category.<br><br>Restricted
         to API keys with at least one of the following roles : DATA_PROCESSING_W.'
-      operationId: upsertUsingPUT_1
+      operationId: upsertUsingPUT
       parameters:
       - description: id of the action to save
         in: path
@@ -3282,7 +3305,7 @@ paths:
     post:
       description: 'Restricted to API keys with at least one of the following roles
         : DATA_PROCESSING_W.'
-      operationId: testHttpPushUsingPOST
+      operationId: testHttpPushUsingPOST_1
       parameters:
       - description: a valid API key
         in: header
@@ -4452,7 +4475,7 @@ paths:
     get:
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
-      operationId: listGroupsUsingGET
+      operationId: listGroupsUsingGET_1
       parameters:
       - description: the maximum number of items per page (optional, highest value
           is 1000)
@@ -4506,7 +4529,7 @@ paths:
       description: 'Usage of this API will be reported in your access log under ''device_inventory''
         category.<br><br>Restricted to API keys with at least one of the following
         roles : DEVICE_W.'
-      operationId: createGroupUsingPOST
+      operationId: createGroupUsingPOST_1
       parameters:
       - description: a valid API key
         in: header
@@ -4562,7 +4585,7 @@ paths:
       description: 'Usage of this API will be reported in your access log under ''device_inventory''
         category.<br><br>Restricted to API keys with at least one of the following
         roles : DEVICE_W.'
-      operationId: deleteGroupUsingDELETE
+      operationId: deleteGroupUsingDELETE_1
       parameters:
       - description: targeted for deletion group identifier. Expected string (max
           6 characters)
@@ -4605,7 +4628,7 @@ paths:
     get:
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
-      operationId: getGroupUsingGET
+      operationId: getGroupUsingGET_1
       parameters:
       - description: the Group Identifier. Expected string (max 6 characters)
         in: path
@@ -4651,7 +4674,7 @@ paths:
       description: 'Usage of this API will be reported in your access log under ''device_inventory''
         category.<br><br>Restricted to API keys with at least one of the following
         roles : DEVICE_W.'
-      operationId: updateGroupUsingPUT
+      operationId: updateGroupUsingPUT_1
       parameters:
       - description: identifier to update group. Expected string (max 6 characters)
         in: path
@@ -5144,7 +5167,7 @@ paths:
           description: Request forbidden (missing role)
       summary: List all resources
       tags:
-      - Device management - Devices firmwares (resources)
+      - Device management - Resources management
     post:
       description: 'Usage of this API will be reported in your access log under ''device_resource''
         category.<br><br>Restricted to API keys with at least one of the following
@@ -5185,7 +5208,7 @@ paths:
           description: Request forbidden (missing role)
       summary: Add a resource in Resource Manager
       tags:
-      - Device management - Devices firmwares (resources)
+      - Device management - Resources management
       x-codegen-request-body-name: request
   /api/v0/rm/asset/{assetIdNamespace}/{assetId}:
     get:
@@ -5248,15 +5271,16 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseWeb'
           description: Request forbidden
-      summary: List the asset's resources (use /api/v1/deviceMgt/devices/{deviceId}/firmwares
+      summary: List the asset's resources (use /api/v1/deviceMgt/devices/{deviceId}/resources
         instead)
       tags:
-      - Device management - Devices firmwares (resources)
+      - _(deprecated) Device management resource - V0 (use Device management - Resource
+        - V1 instead)
   /api/v0/rm/asset/{assetIdNamespace}/{assetId}/cancelUpdate:
     post:
-      description: 'Usage of this API will be reported in your access log under ''device_resource''
-        category.<br><br>Restricted to API keys with at least one of the following
-        roles : DEVICE_W.'
+      deprecated: true
+      description: 'Restricted to API keys with at least one of the following roles
+        : DEVICE_W.'
       operationId: cancelResourceUpdateUsingPOST
       parameters:
       - description: the asset id namespace. Asset namespace must respect the following
@@ -5303,13 +5327,13 @@ paths:
           description: Request forbidden
       summary: Cancel asset resource update
       tags:
-      - Device management - Devices firmwares (resources)
+      - _(deprecated) Device management resource - V0 (use Device management - Resource
+        - V1 instead)
   /api/v0/rm/asset/{assetIdNamespace}/{assetId}/resource/{resourceId}/targetversion:
     put:
       deprecated: true
-      description: 'Usage of this API will be reported in your access log under ''device_resource''
-        category.<br><br>Restricted to API keys with at least one of the following
-        roles : DEVICE_W.'
+      description: 'Restricted to API keys with at least one of the following roles
+        : DEVICE_W.'
       operationId: setAssetTargetResourceVersionUsingPUT
       parameters:
       - description: the asset id namespace. Asset namespace must respect the following
@@ -5377,10 +5401,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseWeb'
           description: Resource, resource version or asset resource not found
-      summary: Set asset's target resource version (use /api/v1/deviceMgt/devices/{deviceId}/firmwares/{firmwareId}
+      summary: Set asset's target resource version (use /api/v1/deviceMgt/devices/{deviceId}/resources/{resourceId}
         instead)
       tags:
-      - Device management - Devices firmwares (resources)
+      - _(deprecated) Device management resource - V0 (use Device management - Resource
+        - V1 instead)
       x-codegen-request-body-name: targetVersion
   /api/v0/rm/asset/{assetIdNamespace}/{assetId}/update:
     get:
@@ -5436,7 +5461,8 @@ paths:
       summary: Get the asset's resources update status (use /api/v1/deviceMgt/devices/{deviceId}/firmwares/{firmwareId}/lastUpdate
         instead)
       tags:
-      - Device management - Devices firmwares (resources)
+      - _(deprecated) Device management resource - V0 (use Device management - Resource
+        - V1 instead)
   /api/v0/rm/asset/{assetIdNamespace}/{assetId}/update/history:
     get:
       deprecated: true
@@ -5501,7 +5527,8 @@ paths:
       summary: Get the asset's resources update history (use /api/v1/deviceMgt/devices/{deviceId}/firmwareUpdates
         instead)
       tags:
-      - Device management - Devices firmwares (resources)
+      - _(deprecated) Device management resource - V0 (use Device management - Resource
+        - V1 instead)
   /api/v0/rm/connectors:
     get:
       description: 'Restricted to API keys with at least one of the following roles
@@ -5531,7 +5558,7 @@ paths:
           description: Request forbidden
       summary: Get all available connectors
       tags:
-      - Device management - Devices firmwares (resources)
+      - Device management - Resources management
   /api/v0/rm/connectors/{connector}/metadata:
     get:
       description: 'Restricted to API keys with at least one of the following roles
@@ -5574,7 +5601,7 @@ paths:
           description: Request forbidden
       summary: Get mandatory and optional metadata of a connector
       tags:
-      - Device management - Devices firmwares (resources)
+      - Device management - Resources management
   /api/v0/rm/{resourceId}:
     delete:
       description: 'Usage of this API will be reported in your access log under ''device_resource''
@@ -5618,7 +5645,7 @@ paths:
           description: Resource not found
       summary: Delete a resource
       tags:
-      - Device management - Devices firmwares (resources)
+      - Device management - Resources management
     get:
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
@@ -5663,7 +5690,7 @@ paths:
           description: Resource not found
       summary: Get a resource
       tags:
-      - Device management - Devices firmwares (resources)
+      - Device management - Resources management
     put:
       description: 'Usage of this API will be reported in your access log under ''device_resource''
         category.<br><br>Restricted to API keys with at least one of the following
@@ -5716,7 +5743,7 @@ paths:
           description: Resource not found
       summary: Update a resource
       tags:
-      - Device management - Devices firmwares (resources)
+      - Device management - Resources management
       x-codegen-request-body-name: resourceUpdate
   /api/v0/rm/{resourceId}/compatibleVersion/{currentVersion}:
     get:
@@ -5766,7 +5793,7 @@ paths:
       summary: List the versions from which a resource update to the version can be
         done
       tags:
-      - Device management - Devices firmwares (resources)
+      - Device management - Resources management
   /api/v0/rm/{resourceId}/version:
     get:
       description: 'Restricted to API keys with at least one of the following roles
@@ -5821,7 +5848,7 @@ paths:
           description: Request forbidden
       summary: List resource's versions
       tags:
-      - Device management - Devices firmwares (resources)
+      - Device management - Resources management
     post:
       description: 'Usage of this API will be reported in your access log under ''device_resource''
         category.<br><br>Restricted to API keys with at least one of the following
@@ -5880,7 +5907,7 @@ paths:
           description: Resource version already exists
       summary: Add a new version to a resource
       tags:
-      - Device management - Devices firmwares (resources)
+      - Device management - Resources management
       x-codegen-request-body-name: request
   /api/v0/rm/{resourceId}/version/{resourceVersionId}:
     delete:
@@ -5931,7 +5958,7 @@ paths:
           description: Resource version not found
       summary: Delete a resource's version
       tags:
-      - Device management - Devices firmwares (resources)
+      - Device management - Resources management
     get:
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
@@ -5982,7 +6009,7 @@ paths:
           description: Resource version not found
       summary: Get a resource's version
       tags:
-      - Device management - Devices firmwares (resources)
+      - Device management - Resources management
     put:
       description: 'Usage of this API will be reported in your access log under ''device_resource''
         category.<br><br>Restricted to API keys with at least one of the following
@@ -6041,7 +6068,7 @@ paths:
           description: Resource version not found
       summary: Update a resource's version
       tags:
-      - Device management - Devices firmwares (resources)
+      - Device management - Resources management
       x-codegen-request-body-name: resourceVersionUpdate
   /api/v0/setpwd:
     post:
@@ -6475,15 +6502,16 @@ paths:
         - for SMS : sms_''server phone number'',<br/> - for Devices : the deviceInventory
         section gives the number of created/deleted devices during the day (counters)
         and the total number of devices (counted in the beginning of the day at 1.00
-        am).<br/> - for Msisdn : the msisdnInventory section gives the number of msisdn
-        provisioned/unprovisioned during the day (counters) and the total number of
-        registered msisdns (inventory).<br/> - overall : aggregated connector name;
-        virtual connector containing the data of all the connectors aggregated,<br/><br/>
-        For the current day, the traffic information is updated within 15 minutes.
-        The number of sources/active devices is updated every minute.<br/><u>About
-        the virtual messages:</u><br/>When the MsgIn / MsgOut message size is bigger
-        than 5 kilobytes, a new indicator MsgVirtualIn / MsgVirtualOut  is used to
-        count the number of packets of 5 kilobytes for that message.'
+        am). It also gives statistics on device connections/disconnections (counters).<br/>
+        - for Msisdn : the msisdnInventory section gives the number of msisdn provisioned/unprovisioned
+        during the day (counters) and the total number of registered msisdns (inventory).<br/>
+        - overall : aggregated connector name; virtual connector containing the data
+        of all the connectors aggregated,<br/><br/> For the current day, the traffic
+        information is updated within 15 minutes. The number of sources/active devices
+        is updated every minute.<br/><u>About the virtual messages:</u><br/>When the
+        MsgIn / MsgOut message size is bigger than 5 kilobytes, a new indicator MsgVirtualIn
+        / MsgVirtualOut  is used to count the number of packets of 5 kilobytes for
+        that message.'
       operationId: getTenantStatisticsUsingGET_3
       parameters:
       - description: 'the id of your tenant ex: 57xxxxxxxxxxxxxxxxxxxxxx'
@@ -6678,6 +6706,14 @@ paths:
         required: true
         schema:
           type: string
+      - description: |-
+          false: Live Objects prevents deleting fifo while there is at least one consumer,
+          true: the fifo will be deleted in any cases.
+        in: query
+        name: force
+        schema:
+          default: false
+          type: boolean
       - description: a valid API key
         in: header
         name: X-API-KEY
@@ -7514,7 +7550,7 @@ paths:
           description: Request forbidden
       summary: List of message counts group by period
       tags:
-      - Device management for LPWA
+      - Device management for LoRa
   /api/v0/vendors/lora/devices:
     get:
       deprecated: true
@@ -7596,7 +7632,7 @@ paths:
           description: Request forbidden
       summary: List LoRa devices (use Device management - Connector nodes - V1 instead)
       tags:
-      - Device management for LPWA
+      - Device management for LoRa
     post:
       deprecated: true
       description: 'Usage of this API will be reported in your access log under ''device_inventory''
@@ -7657,7 +7693,7 @@ paths:
           description: Internal error. Please, contact the assistance.
       summary: Register a LoRa device (use Device management - Interfaces - V1 instead)
       tags:
-      - Device management for LPWA
+      - Device management for LoRa
       x-codegen-request-body-name: req
   /api/v0/vendors/lora/devices/count:
     get:
@@ -7692,7 +7728,7 @@ paths:
           description: Request forbidden
       summary: Device counts
       tags:
-      - Device management for LPWA
+      - Device management for LoRa
   /api/v0/vendors/lora/devices/{devEUI}:
     delete:
       deprecated: true
@@ -7753,7 +7789,7 @@ paths:
           description: Internal error. Please, contact the assitance
       summary: Unregister a device (use Device management - Connector nodes - V1 instead)
       tags:
-      - Device management for LPWA
+      - Device management for LoRa
     get:
       deprecated: true
       description: 'Restricted to API keys with at least one of the following roles
@@ -7806,7 +7842,7 @@ paths:
           description: '40411 : the device was not found'
       summary: Get a device (use Device management - Connector nodes - V1 instead)
       tags:
-      - Device management for LPWA
+      - Device management for LoRa
     patch:
       deprecated: true
       description: 'Usage of this API will be reported in your access log under ''device_inventory''
@@ -7873,7 +7909,7 @@ paths:
           description: Internal error. Please, contact the assistance
       summary: Update a device (use Device management - Connector nodes - V1 instead)
       tags:
-      - Device management for LPWA
+      - Device management for LoRa
       x-codegen-request-body-name: req
   /api/v0/vendors/lora/devices/{devEUI}/commands:
     get:
@@ -7966,7 +8002,7 @@ paths:
       summary: List commands (use /api/v1/deviceMgt/connectors/lora/nodes/{devEUI}/downlinks
         instead)
       tags:
-      - Device management for LPWA
+      - Device management for LoRa
     post:
       deprecated: true
       description: 'Restricted to API keys with at least one of the following roles
@@ -8034,7 +8070,7 @@ paths:
       summary: Register a command (use /api/v1/deviceMgt/connectors/lora/nodes/{devEUI}/downlinks
         instead)
       tags:
-      - Device management for LPWA
+      - Device management for LoRa
       x-codegen-request-body-name: req
   /api/v0/vendors/lora/profiles:
     get:
@@ -8067,7 +8103,7 @@ paths:
       summary: Get LoRa device profiles (use /api/v1/deviceMgt/connectors/lora/profiles
         instead)
       tags:
-      - Device management for LPWA
+      - Device management for LoRa
   /api/v0/vendors/lwm2m/identities:
     get:
       description: 'Restricted to API keys with at least one of the following roles
@@ -8503,7 +8539,7 @@ paths:
     delete:
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_W.'
-      operationId: deleteCommandUsingDELETE
+      operationId: deleteCommandUsingDELETE_1
       parameters:
       - description: identifier of specific command. Expected identifier (max 24 characters)
         in: path
@@ -8539,7 +8575,7 @@ paths:
     get:
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
-      operationId: getCommandUsingGET
+      operationId: getCommandUsingGET_1
       parameters:
       - description: identifier of specific command. Expected identifier (max 24 characters)
         in: path
@@ -8579,7 +8615,7 @@ paths:
     get:
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
-      operationId: getCommandStatusUsingGET
+      operationId: getCommandStatusUsingGET_1
       parameters:
       - description: identifier of specific command. Expected identifier (max 24 characters)
         in: path
@@ -8618,7 +8654,7 @@ paths:
     put:
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_W.'
-      operationId: setCommandStatusUsingPUT
+      operationId: setCommandStatusUsingPUT_1
       parameters:
       - description: identifier of specific command. Expected identifier (max 24 characters)
         in: path
@@ -8709,7 +8745,7 @@ paths:
           description: list of LoRa connectivity plans
       summary: List connectivity plans
       tags:
-      - Device management for LPWA
+      - Device management for LoRa
   /api/v1/deviceMgt/connectors/lora/connectivity:
     get:
       deprecated: true
@@ -8734,7 +8770,7 @@ paths:
           description: a page of LoRa connectivity plan
       summary: List connectivity plan
       tags:
-      - Device management for LPWA
+      - Device management for LoRa
   /api/v1/deviceMgt/connectors/lora/gateways:
     get:
       description: 'Restricted to API keys with at least one of the following roles
@@ -8814,7 +8850,7 @@ paths:
           description: Request forbidden
       summary: List gateways
       tags:
-      - Device management for LPWA
+      - Device management for LoRa
   /api/v1/deviceMgt/connectors/lora/gateways/{id}:
     get:
       description: 'Restricted to API keys with at least one of the following roles
@@ -8866,7 +8902,7 @@ paths:
           description: Not found
       summary: Get a gateway
       tags:
-      - Device management for LPWA
+      - Device management for LoRa
     patch:
       description: 'Set the location property to an empty object to remove the gateway
         location.<br><br>Restricted to API keys with at least one of the following
@@ -8925,7 +8961,7 @@ paths:
           description: Not found
       summary: Update a gateway.
       tags:
-      - Device management for LPWA
+      - Device management for LoRa
       x-codegen-request-body-name: loraGatewayData
   /api/v1/deviceMgt/connectors/lora/nodes/{devEUI}/downlinks:
     get:
@@ -9017,7 +9053,7 @@ paths:
           description: '40411 : the device was not found'
       summary: List commands
       tags:
-      - Device management for LPWA
+      - Device management for LoRa
     post:
       deprecated: true
       description: 'Restricted to API keys with at least one of the following roles
@@ -9084,7 +9120,7 @@ paths:
           description: '40411 : the device was not found'
       summary: Register a command
       tags:
-      - Device management for LPWA
+      - Device management for LoRa
       x-codegen-request-body-name: req
   /api/v1/deviceMgt/connectors/lora/profiles:
     get:
@@ -9115,40 +9151,43 @@ paths:
           description: Request forbidden
       summary: Get LoRa device profiles
       tags:
-      - Device management for LPWA
+      - Device management for LoRa
   /api/v1/deviceMgt/connectors/{connector}/nodes:
     get:
       description: '<p>The <strong>definition</strong> depends on connector.</p><p><span
         style="text-decoration: underline;">Lora definition</span>:</p><ul><li>"devEUI":
         interface EUI</li><li>"appEUI": appEUI of the interface</li><li>"appKey":
         appKey of the interface</li><li>"activationType": supported value: "OTAA"</li><li>"profile":
-        profile of the interface</li><li>"encoding": (Optional) encoding type of the
-        binary payload sent by the interface</li><li>"connectivityOptions": connectivity
-        options used for the interface </li><ul><li>"tdoa": true/false </li><li>"ackUl":
-        true/false</li></ul><li>"connectivityPlan": connectivity plan to use for the
-        interface. Should be used preferably at connectivityOptions but at least one
-        of two shall be defined.</li></ul><p><span style="text-decoration: underline;">SMS
-        definition</span>:</p><ul><li>"msisdn": interface msisdn</li><li>"serverPhoneNumber":
+        profile of the interface</li><li>"encoding": (Optional) encoding used in message''s
+        payload (use /decoders APIs to define your own decoder)</li><li>"connectivityOptions":
+        connectivity options used for the interface </li><ul><li>"tdoa": true/false
+        </li><li>"ackUl": true/false</li></ul><li>"connectivityPlan": connectivity
+        plan to use for the interface. Should be used preferably at connectivityOptions
+        but at least one of two shall be defined.</li></ul><p><span style="text-decoration:
+        underline;">SMS definition</span>:</p><ul><li>"msisdn": interface msisdn</li><li>"serverPhoneNumber":
         (Optional) server phone number</li><li>"encoding": (Optional) name of the
         decoder that will be used to decode received SMS</li></ul><p><span style="text-decoration:
         underline;">MQTT definition</span>:</p><ul><li>"clientId": interface client
-        ID</li></ul><p><span style="text-decoration: underline;">X-CONNECTOR definition</span>:</p><ul><li>"nodeId":
-        id used by the external connector to identify the communicating device (e.g.
-        PUB connector/v1/nodes/{nodeId}/status)</li></ul><br /><p>The <strong>activity</strong>
-        depends on connector.</p><p><span style="text-decoration: underline;">Lora
-        activity</span>:</p><ul><li>"lastActivationTs": (Optional) last activation
-        date of the interface</li><li>"lastDeactivationTs": (Optional) last deactivation
-        date of the interface</li><li>"lastSignalLevel": (Optional) last signal level</li><li>"lastBatteryLevel":
-        (Optional) last battery level</li><li>"lastDlFcnt": (Optional) last downlink
-        frame counter</li><li>"lastUlFcnt": (Optional) last uplink frame counter</li></ul><p><span
-        style="text-decoration: underline;">SMS activity</span>:</p><ul><li>"lastUplink":
-        (Optional) last uplink date of the interface</li><ul><li>"timestamp": date
-        of the activity</li><li>"serverPhoneNumber": server phone number used</li></ul><li>"lastDownlink":
-        (Optional) last downlink date of the connector node</li><ul><li>"timestamp":
-        date of the activity</li><li>"serverPhoneNumber": server phone number used</li></ul></ul><p><span
-        style="text-decoration: underline;">MQTT activity</span>:</p><ul><li>"apiKeyId":
-        api key ID used</li><li>"mqttVersion": mqtt version used</li><li>"mqttUsername":
-        mqtt username used</li><li>"mqttTimeout": mqtt timeout</li><li>"remoteAddress"</li><li>"lastSessionStartTime"</li><li>"lastSessionEndTime"</li></ul><br><br>Restricted
+        ID</li><li>"encoding": (Optional) encoding used in message''s payload (use
+        /decoders APIs to define your own decoder)</li></ul><p><span style="text-decoration:
+        underline;">X-CONNECTOR definition</span>:</p><ul><li>"nodeId": id used by
+        the external connector to identify the communicating device (e.g. PUB connector/v1/nodes/{nodeId}/status)</li><li>"encoding":
+        (Optional) encoding used in message''s payload (use /decoders APIs to define
+        your own decoder)</li></ul><br /><p>The <strong>activity</strong> depends
+        on connector.</p><p><span style="text-decoration: underline;">Lora activity</span>:</p><ul><li>"lastActivationTs":
+        (Optional) last activation date of the interface</li><li>"lastDeactivationTs":
+        (Optional) last deactivation date of the interface</li><li>"lastSignalLevel":
+        (Optional) last signal level</li><li>"lastBatteryLevel": (Optional) last battery
+        level</li><li>"lastDlFcnt": (Optional) last downlink frame counter</li><li>"lastUlFcnt":
+        (Optional) last uplink frame counter</li></ul><p><span style="text-decoration:
+        underline;">SMS activity</span>:</p><ul><li>"lastUplink": (Optional) last
+        uplink date of the interface</li><ul><li>"timestamp": date of the activity</li><li>"serverPhoneNumber":
+        server phone number used</li></ul><li>"lastDownlink": (Optional) last downlink
+        date of the connector node</li><ul><li>"timestamp": date of the activity</li><li>"serverPhoneNumber":
+        server phone number used</li></ul></ul><p><span style="text-decoration: underline;">MQTT
+        activity</span>:</p><ul><li>"apiKeyId": api key ID used</li><li>"mqttVersion":
+        mqtt version used</li><li>"mqttUsername": mqtt username used</li><li>"mqttTimeout":
+        mqtt timeout</li><li>"remoteAddress"</li><li>"lastSessionStartTime"</li><li>"lastSessionEndTime"</li></ul><br><br>Restricted
         to API keys with at least one of the following roles : DEVICE_R.'
       operationId: listNodesUsingGET
       parameters:
@@ -9264,33 +9303,36 @@ paths:
         style="text-decoration: underline;">Lora definition</span>:</p><ul><li>"devEUI":
         interface EUI</li><li>"appEUI": appEUI of the interface</li><li>"appKey":
         appKey of the interface</li><li>"activationType": supported value: "OTAA"</li><li>"profile":
-        profile of the interface</li><li>"encoding": (Optional) encoding type of the
-        binary payload sent by the interface</li><li>"connectivityOptions": connectivity
-        options used for the interface </li><ul><li>"tdoa": true/false </li><li>"ackUl":
-        true/false</li></ul><li>"connectivityPlan": connectivity plan to use for the
-        interface. Should be used preferably at connectivityOptions but at least one
-        of two shall be defined.</li></ul><p><span style="text-decoration: underline;">SMS
-        definition</span>:</p><ul><li>"msisdn": interface msisdn</li><li>"serverPhoneNumber":
+        profile of the interface</li><li>"encoding": (Optional) encoding used in message''s
+        payload (use /decoders APIs to define your own decoder)</li><li>"connectivityOptions":
+        connectivity options used for the interface </li><ul><li>"tdoa": true/false
+        </li><li>"ackUl": true/false</li></ul><li>"connectivityPlan": connectivity
+        plan to use for the interface. Should be used preferably at connectivityOptions
+        but at least one of two shall be defined.</li></ul><p><span style="text-decoration:
+        underline;">SMS definition</span>:</p><ul><li>"msisdn": interface msisdn</li><li>"serverPhoneNumber":
         (Optional) server phone number</li><li>"encoding": (Optional) name of the
         decoder that will be used to decode received SMS</li></ul><p><span style="text-decoration:
         underline;">MQTT definition</span>:</p><ul><li>"clientId": interface client
-        ID</li></ul><p><span style="text-decoration: underline;">X-CONNECTOR definition</span>:</p><ul><li>"nodeId":
-        id used by the external connector to identify the communicating device (e.g.
-        PUB connector/v1/nodes/{nodeId}/status)</li></ul><br /><p>The <strong>activity</strong>
-        depends on connector.</p><p><span style="text-decoration: underline;">Lora
-        activity</span>:</p><ul><li>"lastActivationTs": (Optional) last activation
-        date of the interface</li><li>"lastDeactivationTs": (Optional) last deactivation
-        date of the interface</li><li>"lastSignalLevel": (Optional) last signal level</li><li>"lastBatteryLevel":
-        (Optional) last battery level</li><li>"lastDlFcnt": (Optional) last downlink
-        frame counter</li><li>"lastUlFcnt": (Optional) last uplink frame counter</li></ul><p><span
-        style="text-decoration: underline;">SMS activity</span>:</p><ul><li>"lastUplink":
-        (Optional) last uplink date of the interface</li><ul><li>"timestamp": date
-        of the activity</li><li>"serverPhoneNumber": server phone number used</li></ul><li>"lastDownlink":
-        (Optional) last downlink date of the connector node</li><ul><li>"timestamp":
-        date of the activity</li><li>"serverPhoneNumber": server phone number used</li></ul></ul><p><span
-        style="text-decoration: underline;">MQTT activity</span>:</p><ul><li>"apiKeyId":
-        api key ID used</li><li>"mqttVersion": mqtt version used</li><li>"mqttUsername":
-        mqtt username used</li><li>"mqttTimeout": mqtt timeout</li><li>"remoteAddress"</li><li>"lastSessionStartTime"</li><li>"lastSessionEndTime"</li></ul><br><br>Restricted
+        ID</li><li>"encoding": (Optional) encoding used in message''s payload (use
+        /decoders APIs to define your own decoder)</li></ul><p><span style="text-decoration:
+        underline;">X-CONNECTOR definition</span>:</p><ul><li>"nodeId": id used by
+        the external connector to identify the communicating device (e.g. PUB connector/v1/nodes/{nodeId}/status)</li><li>"encoding":
+        (Optional) encoding used in message''s payload (use /decoders APIs to define
+        your own decoder)</li></ul><br /><p>The <strong>activity</strong> depends
+        on connector.</p><p><span style="text-decoration: underline;">Lora activity</span>:</p><ul><li>"lastActivationTs":
+        (Optional) last activation date of the interface</li><li>"lastDeactivationTs":
+        (Optional) last deactivation date of the interface</li><li>"lastSignalLevel":
+        (Optional) last signal level</li><li>"lastBatteryLevel": (Optional) last battery
+        level</li><li>"lastDlFcnt": (Optional) last downlink frame counter</li><li>"lastUlFcnt":
+        (Optional) last uplink frame counter</li></ul><p><span style="text-decoration:
+        underline;">SMS activity</span>:</p><ul><li>"lastUplink": (Optional) last
+        uplink date of the interface</li><ul><li>"timestamp": date of the activity</li><li>"serverPhoneNumber":
+        server phone number used</li></ul><li>"lastDownlink": (Optional) last downlink
+        date of the connector node</li><ul><li>"timestamp": date of the activity</li><li>"serverPhoneNumber":
+        server phone number used</li></ul></ul><p><span style="text-decoration: underline;">MQTT
+        activity</span>:</p><ul><li>"apiKeyId": api key ID used</li><li>"mqttVersion":
+        mqtt version used</li><li>"mqttUsername": mqtt username used</li><li>"mqttTimeout":
+        mqtt timeout</li><li>"remoteAddress"</li><li>"lastSessionStartTime"</li><li>"lastSessionEndTime"</li></ul><br><br>Restricted
         to API keys with at least one of the following roles : DEVICE_R.'
       operationId: getNodeUsingGET
       parameters:
@@ -9345,21 +9387,24 @@ paths:
         style="text-decoration: underline;">Lora definition</span>:</p><ul><li>"devEUI":
         interface EUI</li><li>"appEUI": appEUI of the interface</li><li>"appKey":
         appKey of the interface</li><li>"activationType": supported value: "OTAA"</li><li>"profile":
-        profile of the interface</li><li>"encoding": (Optional) encoding type of the
-        binary payload sent by the interface</li><li>"connectivityOptions": connectivity
-        options used for the interface </li><ul><li>"tdoa": true/false </li><li>"ackUl":
-        true/false</li></ul><li>"connectivityPlan": connectivity plan to use for the
-        interface. Should be used preferably at connectivityOptions but at least one
-        of two shall be defined.</li></ul><p><span style="text-decoration: underline;">SMS
-        definition</span>:</p><ul><li>"msisdn": interface msisdn</li><li>"serverPhoneNumber":
+        profile of the interface</li><li>"encoding": (Optional) encoding used in message''s
+        payload (use /decoders APIs to define your own decoder)</li><li>"connectivityOptions":
+        connectivity options used for the interface </li><ul><li>"tdoa": true/false
+        </li><li>"ackUl": true/false</li></ul><li>"connectivityPlan": connectivity
+        plan to use for the interface. Should be used preferably at connectivityOptions
+        but at least one of two shall be defined.</li></ul><p><span style="text-decoration:
+        underline;">SMS definition</span>:</p><ul><li>"msisdn": interface msisdn</li><li>"serverPhoneNumber":
         (Optional) server phone number</li><li>"encoding": (Optional) name of the
         decoder that will be used to decode received SMS</li></ul><p><span style="text-decoration:
         underline;">MQTT definition</span>:</p><ul><li>"clientId": interface client
-        ID</li></ul><p><span style="text-decoration: underline;">X-CONNECTOR definition</span>:</p><ul><li>"nodeId":
-        id used by the external connector to identify the communicating device (e.g.
-        PUB connector/v1/nodes/{nodeId}/status)</li></ul><br><br>Usage of this API
-        will be reported in your access log under ''device_inventory'' category.<br><br>Restricted
-        to API keys with at least one of the following roles : DEVICE_W.'
+        ID</li><li>"encoding": (Optional) encoding used in message''s payload (use
+        /decoders APIs to define your own decoder)</li></ul><p><span style="text-decoration:
+        underline;">X-CONNECTOR definition</span>:</p><ul><li>"nodeId": id used by
+        the external connector to identify the communicating device (e.g. PUB connector/v1/nodes/{nodeId}/status)</li><li>"encoding":
+        (Optional) encoding used in message''s payload (use /decoders APIs to define
+        your own decoder)</li></ul><br><br>Usage of this API will be reported in your
+        access log under ''device_inventory'' category.<br><br>Restricted to API keys
+        with at least one of the following roles : DEVICE_W.'
       operationId: updateNodeUsingPATCH
       parameters:
       - description: the connector id
@@ -9547,7 +9592,7 @@ paths:
         schema:
           type: string
       - description: 'list of fields to return.  Amongst: ''id'', ''name'', ''description'',
-          ''tags'', ''properties'', ''group'', ''interfaces'', ''config'', ''firmwares'',
+          ''tags'', ''properties'', ''group'', ''interfaces'', ''config'', ''resources'',
           ''activityState'', ''defaultDataStreamId'', ''created'', ''updated''), default:
           id, name, tags & group'
         explode: true
@@ -10266,6 +10311,7 @@ paths:
       - Device management - Inventory - V1
   /api/v1/deviceMgt/devices/{deviceId}/firmwareUpdates:
     get:
+      deprecated: true
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
       operationId: getDeviceResourceUpdatesUsingGET
@@ -10326,11 +10372,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseWeb'
           description: Request forbidden
-      summary: Get a list of device firmware updates
+      summary: Get a list of device firmware updates (use /api/v1/deviceMgt/devices/{deviceId}/resources/updates
       tags:
-      - Device management - Devices firmwares (resources)
+      - _(deprecated) Device management - Devices firmwares
   /api/v1/deviceMgt/devices/{deviceId}/firmwares:
     get:
+      deprecated: true
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
       operationId: listDeviceResourcesUsingGET
@@ -10370,11 +10417,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseWeb'
           description: Request forbidden
-      summary: Get a map of all device firmwares
+      summary: Get a map of all device firmwares (use /api/v1/deviceMgt/devices/{deviceId}/resources
+        instead)
       tags:
-      - Device management - Devices firmwares (resources)
+      - _(deprecated) Device management - Devices firmwares
   /api/v1/deviceMgt/devices/{deviceId}/firmwares/{firmwareId}:
     get:
+      deprecated: true
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
       operationId: getDeviceFirmwareUsingGET
@@ -10418,10 +10467,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseWeb'
           description: Request forbidden
-      summary: Get a specific device firmware
+      summary: Get a specific device firmware (use /api/v1/deviceMgt/devices/{deviceId}/resources/{resourceId}
+        instead)
       tags:
-      - Device management - Devices firmwares (resources)
+      - _(deprecated) Device management - Devices firmwares
     post:
+      deprecated: true
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_W.'
       operationId: setDeviceResourceVersionUsingPOST
@@ -10478,12 +10529,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseWeb'
           description: Request forbidden
-      summary: Set device firmware versions
+      summary: Set device firmware versions (use /api/v1/deviceMgt/devices/{deviceId}/resources/{resourceId}
+        instead)
       tags:
-      - Device management - Devices firmwares (resources)
+      - _(deprecated) Device management - Devices firmwares
       x-codegen-request-body-name: update
   /api/v1/deviceMgt/devices/{deviceId}/firmwares/{firmwareId}/lastUpdate:
     get:
+      deprecated: true
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
       operationId: getLastResourceUpdateUsingGET
@@ -10527,42 +10580,46 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseWeb'
           description: Request forbidden
-      summary: Get info about last update of this device firmware
+      summary: Get info about last update of this device firmware (use /api/v1/deviceMgt/devices/{deviceId}/resources/{resourceId}/updates/latest
+        instead)
       tags:
-      - Device management - Devices firmwares (resources)
+      - _(deprecated) Device management - Devices firmwares
   /api/v1/deviceMgt/devices/{deviceId}/interfaces:
     get:
       description: '<p>The <strong>definition</strong> depends on connector.</p><p><span
         style="text-decoration: underline;">Lora definition</span>:</p><ul><li>"devEUI":
         interface EUI</li><li>"appEUI": appEUI of the interface</li><li>"appKey":
         appKey of the interface</li><li>"activationType": supported value: "OTAA"</li><li>"profile":
-        profile of the interface</li><li>"encoding": (Optional) encoding type of the
-        binary payload sent by the interface</li><li>"connectivityOptions": connectivity
-        options used for the interface </li><ul><li>"tdoa": true/false </li><li>"ackUl":
-        true/false</li></ul><li>"connectivityPlan": connectivity plan to use for the
-        interface. Should be used preferably at connectivityOptions but at least one
-        of two shall be defined.</li></ul><p><span style="text-decoration: underline;">SMS
-        definition</span>:</p><ul><li>"msisdn": interface msisdn</li><li>"serverPhoneNumber":
+        profile of the interface</li><li>"encoding": (Optional) encoding used in message''s
+        payload (use /decoders APIs to define your own decoder)</li><li>"connectivityOptions":
+        connectivity options used for the interface </li><ul><li>"tdoa": true/false
+        </li><li>"ackUl": true/false</li></ul><li>"connectivityPlan": connectivity
+        plan to use for the interface. Should be used preferably at connectivityOptions
+        but at least one of two shall be defined.</li></ul><p><span style="text-decoration:
+        underline;">SMS definition</span>:</p><ul><li>"msisdn": interface msisdn</li><li>"serverPhoneNumber":
         (Optional) server phone number</li><li>"encoding": (Optional) name of the
         decoder that will be used to decode received SMS</li></ul><p><span style="text-decoration:
         underline;">MQTT definition</span>:</p><ul><li>"clientId": interface client
-        ID</li></ul><p><span style="text-decoration: underline;">X-CONNECTOR definition</span>:</p><ul><li>"nodeId":
-        id used by the external connector to identify the communicating device (e.g.
-        PUB connector/v1/nodes/{nodeId}/status)</li></ul><br /><p>The <strong>activity</strong>
-        depends on connector.</p><p><span style="text-decoration: underline;">Lora
-        activity</span>:</p><ul><li>"lastActivationTs": (Optional) last activation
-        date of the interface</li><li>"lastDeactivationTs": (Optional) last deactivation
-        date of the interface</li><li>"lastSignalLevel": (Optional) last signal level</li><li>"lastBatteryLevel":
-        (Optional) last battery level</li><li>"lastDlFcnt": (Optional) last downlink
-        frame counter</li><li>"lastUlFcnt": (Optional) last uplink frame counter</li></ul><p><span
-        style="text-decoration: underline;">SMS activity</span>:</p><ul><li>"lastUplink":
-        (Optional) last uplink date of the interface</li><ul><li>"timestamp": date
-        of the activity</li><li>"serverPhoneNumber": server phone number used</li></ul><li>"lastDownlink":
-        (Optional) last downlink date of the connector node</li><ul><li>"timestamp":
-        date of the activity</li><li>"serverPhoneNumber": server phone number used</li></ul></ul><p><span
-        style="text-decoration: underline;">MQTT activity</span>:</p><ul><li>"apiKeyId":
-        api key ID used</li><li>"mqttVersion": mqtt version used</li><li>"mqttUsername":
-        mqtt username used</li><li>"mqttTimeout": mqtt timeout</li><li>"remoteAddress"</li><li>"lastSessionStartTime"</li><li>"lastSessionEndTime"</li></ul><br><br>Restricted
+        ID</li><li>"encoding": (Optional) encoding used in message''s payload (use
+        /decoders APIs to define your own decoder)</li></ul><p><span style="text-decoration:
+        underline;">X-CONNECTOR definition</span>:</p><ul><li>"nodeId": id used by
+        the external connector to identify the communicating device (e.g. PUB connector/v1/nodes/{nodeId}/status)</li><li>"encoding":
+        (Optional) encoding used in message''s payload (use /decoders APIs to define
+        your own decoder)</li></ul><br /><p>The <strong>activity</strong> depends
+        on connector.</p><p><span style="text-decoration: underline;">Lora activity</span>:</p><ul><li>"lastActivationTs":
+        (Optional) last activation date of the interface</li><li>"lastDeactivationTs":
+        (Optional) last deactivation date of the interface</li><li>"lastSignalLevel":
+        (Optional) last signal level</li><li>"lastBatteryLevel": (Optional) last battery
+        level</li><li>"lastDlFcnt": (Optional) last downlink frame counter</li><li>"lastUlFcnt":
+        (Optional) last uplink frame counter</li></ul><p><span style="text-decoration:
+        underline;">SMS activity</span>:</p><ul><li>"lastUplink": (Optional) last
+        uplink date of the interface</li><ul><li>"timestamp": date of the activity</li><li>"serverPhoneNumber":
+        server phone number used</li></ul><li>"lastDownlink": (Optional) last downlink
+        date of the connector node</li><ul><li>"timestamp": date of the activity</li><li>"serverPhoneNumber":
+        server phone number used</li></ul></ul><p><span style="text-decoration: underline;">MQTT
+        activity</span>:</p><ul><li>"apiKeyId": api key ID used</li><li>"mqttVersion":
+        mqtt version used</li><li>"mqttUsername": mqtt username used</li><li>"mqttTimeout":
+        mqtt timeout</li><li>"remoteAddress"</li><li>"lastSessionStartTime"</li><li>"lastSessionEndTime"</li></ul><br><br>Restricted
         to API keys with at least one of the following roles : DEVICE_R.'
       operationId: listInterfacesForADeviceUsingGET
       parameters:
@@ -10615,21 +10672,24 @@ paths:
         style="text-decoration: underline;">Lora definition</span>:</p><ul><li>"devEUI":
         interface EUI</li><li>"appEUI": appEUI of the interface</li><li>"appKey":
         appKey of the interface</li><li>"activationType": supported value: "OTAA"</li><li>"profile":
-        profile of the interface</li><li>"encoding": (Optional) encoding type of the
-        binary payload sent by the interface</li><li>"connectivityOptions": connectivity
-        options used for the interface </li><ul><li>"tdoa": true/false </li><li>"ackUl":
-        true/false</li></ul><li>"connectivityPlan": connectivity plan to use for the
-        interface. Should be used preferably at connectivityOptions but at least one
-        of two shall be defined.</li></ul><p><span style="text-decoration: underline;">SMS
-        definition</span>:</p><ul><li>"msisdn": interface msisdn</li><li>"serverPhoneNumber":
+        profile of the interface</li><li>"encoding": (Optional) encoding used in message''s
+        payload (use /decoders APIs to define your own decoder)</li><li>"connectivityOptions":
+        connectivity options used for the interface </li><ul><li>"tdoa": true/false
+        </li><li>"ackUl": true/false</li></ul><li>"connectivityPlan": connectivity
+        plan to use for the interface. Should be used preferably at connectivityOptions
+        but at least one of two shall be defined.</li></ul><p><span style="text-decoration:
+        underline;">SMS definition</span>:</p><ul><li>"msisdn": interface msisdn</li><li>"serverPhoneNumber":
         (Optional) server phone number</li><li>"encoding": (Optional) name of the
         decoder that will be used to decode received SMS</li></ul><p><span style="text-decoration:
         underline;">MQTT definition</span>:</p><ul><li>"clientId": interface client
-        ID</li></ul><p><span style="text-decoration: underline;">X-CONNECTOR definition</span>:</p><ul><li>"nodeId":
-        id used by the external connector to identify the communicating device (e.g.
-        PUB connector/v1/nodes/{nodeId}/status)</li></ul><br><br>Usage of this API
-        will be reported in your access log under ''device_inventory'' category.<br><br>Restricted
-        to API keys with at least one of the following roles : DEVICE_W.'
+        ID</li><li>"encoding": (Optional) encoding used in message''s payload (use
+        /decoders APIs to define your own decoder)</li></ul><p><span style="text-decoration:
+        underline;">X-CONNECTOR definition</span>:</p><ul><li>"nodeId": id used by
+        the external connector to identify the communicating device (e.g. PUB connector/v1/nodes/{nodeId}/status)</li><li>"encoding":
+        (Optional) encoding used in message''s payload (use /decoders APIs to define
+        your own decoder)</li></ul><br><br>Usage of this API will be reported in your
+        access log under ''device_inventory'' category.<br><br>Restricted to API keys
+        with at least one of the following roles : DEVICE_W.'
       operationId: addInterfaceToDeviceUsingPOST
       parameters:
       - description: device identifier. A Live Objects URN 'urn:lo:nsid:{namespace}:{id}'
@@ -10739,33 +10799,36 @@ paths:
         style="text-decoration: underline;">Lora definition</span>:</p><ul><li>"devEUI":
         interface EUI</li><li>"appEUI": appEUI of the interface</li><li>"appKey":
         appKey of the interface</li><li>"activationType": supported value: "OTAA"</li><li>"profile":
-        profile of the interface</li><li>"encoding": (Optional) encoding type of the
-        binary payload sent by the interface</li><li>"connectivityOptions": connectivity
-        options used for the interface </li><ul><li>"tdoa": true/false </li><li>"ackUl":
-        true/false</li></ul><li>"connectivityPlan": connectivity plan to use for the
-        interface. Should be used preferably at connectivityOptions but at least one
-        of two shall be defined.</li></ul><p><span style="text-decoration: underline;">SMS
-        definition</span>:</p><ul><li>"msisdn": interface msisdn</li><li>"serverPhoneNumber":
+        profile of the interface</li><li>"encoding": (Optional) encoding used in message''s
+        payload (use /decoders APIs to define your own decoder)</li><li>"connectivityOptions":
+        connectivity options used for the interface </li><ul><li>"tdoa": true/false
+        </li><li>"ackUl": true/false</li></ul><li>"connectivityPlan": connectivity
+        plan to use for the interface. Should be used preferably at connectivityOptions
+        but at least one of two shall be defined.</li></ul><p><span style="text-decoration:
+        underline;">SMS definition</span>:</p><ul><li>"msisdn": interface msisdn</li><li>"serverPhoneNumber":
         (Optional) server phone number</li><li>"encoding": (Optional) name of the
         decoder that will be used to decode received SMS</li></ul><p><span style="text-decoration:
         underline;">MQTT definition</span>:</p><ul><li>"clientId": interface client
-        ID</li></ul><p><span style="text-decoration: underline;">X-CONNECTOR definition</span>:</p><ul><li>"nodeId":
-        id used by the external connector to identify the communicating device (e.g.
-        PUB connector/v1/nodes/{nodeId}/status)</li></ul><br /><p>The <strong>activity</strong>
-        depends on connector.</p><p><span style="text-decoration: underline;">Lora
-        activity</span>:</p><ul><li>"lastActivationTs": (Optional) last activation
-        date of the interface</li><li>"lastDeactivationTs": (Optional) last deactivation
-        date of the interface</li><li>"lastSignalLevel": (Optional) last signal level</li><li>"lastBatteryLevel":
-        (Optional) last battery level</li><li>"lastDlFcnt": (Optional) last downlink
-        frame counter</li><li>"lastUlFcnt": (Optional) last uplink frame counter</li></ul><p><span
-        style="text-decoration: underline;">SMS activity</span>:</p><ul><li>"lastUplink":
-        (Optional) last uplink date of the interface</li><ul><li>"timestamp": date
-        of the activity</li><li>"serverPhoneNumber": server phone number used</li></ul><li>"lastDownlink":
-        (Optional) last downlink date of the connector node</li><ul><li>"timestamp":
-        date of the activity</li><li>"serverPhoneNumber": server phone number used</li></ul></ul><p><span
-        style="text-decoration: underline;">MQTT activity</span>:</p><ul><li>"apiKeyId":
-        api key ID used</li><li>"mqttVersion": mqtt version used</li><li>"mqttUsername":
-        mqtt username used</li><li>"mqttTimeout": mqtt timeout</li><li>"remoteAddress"</li><li>"lastSessionStartTime"</li><li>"lastSessionEndTime"</li></ul><br><br>Restricted
+        ID</li><li>"encoding": (Optional) encoding used in message''s payload (use
+        /decoders APIs to define your own decoder)</li></ul><p><span style="text-decoration:
+        underline;">X-CONNECTOR definition</span>:</p><ul><li>"nodeId": id used by
+        the external connector to identify the communicating device (e.g. PUB connector/v1/nodes/{nodeId}/status)</li><li>"encoding":
+        (Optional) encoding used in message''s payload (use /decoders APIs to define
+        your own decoder)</li></ul><br /><p>The <strong>activity</strong> depends
+        on connector.</p><p><span style="text-decoration: underline;">Lora activity</span>:</p><ul><li>"lastActivationTs":
+        (Optional) last activation date of the interface</li><li>"lastDeactivationTs":
+        (Optional) last deactivation date of the interface</li><li>"lastSignalLevel":
+        (Optional) last signal level</li><li>"lastBatteryLevel": (Optional) last battery
+        level</li><li>"lastDlFcnt": (Optional) last downlink frame counter</li><li>"lastUlFcnt":
+        (Optional) last uplink frame counter</li></ul><p><span style="text-decoration:
+        underline;">SMS activity</span>:</p><ul><li>"lastUplink": (Optional) last
+        uplink date of the interface</li><ul><li>"timestamp": date of the activity</li><li>"serverPhoneNumber":
+        server phone number used</li></ul><li>"lastDownlink": (Optional) last downlink
+        date of the connector node</li><ul><li>"timestamp": date of the activity</li><li>"serverPhoneNumber":
+        server phone number used</li></ul></ul><p><span style="text-decoration: underline;">MQTT
+        activity</span>:</p><ul><li>"apiKeyId": api key ID used</li><li>"mqttVersion":
+        mqtt version used</li><li>"mqttUsername": mqtt username used</li><li>"mqttTimeout":
+        mqtt timeout</li><li>"remoteAddress"</li><li>"lastSessionStartTime"</li><li>"lastSessionEndTime"</li></ul><br><br>Restricted
         to API keys with at least one of the following roles : DEVICE_R.'
       operationId: getInterfaceForADeviceUsingGET
       parameters:
@@ -10822,21 +10885,24 @@ paths:
         style="text-decoration: underline;">Lora definition</span>:</p><ul><li>"devEUI":
         interface EUI</li><li>"appEUI": appEUI of the interface</li><li>"appKey":
         appKey of the interface</li><li>"activationType": supported value: "OTAA"</li><li>"profile":
-        profile of the interface</li><li>"encoding": (Optional) encoding type of the
-        binary payload sent by the interface</li><li>"connectivityOptions": connectivity
-        options used for the interface </li><ul><li>"tdoa": true/false </li><li>"ackUl":
-        true/false</li></ul><li>"connectivityPlan": connectivity plan to use for the
-        interface. Should be used preferably at connectivityOptions but at least one
-        of two shall be defined.</li></ul><p><span style="text-decoration: underline;">SMS
-        definition</span>:</p><ul><li>"msisdn": interface msisdn</li><li>"serverPhoneNumber":
+        profile of the interface</li><li>"encoding": (Optional) encoding used in message''s
+        payload (use /decoders APIs to define your own decoder)</li><li>"connectivityOptions":
+        connectivity options used for the interface </li><ul><li>"tdoa": true/false
+        </li><li>"ackUl": true/false</li></ul><li>"connectivityPlan": connectivity
+        plan to use for the interface. Should be used preferably at connectivityOptions
+        but at least one of two shall be defined.</li></ul><p><span style="text-decoration:
+        underline;">SMS definition</span>:</p><ul><li>"msisdn": interface msisdn</li><li>"serverPhoneNumber":
         (Optional) server phone number</li><li>"encoding": (Optional) name of the
         decoder that will be used to decode received SMS</li></ul><p><span style="text-decoration:
         underline;">MQTT definition</span>:</p><ul><li>"clientId": interface client
-        ID</li></ul><p><span style="text-decoration: underline;">X-CONNECTOR definition</span>:</p><ul><li>"nodeId":
-        id used by the external connector to identify the communicating device (e.g.
-        PUB connector/v1/nodes/{nodeId}/status)</li></ul><br><br>Usage of this API
-        will be reported in your access log under ''device_inventory'' category.<br><br>Restricted
-        to API keys with at least one of the following roles : DEVICE_W.'
+        ID</li><li>"encoding": (Optional) encoding used in message''s payload (use
+        /decoders APIs to define your own decoder)</li></ul><p><span style="text-decoration:
+        underline;">X-CONNECTOR definition</span>:</p><ul><li>"nodeId": id used by
+        the external connector to identify the communicating device (e.g. PUB connector/v1/nodes/{nodeId}/status)</li><li>"encoding":
+        (Optional) encoding used in message''s payload (use /decoders APIs to define
+        your own decoder)</li></ul><br><br>Usage of this API will be reported in your
+        access log under ''device_inventory'' category.<br><br>Restricted to API keys
+        with at least one of the following roles : DEVICE_W.'
       operationId: updateInterfaceUsingPATCH
       parameters:
       - description: device identifier. A Live Objects URN 'urn:lo:nsid:{namespace}:{id}'
@@ -10901,11 +10967,277 @@ paths:
       tags:
       - Device management - Interfaces - V1
       x-codegen-request-body-name: body
+  /api/v1/deviceMgt/devices/{deviceId}/resources:
+    get:
+      description: 'Restricted to API keys with at least one of the following roles
+        : DEVICE_R.'
+      operationId: listDeviceResourcesUsingGET_1
+      parameters:
+      - description: requested target device identifier. A Live Objects URN 'urn:lo:nsid:{namespace}:{id}'
+          must respect the following regular expression <code>^urn:lo:nsid:([\w\-_]{1,128}):([\w\-_:]{1,128})$</code>
+          (max 269 characters)
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      - description: a valid API key
+        in: header
+        name: X-API-KEY
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  $ref: '#/components/schemas/DeviceResourceWeb'
+                type: object
+          description: The list of device resources versions
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWeb'
+          description: Invalid request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWeb'
+          description: Request forbidden
+      summary: Get a map of all device resources
+      tags:
+      - Device management - Resources - V1
+  /api/v1/deviceMgt/devices/{deviceId}/resources/updates:
+    get:
+      description: 'Restricted to API keys with at least one of the following roles
+        : DEVICE_R.'
+      operationId: getDeviceResourceUpdatesUsingGET_1
+      parameters:
+      - description: requested target device identifier. A Live Objects URN 'urn:lo:nsid:{namespace}:{id}'
+          must respect the following regular expression <code>^urn:lo:nsid:([\w\-_]{1,128}):([\w\-_:]{1,128})$</code>
+          (max 269 characters)
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      - description: the requested page number (optional)
+        in: query
+        name: offset
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: the maximum number of items per page (optional, highest value
+          is 1000)
+        in: query
+        name: limit
+        schema:
+          default: 20
+          format: int32
+          type: integer
+      - description: true if a total count must be returned in response
+        in: header
+        name: X-Total-Count
+        schema:
+          default: false
+          type: boolean
+      - description: a valid API key
+        in: header
+        name: X-API-KEY
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ResourceUpdateWeb'
+                type: array
+          description: The list of device resources updates
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWeb'
+          description: Invalid request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWeb'
+          description: Request forbidden
+      summary: Get a list of device resource updates
+      tags:
+      - Device management - Resources - V1
+  /api/v1/deviceMgt/devices/{deviceId}/resources/{resourceId}:
+    get:
+      description: 'Restricted to API keys with at least one of the following roles
+        : DEVICE_R.'
+      operationId: getDeviceResourceUsingGET
+      parameters:
+      - description: device identifier. A Live Objects URN 'urn:lo:nsid:{namespace}:{id}'
+          must respect the following regular expression <code>^urn:lo:nsid:([\w\-_]{1,128}):([\w\-_:]{1,128})$</code>
+          (max 269 characters)
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      - description: device resource identifier. Expected string (max 255 characters)
+        in: path
+        name: resourceId
+        required: true
+        schema:
+          type: string
+      - description: a valid API key
+        in: header
+        name: X-API-KEY
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceResourceWeb'
+          description: The list of device resource versions
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWeb'
+          description: Invalid request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWeb'
+          description: Request forbidden
+      summary: Get a specific device resource
+      tags:
+      - Device management - Resources - V1
+    post:
+      description: 'Restricted to API keys with at least one of the following roles
+        : DEVICE_W.'
+      operationId: setDeviceResourceVersionUsingPOST_1
+      parameters:
+      - description: device identifier. A Live Objects URN 'urn:lo:nsid:{namespace}:{id}'
+          must respect the following regular expression <code>^urn:lo:nsid:([\w\-_]{1,128}):([\w\-_:]{1,128})$</code>
+          (max 269 characters)
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      - description: device resource identifier. Expected string (max 255 characters)
+        in: path
+        name: resourceId
+        required: true
+        schema:
+          type: string
+      - description: a valid API key
+        in: header
+        name: X-API-KEY
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDeviceResourceReqWeb'
+        description: The device resource version to register
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceResourceWeb'
+          description: The list of device resource versions
+        "204":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceResourceWeb'
+          description: No Content, device resource version is already updated
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWeb'
+          description: Invalid request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWeb'
+          description: Request forbidden
+      summary: Set device resource versions
+      tags:
+      - Device management - Resources - V1
+      x-codegen-request-body-name: update
+  /api/v1/deviceMgt/devices/{deviceId}/resources/{resourceId}/updates/latest:
+    get:
+      description: 'Restricted to API keys with at least one of the following roles
+        : DEVICE_R.'
+      operationId: getLastResourceUpdateUsingGET_1
+      parameters:
+      - description: requested device identifier. A Live Objects URN 'urn:lo:nsid:{namespace}:{id}'
+          must respect the following regular expression <code>^urn:lo:nsid:([\w\-_]{1,128}):([\w\-_:]{1,128})$</code>
+          (max 269 characters)
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      - description: device resource identifier. Expected string (max 255 characters)
+        in: path
+        name: resourceId
+        required: true
+        schema:
+          type: string
+      - description: a valid API key
+        in: header
+        name: X-API-KEY
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceUpdateWeb'
+          description: the last resource update
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWeb'
+          description: Invalid request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWeb'
+          description: Request forbidden
+      summary: Get info about last update of this device resource
+      tags:
+      - Device management - Resources - V1
   /api/v1/deviceMgt/groups:
     get:
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
-      operationId: listGroupsUsingGET_1
+      operationId: listGroupsUsingGET
       parameters:
       - description: the maximum number of items per page (optional)
         in: query
@@ -10966,7 +11298,7 @@ paths:
       description: 'Usage of this API will be reported in your access log under ''device_inventory''
         category.<br><br>Restricted to API keys with at least one of the following
         roles : DEVICE_W.'
-      operationId: createGroupUsingPOST_1
+      operationId: createGroupUsingPOST
       parameters:
       - description: a valid API key
         in: header
@@ -11022,7 +11354,7 @@ paths:
       description: 'Usage of this API will be reported in your access log under ''device_inventory''
         category.<br><br>Restricted to API keys with at least one of the following
         roles : DEVICE_W.'
-      operationId: deleteGroupUsingDELETE_1
+      operationId: deleteGroupUsingDELETE
       parameters:
       - description: targeted for deletion group identifier. Expected string (max
           6 characters)
@@ -11065,7 +11397,7 @@ paths:
     get:
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
-      operationId: getGroupUsingGET_1
+      operationId: getGroupUsingGET
       parameters:
       - description: the Group Identifier. Expected string (max 6 characters)
         in: path
@@ -11111,7 +11443,7 @@ paths:
       description: 'Usage of this API will be reported in your access log under ''device_inventory''
         category.<br><br>Restricted to API keys with at least one of the following
         roles : DEVICE_W.'
-      operationId: updateGroupUsingPUT_1
+      operationId: updateGroupUsingPUT
       parameters:
       - description: identifier to update group. Expected string (max 6 characters)
         in: path
@@ -11171,7 +11503,7 @@ paths:
     get:
       description: 'Restricted to API keys with at least one of the following roles
         : DATA_PROCESSING_R.'
-      operationId: listUsingGET_14
+      operationId: listUsingGET_15
       parameters:
       - description: Filter on action policy trigger type.
         in: query
@@ -11213,7 +11545,7 @@ paths:
         the dedicated sections in our developer guide for more details.<br><br>Usage
         of this API will be reported in your access log under ''routing'' category.<br><br>Restricted
         to API keys with at least one of the following roles : DATA_PROCESSING_W.'
-      operationId: createUsingPOST_1
+      operationId: createUsingPOST_2
       parameters:
       - description: a valid API key
         in: header
@@ -11244,7 +11576,7 @@ paths:
       description: 'Usage of this API will be reported in your access log under ''routing''
         category.<br><br>Restricted to API keys with at least one of the following
         roles : DATA_PROCESSING_W.'
-      operationId: deleteUsingDELETE_12
+      operationId: deleteUsingDELETE_13
       parameters:
       - description: id of the ActionPolicy to delete
         in: path
@@ -11271,7 +11603,7 @@ paths:
     get:
       description: 'Restricted to API keys with at least one of the following roles
         : DATA_PROCESSING_R.'
-      operationId: retrieveUsingGET_1
+      operationId: retrieveUsingGET_2
       parameters:
       - description: id of the ActionPolicy to retrieve
         in: path
@@ -11304,7 +11636,7 @@ paths:
         the `id` specified in the path. Otherwise an HTTP 400 will be issued.<br><br>Usage
         of this API will be reported in your access log under ''routing'' category.<br><br>Restricted
         to API keys with at least one of the following roles : DATA_PROCESSING_W.'
-      operationId: upsertUsingPUT
+      operationId: upsertUsingPUT_1
       parameters:
       - description: id of the ActionPolicy to save
         in: path
@@ -11337,7 +11669,7 @@ paths:
     post:
       description: 'Restricted to API keys with at least one of the following roles
         : DATA_PROCESSING_W.'
-      operationId: testHttpPushUsingPOST_1
+      operationId: testHttpPushUsingPOST
       parameters:
       - description: a valid API key
         in: header
@@ -12640,50 +12972,51 @@ components:
       type: object
     Group:
       example:
+        parent: group1
         path: /group1/group2
-        created: 2017-12-27T12:59:59.877Z
+        groupId: groupId
+        lastUpdateTs: 123456
         pathNode: group2
         description: Moisture sensor
-        id: IbN89a
-        updated: 2017-12-27T14:13:09.231Z
-        parentId: PjFg6J
+        creationTs: 123456
       properties:
-        created:
+        creationTs:
           description: Date/time when group was first registered
-          example: 2017-12-27T12:59:59.877Z
-          type: string
+          example: 123456
+          format: int64
+          type: integer
         description:
-          description: Group description
+          description: group description
           example: Moisture sensor
           type: string
-        id:
+        groupId:
           description: Group identifier
-          example: IbN89a
           type: string
-        parentId:
-          description: Parent group identifier
-          example: PjFg6J
+        lastUpdateTs:
+          description: Date/time when group status has been lastly updated
+          example: 123456
+          format: int64
+          type: integer
+        parent:
+          description: parent
+          example: group1
           type: string
         path:
-          description: Path
+          description: path
           example: /group1/group2
           type: string
         pathNode:
-          description: Path node
+          description: path node
           example: group2
           type: string
-        updated:
-          description: Date/time when group status has been lastly updated
-          example: 2017-12-27T14:13:09.231Z
-          type: string
       required:
-      - created
+      - creationTs
       - description
-      - id
-      - parentId
+      - groupId
+      - lastUpdateTs
+      - parent
       - path
       - pathNode
-      - updated
       type: object
     ResourceAddReqWeb:
       description: body of add resource request
@@ -13160,100 +13493,47 @@ components:
       type: object
     ResourceUpdateWeb:
       example:
-        progressTs: 1
-        resourceId: resourceId
-        sourceVersion: sourceVersion
-        topicResourceUpdate: topicResourceUpdate
-        statusTs: 5
-        errorCode: OK
-        deviceErrorCode: deviceErrorCode
-        targetVersion: targetVersion
-        assetIdNamespace: assetIdNamespace
-        assetId: assetId
-        topicCancelResourceUpdate: topicCancelResourceUpdate
-        tenantId: tenantId
-        errorOrigin: DEVICE
-        progress: 6.027456183070403
-        notifyTo: notifyTo
+        requestedVersion: requestedVersion
+        metadata:
+          key: metadata
+        created: created
+        initialVersion: initialVersion
+        errorCode: errorCode
+        errorOrigin: errorOrigin
+        progress: 0.8008281904610115
         id: id
-        updateTs: 5
-        creationTs: 0
+        updated: updated
+        deviceErrorCode: deviceErrorCode
         errorDetails: errorDetails
-        status: PENDING
+        status: status
       properties:
-        assetId:
+        created:
           type: string
-        assetIdNamespace:
-          type: string
-        creationTs:
-          format: int64
-          type: integer
         deviceErrorCode:
           type: string
         errorCode:
-          enum:
-          - OK
-          - CONNECTOR_PREPARATION_ERROR
-          - ASSET_PREPARATION_ERROR
-          - ASSET_PREPARATION_ERROR_UNKNOWN_ASSET
-          - ASSET_PREPARATION_ERROR_UNKNOWN_RESOURCE
-          - ASSET_PREPARATION_ERROR_INVALID_RESOURCE
-          - ASSET_PREPARATION_ERROR_WRONG_SOURCE_VERSION
-          - ASSET_PREPARATION_ERROR_WRONG_TARGET_VERSION
-          - ASSET_PREPARATION_ERROR_NOT_AUTHORIZED
-          - ASSET_PREPARATION_ERROR_INTERNAL_ERROR
-          - INVALID_ASSET_CURRENT_RESOURCE
-          - TRANSFER_FAILED
-          - ASSET_ORIGINATED_ERROR
           type: string
         errorDetails:
           type: string
         errorOrigin:
-          enum:
-          - DEVICE
-          - INTERNAL
           type: string
         id:
           type: string
-        notifyTo:
+        initialVersion:
           type: string
+        metadata:
+          additionalProperties:
+            type: string
+          type: object
         progress:
           format: double
           type: number
-        progressTs:
-          format: int64
-          type: integer
-        resourceId:
-          type: string
-        sourceVersion:
+        requestedVersion:
           type: string
         status:
-          enum:
-          - PENDING
-          - PREPARING_CONNECTOR
-          - PREPARING_ASSET
-          - WAITING_TRANSFER_INFO
-          - TRANSFER_PENDING
-          - TRANSFER_IN_PROGRESS
-          - TRANSFER_SUCCESS
-          - DONE
-          - ERROR
-          - CANCELED
           type: string
-        statusTs:
-          format: int64
-          type: integer
-        targetVersion:
+        updated:
           type: string
-        tenantId:
-          type: string
-        topicCancelResourceUpdate:
-          type: string
-        topicResourceUpdate:
-          type: string
-        updateTs:
-          format: int64
-          type: integer
       type: object
     NewData:
       description: original data that triggered the match
@@ -13591,6 +13871,12 @@ components:
       type: object
     SMSConnectorBusinessSettingsCreationReqWeb:
       description: SMS Connector Business Settings  Data in Creation Request
+      example:
+        decoderName: decoderName
+        serverPhoneNumber: serverPhoneNumber
+        msisdns:
+        - msisdn: "3387654321"
+        - msisdn: "3387654321"
       properties:
         decoderName:
           description: 'decoder name ex: "decoderName"'
@@ -14249,6 +14535,21 @@ components:
             type: string
           type: array
       type: object
+    DeviceResourceVersionValueWeb:
+      description: a resource version
+      example:
+        version: v2
+        timestamp: 2020-05-19T10:30:58Z
+      properties:
+        timestamp:
+          description: resource version associated date/time
+          example: 2020-05-19T10:30:58Z
+          type: string
+        version:
+          description: resource version. Expected string (max 255 characters)
+          example: v2
+          type: string
+      type: object
     UserUpdateReqWeb:
       description: body of user update request
       example:
@@ -14492,14 +14793,14 @@ components:
       type: object
     GroupCreateRequest:
       example:
+        parent: "123456"
         pathNode: france
         description: description
-        parentId: "123456"
       properties:
         description:
           description: group description. Expected string (max 255 characters)
           type: string
-        parentId:
+        parent:
           description: reference to group's parent (id). Expected string (max 6 characters)
           example: "123456"
           type: string
@@ -14518,7 +14819,9 @@ components:
       example:
         size: 1
         data:
-        - metadata:
+        - versionAliases:
+            prod: "1.1"
+          metadata:
             secured: true
           resourceId: MyResource001
           connector: connector
@@ -14527,7 +14830,9 @@ components:
           label: My resource Label
           updateTs: 6
           creationTs: 0
-        - metadata:
+        - versionAliases:
+            prod: "1.1"
+          metadata:
             secured: true
           resourceId: MyResource001
           connector: connector
@@ -14913,46 +15218,32 @@ components:
       example:
         size: 1
         data:
-        - progressTs: 1
-          resourceId: resourceId
-          sourceVersion: sourceVersion
-          topicResourceUpdate: topicResourceUpdate
-          statusTs: 5
-          errorCode: OK
-          deviceErrorCode: deviceErrorCode
-          targetVersion: targetVersion
-          assetIdNamespace: assetIdNamespace
-          assetId: assetId
-          topicCancelResourceUpdate: topicCancelResourceUpdate
-          tenantId: tenantId
-          errorOrigin: DEVICE
-          progress: 6.027456183070403
-          notifyTo: notifyTo
+        - requestedVersion: requestedVersion
+          metadata:
+            key: metadata
+          created: created
+          initialVersion: initialVersion
+          errorCode: errorCode
+          errorOrigin: errorOrigin
+          progress: 0.8008281904610115
           id: id
-          updateTs: 5
-          creationTs: 0
-          errorDetails: errorDetails
-          status: PENDING
-        - progressTs: 1
-          resourceId: resourceId
-          sourceVersion: sourceVersion
-          topicResourceUpdate: topicResourceUpdate
-          statusTs: 5
-          errorCode: OK
+          updated: updated
           deviceErrorCode: deviceErrorCode
-          targetVersion: targetVersion
-          assetIdNamespace: assetIdNamespace
-          assetId: assetId
-          topicCancelResourceUpdate: topicCancelResourceUpdate
-          tenantId: tenantId
-          errorOrigin: DEVICE
-          progress: 6.027456183070403
-          notifyTo: notifyTo
-          id: id
-          updateTs: 5
-          creationTs: 0
           errorDetails: errorDetails
-          status: PENDING
+          status: status
+        - requestedVersion: requestedVersion
+          metadata:
+            key: metadata
+          created: created
+          initialVersion: initialVersion
+          errorCode: errorCode
+          errorOrigin: errorOrigin
+          progress: 0.8008281904610115
+          id: id
+          updated: updated
+          deviceErrorCode: deviceErrorCode
+          errorDetails: errorDetails
+          status: status
         page: 0
         totalCount: 1
       properties:
@@ -16518,6 +16809,8 @@ components:
     ResourceUpdateReqWeb:
       description: body of resource update request
       example:
+        versionAliases:
+          prod: "1.1"
         metadata:
           secured: true
         connector: connector
@@ -16543,6 +16836,14 @@ components:
             name max length is 255. Metadata value max length is 255.
           example:
             secured: true
+          type: object
+        versionAliases:
+          additionalProperties:
+            type: string
+          description: the resource version aliases. Max number of alias is 5. Alias
+            name max length is 128. Alias value max length is 255.
+          example:
+            prod: "1.1"
           type: object
       required:
       - connector
@@ -16665,10 +16966,10 @@ components:
       type: object
     GroupUpdateRequest:
       example:
+        parent: "123456"
         pathNode: france
         description: description
         id: "123456"
-        parentId: "123456"
       properties:
         description:
           description: group description. Expected string (max 255 characters)
@@ -16677,7 +16978,7 @@ components:
           description: group id. Expected string (max 6 characters)
           example: "123456"
           type: string
-        parentId:
+        parent:
           description: reference to group's parent (id). Expected string (max 6 characters)
           example: "123456"
           type: string
@@ -16778,6 +17079,26 @@ components:
           type: boolean
         templatingOK:
           type: boolean
+      type: object
+    UpdateDeviceResourceReqWeb:
+      description: a resource update request
+      example:
+        metadata:
+          secured: true
+        version: 1.2.0
+      properties:
+        metadata:
+          additionalProperties:
+            type: string
+          description: the update metadata. Max number of metadata is 100. Metadata
+            name max length is 255. Metadata value max length is 255.
+          example:
+            secured: true
+          type: object
+        version:
+          description: requested resource version. Expected string (max 255 characters)
+          example: 1.2.0
+          type: string
       type: object
     SettingsSection:
       example:
@@ -18025,6 +18346,11 @@ components:
       type: object
     SMSConnectorBusinessSettingsDeleteMsisdnReqWeb:
       description: SMS Connector Business Settings data in Delete Msisdn Request
+      example:
+        serverPhoneNumber: serverPhoneNumber
+        msisdns:
+        - msisdns
+        - msisdns
       properties:
         msisdns:
           description: 'device''s SIM Card identifier ex: "33666666667"'
@@ -19549,6 +19875,14 @@ components:
           type: object
       type: object
     SMSConnectorSendSMSReqWeb:
+      example:
+        base64Payload: base64Payload
+        serverPhoneNumber: serverPhoneNumber
+        hexPayload: hexPayload
+        msisdns:
+        - msisdns
+        - msisdns
+        textPayload: textPayload
       properties:
         base64Payload:
           description: (deprecated) please use hexPayload
@@ -19961,6 +20295,30 @@ components:
           description: service statistics
           type: object
       type: object
+    DeviceResourceWeb:
+      description: a device resource state
+      example:
+        metadata:
+          secured: true
+        requested:
+          version: v2
+          timestamp: 2020-05-19T10:30:58Z
+        reported:
+          version: v2
+          timestamp: 2020-05-19T10:30:58Z
+      properties:
+        metadata:
+          additionalProperties:
+            type: string
+          description: metadata associated with this device resource
+          example:
+            secured: true
+          type: object
+        reported:
+          $ref: '#/components/schemas/DeviceResourceVersionValueWeb'
+        requested:
+          $ref: '#/components/schemas/DeviceResourceVersionValueWeb'
+      type: object
     UpdateEmailReqWeb:
       description: body of update User Email request
       example:
@@ -20330,6 +20688,8 @@ components:
         created: created
         defaultDataStreamId: urn:lo:nsid:mysensor:001
         description: Moisture sensor
+        resources:
+          key: resources
         tags:
         - sensor
         - moisture
@@ -20399,6 +20759,11 @@ components:
           additionalProperties:
             type: string
           description: Device firmware versions
+          type: object
+        resources:
+          additionalProperties:
+            type: string
+          description: Device resource versions
           type: object
         defaultDataStreamId:
           description: default data streamId
@@ -20473,6 +20838,8 @@ components:
     Resource:
       description: Resource data
       example:
+        versionAliases:
+          prod: "1.1"
         metadata:
           secured: true
         resourceId: MyResource001
@@ -20517,6 +20884,13 @@ components:
           description: last update timestamp
           format: int64
           type: integer
+        versionAliases:
+          additionalProperties:
+            type: string
+          description: the resource version aliases
+          example:
+            prod: "1.1"
+          type: object
       type: object
     ResourceVersion:
       example:
@@ -20747,20 +21121,20 @@ components:
       example:
         size: 1
         data:
-        - path: /group1/group2
-          created: 2017-12-27T12:59:59.877Z
+        - parent: group1
+          path: /group1/group2
+          groupId: groupId
+          lastUpdateTs: 123456
           pathNode: group2
           description: Moisture sensor
-          id: IbN89a
-          updated: 2017-12-27T14:13:09.231Z
-          parentId: PjFg6J
-        - path: /group1/group2
-          created: 2017-12-27T12:59:59.877Z
+          creationTs: 123456
+        - parent: group1
+          path: /group1/group2
+          groupId: groupId
+          lastUpdateTs: 123456
           pathNode: group2
           description: Moisture sensor
-          id: IbN89a
-          updated: 2017-12-27T14:13:09.231Z
-          parentId: PjFg6J
+          creationTs: 123456
         page: 0
         totalCount: 1
       properties:
@@ -21891,6 +22265,12 @@ components:
       type: object
     SMSConnectorBusinessSettingsUpdateReqWeb:
       description: SMS Connector Business Settings in Update Request
+      example:
+        decoderName: decoderName
+        newDecoderName: newDecoderName
+        msisdns:
+        - msisdn: "3387654321"
+        - msisdn: "3387654321"
       properties:
         decoderName:
           description: 'decoder name ex: "decoderName"'

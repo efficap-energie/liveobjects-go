@@ -11,30 +11,53 @@ Method | HTTP request | Description
 
 ## DslQueryHitsOnlyUsingPOST
 
-> []DataStoredWeb DslQueryHitsOnlyUsingPOST(ctx, xAPIKEY, optional)
+> []DataStoredWeb DslQueryHitsOnlyUsingPOST(ctx).XAPIKEY(xAPIKEY).DslRequest(dslRequest).Execute()
 
 Query an Elasticsearch Domain Specific Language request and get only hits result
 
-return a json array of stored data that match the query.<br><br>Restricted to API keys with at least one of the following roles : DATA_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    dslRequest := 987 // map[string]interface{} | elasticsearch DSL request (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DataManagementDataSearchApi.DslQueryHitsOnlyUsingPOST(context.Background()).XAPIKEY(xAPIKEY).DslRequest(dslRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DataManagementDataSearchApi.DslQueryHitsOnlyUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DslQueryHitsOnlyUsingPOST`: []DataStoredWeb
+    fmt.Fprintf(os.Stdout, "Response from `DataManagementDataSearchApi.DslQueryHitsOnlyUsingPOST`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDslQueryHitsOnlyUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***DslQueryHitsOnlyUsingPOSTOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a DslQueryHitsOnlyUsingPOSTOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **dslRequest** | **optional.Map[string]interface{}**| elasticsearch DSL request | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **dslRequest** | **map[string]interface{}** | elasticsearch DSL request | 
 
 ### Return type
 
@@ -56,30 +79,53 @@ No authorization required
 
 ## DslQueryUsingPOST
 
-> map[string]interface{} DslQueryUsingPOST(ctx, xAPIKEY, optional)
+> map[string]interface{} DslQueryUsingPOST(ctx).XAPIKEY(xAPIKEY).DslRequest(dslRequest).Execute()
 
 Query an Elasticsearch Domain Specific Language request
 
-return the json serialization of an Elasticsearch SearchResponse for the query<br><br>Restricted to API keys with at least one of the following roles : DATA_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    dslRequest := 987 // map[string]interface{} | elasticsearch DSL request (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DataManagementDataSearchApi.DslQueryUsingPOST(context.Background()).XAPIKEY(xAPIKEY).DslRequest(dslRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DataManagementDataSearchApi.DslQueryUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DslQueryUsingPOST`: map[string]interface{}
+    fmt.Fprintf(os.Stdout, "Response from `DataManagementDataSearchApi.DslQueryUsingPOST`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDslQueryUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***DslQueryUsingPOSTOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a DslQueryUsingPOSTOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **dslRequest** | **optional.Map[string]interface{}**| elasticsearch DSL request | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **dslRequest** | **map[string]interface{}** | elasticsearch DSL request | 
 
 ### Return type
 

@@ -4,8 +4,73 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Filter** | [**StateChangeFilter**](StateChangeFilter.md) |  | [optional] 
+**Filter** | Pointer to [**StateChangeFilter**](StateChangeFilter.md) |  | [optional] 
 **Version** | **int32** | requested object version | 
+
+## Methods
+
+### NewStateChangeTrigger
+
+`func NewStateChangeTrigger(version int32, ) *StateChangeTrigger`
+
+NewStateChangeTrigger instantiates a new StateChangeTrigger object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewStateChangeTriggerWithDefaults
+
+`func NewStateChangeTriggerWithDefaults() *StateChangeTrigger`
+
+NewStateChangeTriggerWithDefaults instantiates a new StateChangeTrigger object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetFilter
+
+`func (o *StateChangeTrigger) GetFilter() StateChangeFilter`
+
+GetFilter returns the Filter field if non-nil, zero value otherwise.
+
+### GetFilterOk
+
+`func (o *StateChangeTrigger) GetFilterOk() (*StateChangeFilter, bool)`
+
+GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFilter
+
+`func (o *StateChangeTrigger) SetFilter(v StateChangeFilter)`
+
+SetFilter sets Filter field to given value.
+
+### HasFilter
+
+`func (o *StateChangeTrigger) HasFilter() bool`
+
+HasFilter returns a boolean if a field has been set.
+
+### GetVersion
+
+`func (o *StateChangeTrigger) GetVersion() int32`
+
+GetVersion returns the Version field if non-nil, zero value otherwise.
+
+### GetVersionOk
+
+`func (o *StateChangeTrigger) GetVersionOk() (*int32, bool)`
+
+GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersion
+
+`func (o *StateChangeTrigger) SetVersion(v int32)`
+
+SetVersion sets Version field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

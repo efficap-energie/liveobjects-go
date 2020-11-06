@@ -18,20 +18,55 @@ Method | HTTP request | Description
 
 ## DeleteUsingDELETE16
 
-> DeleteUsingDELETE16(ctx, firingRuleId, xAPIKEY)
+> DeleteUsingDELETE16(ctx, firingRuleId).XAPIKEY(xAPIKEY).Execute()
 
 Delete a FiringRule
 
-Usage of this API will be reported in your access log under 'alarming' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    firingRuleId := "firingRuleId_example" // string | id of the FiringRule to delete
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingFiringApi.DeleteUsingDELETE16(context.Background(), firingRuleId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingFiringApi.DeleteUsingDELETE16``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firingRuleId** | **string**| id of the FiringRule to delete | 
-**xAPIKEY** | **string**| a valid API key | 
+**firingRuleId** | **string** | id of the FiringRule to delete | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteUsingDELETE16Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -53,20 +88,57 @@ No authorization required
 
 ## GetFiringGuardUsingGET
 
-> FiringGuard GetFiringGuardUsingGET(ctx, firingGuardId, xAPIKEY)
+> FiringGuard GetFiringGuardUsingGET(ctx, firingGuardId).XAPIKEY(xAPIKEY).Execute()
 
 Get a FiringGuard
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    firingGuardId := "firingGuardId_example" // string | id of the FiringGuard
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingFiringApi.GetFiringGuardUsingGET(context.Background(), firingGuardId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingFiringApi.GetFiringGuardUsingGET``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetFiringGuardUsingGET`: FiringGuard
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingFiringApi.GetFiringGuardUsingGET`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firingGuardId** | **string**| id of the FiringGuard | 
-**xAPIKEY** | **string**| a valid API key | 
+**firingGuardId** | **string** | id of the FiringGuard | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetFiringGuardUsingGETRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -88,30 +160,53 @@ No authorization required
 
 ## GetFiringGuardsUsingPOST
 
-> []FiringGuard GetFiringGuardsUsingPOST(ctx, xAPIKEY, optional)
+> []FiringGuard GetFiringGuardsUsingPOST(ctx).XAPIKEY(xAPIKEY).SearchParam(searchParam).Execute()
 
 Get FiringGuards linked to a FiringRule, and where FiringGuards selection criteria match.
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    searchParam := *openapiclient.NewFiringGuardGetRequest("FiringRuleId_example") // FiringGuardGetRequest | Search parameters to select FiringGuard (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingFiringApi.GetFiringGuardsUsingPOST(context.Background()).XAPIKEY(xAPIKEY).SearchParam(searchParam).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingFiringApi.GetFiringGuardsUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetFiringGuardsUsingPOST`: []FiringGuard
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingFiringApi.GetFiringGuardsUsingPOST`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetFiringGuardsUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***GetFiringGuardsUsingPOSTOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a GetFiringGuardsUsingPOSTOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **searchParam** | [**optional.Interface of FiringGuardGetRequest**](FiringGuardGetRequest.md)| Search parameters to select FiringGuard | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **searchParam** | [**FiringGuardGetRequest**](FiringGuardGetRequest.md) | Search parameters to select FiringGuard | 
 
 ### Return type
 
@@ -133,20 +228,57 @@ No authorization required
 
 ## GetUsingGET15
 
-> FiringRule GetUsingGET15(ctx, firingRuleId, xAPIKEY)
+> FiringRule GetUsingGET15(ctx, firingRuleId).XAPIKEY(xAPIKEY).Execute()
 
 Retrieve a FiringRule
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    firingRuleId := "firingRuleId_example" // string | id of the FiringRule to retrieve
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingFiringApi.GetUsingGET15(context.Background(), firingRuleId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingFiringApi.GetUsingGET15``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsingGET15`: FiringRule
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingFiringApi.GetUsingGET15`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firingRuleId** | **string**| id of the FiringRule to retrieve | 
-**xAPIKEY** | **string**| a valid API key | 
+**firingRuleId** | **string** | id of the FiringRule to retrieve | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetUsingGET15Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -168,30 +300,53 @@ No authorization required
 
 ## ListUsingGET18
 
-> []FiringRule ListUsingGET18(ctx, xAPIKEY, optional)
+> []FiringRule ListUsingGET18(ctx).XAPIKEY(xAPIKEY).Name(name).Execute()
 
 Retrieve the list of all the FiringRules or get a FiringRule by its name
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    name := "name_example" // string | name of the FiringRule to retrieve (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingFiringApi.ListUsingGET18(context.Background()).XAPIKEY(xAPIKEY).Name(name).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingFiringApi.ListUsingGET18``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListUsingGET18`: []FiringRule
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingFiringApi.ListUsingGET18`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListUsingGET18Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***ListUsingGET18Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a ListUsingGET18Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **name** | **optional.String**| name of the FiringRule to retrieve | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **name** | **string** | name of the FiringRule to retrieve | 
 
 ### Return type
 
@@ -213,30 +368,53 @@ No authorization required
 
 ## PostUsingPOST14
 
-> FiringRule PostUsingPOST14(ctx, xAPIKEY, optional)
+> FiringRule PostUsingPOST14(ctx).XAPIKEY(xAPIKEY).FiringRule(firingRule).Execute()
 
 Create a FiringRule
 
-Total number of FiringRules is limited. Contact the commercial team or see developer guide to get more information.<br><br>Usage of this API will be reported in your access log under 'alarming' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    firingRule := *openapiclient.NewFiringRule("FiringType_example", "Name_example") // FiringRule | FiringRule to add (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingFiringApi.PostUsingPOST14(context.Background()).XAPIKEY(xAPIKEY).FiringRule(firingRule).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingFiringApi.PostUsingPOST14``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PostUsingPOST14`: FiringRule
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingFiringApi.PostUsingPOST14`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostUsingPOST14Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***PostUsingPOST14Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a PostUsingPOST14Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **firingRule** | [**optional.Interface of FiringRule**](FiringRule.md)| FiringRule to add | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **firingRule** | [**FiringRule**](FiringRule.md) | FiringRule to add | 
 
 ### Return type
 
@@ -258,20 +436,55 @@ No authorization required
 
 ## RemoveFiringGuardUsingDELETE
 
-> RemoveFiringGuardUsingDELETE(ctx, firingGuardId, xAPIKEY)
+> RemoveFiringGuardUsingDELETE(ctx, firingGuardId).XAPIKEY(xAPIKEY).Execute()
 
 Remove a FiringGuard
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    firingGuardId := "firingGuardId_example" // string | id of the FiringGuard to remove
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingFiringApi.RemoveFiringGuardUsingDELETE(context.Background(), firingGuardId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingFiringApi.RemoveFiringGuardUsingDELETE``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firingGuardId** | **string**| id of the FiringGuard to remove | 
-**xAPIKEY** | **string**| a valid API key | 
+**firingGuardId** | **string** | id of the FiringGuard to remove | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRemoveFiringGuardUsingDELETERequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -293,30 +506,53 @@ No authorization required
 
 ## RemoveFiringGuardsUsingDELETE
 
-> int32 RemoveFiringGuardsUsingDELETE(ctx, xAPIKEY, optional)
+> int32 RemoveFiringGuardsUsingDELETE(ctx).XAPIKEY(xAPIKEY).ResetParams(resetParams).Execute()
 
 Remove the FiringGuards linked to FiringRule, and where FiringGuards selection criteria match.
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    resetParams := *openapiclient.NewFiringGuardResetRequest("FiringRuleId_example") // FiringGuardResetRequest | search parameters to select FiringGuard to remove (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingFiringApi.RemoveFiringGuardsUsingDELETE(context.Background()).XAPIKEY(xAPIKEY).ResetParams(resetParams).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingFiringApi.RemoveFiringGuardsUsingDELETE``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RemoveFiringGuardsUsingDELETE`: int32
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingFiringApi.RemoveFiringGuardsUsingDELETE`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRemoveFiringGuardsUsingDELETERequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***RemoveFiringGuardsUsingDELETEOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a RemoveFiringGuardsUsingDELETEOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **resetParams** | [**optional.Interface of FiringGuardResetRequest**](FiringGuardResetRequest.md)| search parameters to select FiringGuard to remove | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **resetParams** | [**FiringGuardResetRequest**](FiringGuardResetRequest.md) | search parameters to select FiringGuard to remove | 
 
 ### Return type
 
@@ -338,32 +574,57 @@ No authorization required
 
 ## UpdateUsingPUT8
 
-> UpdateUsingPUT8(ctx, firingRuleId, xAPIKEY, optional)
+> UpdateUsingPUT8(ctx, firingRuleId).XAPIKEY(xAPIKEY).FiringRule(firingRule).Execute()
 
 Update a FiringRule
 
-Usage of this API will be reported in your access log under 'alarming' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    firingRuleId := "firingRuleId_example" // string | id of the FiringRule to update
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    firingRule := *openapiclient.NewFiringRule("FiringType_example", "Name_example") // FiringRule | updated FiringRule (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingFiringApi.UpdateUsingPUT8(context.Background(), firingRuleId).XAPIKEY(xAPIKEY).FiringRule(firingRule).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingFiringApi.UpdateUsingPUT8``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firingRuleId** | **string**| id of the FiringRule to update | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***UpdateUsingPUT8Opts** | optional parameters | nil if no parameters
+**firingRuleId** | **string** | id of the FiringRule to update | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a UpdateUsingPUT8Opts struct
+Other parameters are passed through a pointer to a apiUpdateUsingPUT8Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **firingRule** | [**optional.Interface of FiringRule**](FiringRule.md)| updated FiringRule | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **firingRule** | [**FiringRule**](FiringRule.md) | updated FiringRule | 
 
 ### Return type
 

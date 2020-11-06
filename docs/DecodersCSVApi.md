@@ -16,32 +16,57 @@ Method | HTTP request | Description
 
 ## ActivateUsingPUT9
 
-> ActivateUsingPUT9(ctx, decoderId, xAPIKEY, optional)
+> ActivateUsingPUT9(ctx, decoderId).XAPIKEY(xAPIKEY).Enabled(enabled).Execute()
 
 Activate or deactivate a decoder
 
-Usage of this API will be reported in your access log under 'data_decoder' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    decoderId := "decoderId_example" // string | id of the csv decoder to activate or deactivate
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    enabled := true // bool | true to activate, false otherwise (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DecodersCSVApi.ActivateUsingPUT9(context.Background(), decoderId).XAPIKEY(xAPIKEY).Enabled(enabled).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DecodersCSVApi.ActivateUsingPUT9``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**decoderId** | **string**| id of the csv decoder to activate or deactivate | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***ActivateUsingPUT9Opts** | optional parameters | nil if no parameters
+**decoderId** | **string** | id of the csv decoder to activate or deactivate | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a ActivateUsingPUT9Opts struct
+Other parameters are passed through a pointer to a apiActivateUsingPUT9Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **enabled** | **optional.Bool**| true to activate, false otherwise | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **enabled** | **bool** | true to activate, false otherwise | 
 
 ### Return type
 
@@ -63,20 +88,55 @@ No authorization required
 
 ## DeleteUsingDELETE10
 
-> DeleteUsingDELETE10(ctx, decoderId, xAPIKEY)
+> DeleteUsingDELETE10(ctx, decoderId).XAPIKEY(xAPIKEY).Execute()
 
 Delete a csv decoder
 
-Usage of this API will be reported in your access log under 'data_decoder' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    decoderId := "decoderId_example" // string | id of the csv decoder to delete
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DecodersCSVApi.DeleteUsingDELETE10(context.Background(), decoderId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DecodersCSVApi.DeleteUsingDELETE10``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**decoderId** | **string**| id of the csv decoder to delete | 
-**xAPIKEY** | **string**| a valid API key | 
+**decoderId** | **string** | id of the csv decoder to delete | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteUsingDELETE10Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -98,20 +158,57 @@ No authorization required
 
 ## GetUsingGET11
 
-> CsvPayloadDescription GetUsingGET11(ctx, decoderId, xAPIKEY)
+> CsvPayloadDescription GetUsingGET11(ctx, decoderId).XAPIKEY(xAPIKEY).Execute()
 
 Retrieve a csv decoder
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    decoderId := "decoderId_example" // string | id of the csv decoder to retrieve
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DecodersCSVApi.GetUsingGET11(context.Background(), decoderId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DecodersCSVApi.GetUsingGET11``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsingGET11`: CsvPayloadDescription
+    fmt.Fprintf(os.Stdout, "Response from `DecodersCSVApi.GetUsingGET11`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**decoderId** | **string**| id of the csv decoder to retrieve | 
-**xAPIKEY** | **string**| a valid API key | 
+**decoderId** | **string** | id of the csv decoder to retrieve | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetUsingGET11Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -133,30 +230,53 @@ No authorization required
 
 ## ListUsingGET12
 
-> []CsvPayloadDescription ListUsingGET12(ctx, xAPIKEY, optional)
+> []CsvPayloadDescription ListUsingGET12(ctx).XAPIKEY(xAPIKEY).Tags(tags).Execute()
 
 Retrieve the list of csv decoders filtered by tags
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    tags := []string{"Inner_example"} // []string | target filtering tags (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DecodersCSVApi.ListUsingGET12(context.Background()).XAPIKEY(xAPIKEY).Tags(tags).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DecodersCSVApi.ListUsingGET12``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListUsingGET12`: []CsvPayloadDescription
+    fmt.Fprintf(os.Stdout, "Response from `DecodersCSVApi.ListUsingGET12`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListUsingGET12Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***ListUsingGET12Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a ListUsingGET12Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **tags** | [**optional.Interface of []string**](string.md)| target filtering tags | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **tags** | [**[]string**](string.md) | target filtering tags | 
 
 ### Return type
 
@@ -178,30 +298,53 @@ No authorization required
 
 ## PostUsingPOST11
 
-> CsvPayloadDescription PostUsingPOST11(ctx, xAPIKEY, optional)
+> CsvPayloadDescription PostUsingPOST11(ctx).XAPIKEY(xAPIKEY).CsvPayloadDescription(csvPayloadDescription).Execute()
 
 Create a csv decoder
 
-The number of csv decoders is limited to 100.<br><br>Usage of this API will be reported in your access log under 'data_decoder' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    csvPayloadDescription := *openapiclient.NewCsvPayloadDescription([]CsvColumn{*openapiclient.NewCsvColumn("JsonType_example", "Name_example")), false, "Encoding_example") // CsvPayloadDescription | Csv decoder description (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DecodersCSVApi.PostUsingPOST11(context.Background()).XAPIKEY(xAPIKEY).CsvPayloadDescription(csvPayloadDescription).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DecodersCSVApi.PostUsingPOST11``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PostUsingPOST11`: CsvPayloadDescription
+    fmt.Fprintf(os.Stdout, "Response from `DecodersCSVApi.PostUsingPOST11`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostUsingPOST11Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***PostUsingPOST11Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a PostUsingPOST11Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **csvPayloadDescription** | [**optional.Interface of CsvPayloadDescription**](CsvPayloadDescription.md)| Csv decoder description | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **csvPayloadDescription** | [**CsvPayloadDescription**](CsvPayloadDescription.md) | Csv decoder description | 
 
 ### Return type
 
@@ -223,32 +366,59 @@ No authorization required
 
 ## PutUsingPUT3
 
-> CsvPayloadDescription PutUsingPUT3(ctx, decoderId, xAPIKEY, optional)
+> CsvPayloadDescription PutUsingPUT3(ctx, decoderId).XAPIKEY(xAPIKEY).CsvPayloadDescription(csvPayloadDescription).Execute()
 
 Update a csv decoder
 
-Usage of this API will be reported in your access log under 'data_decoder' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    decoderId := "decoderId_example" // string | id of the csv decoder to update
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    csvPayloadDescription := *openapiclient.NewCsvPayloadDescription([]CsvColumn{*openapiclient.NewCsvColumn("JsonType_example", "Name_example")), false, "Encoding_example") // CsvPayloadDescription | Csv decoder description (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DecodersCSVApi.PutUsingPUT3(context.Background(), decoderId).XAPIKEY(xAPIKEY).CsvPayloadDescription(csvPayloadDescription).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DecodersCSVApi.PutUsingPUT3``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PutUsingPUT3`: CsvPayloadDescription
+    fmt.Fprintf(os.Stdout, "Response from `DecodersCSVApi.PutUsingPUT3`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**decoderId** | **string**| id of the csv decoder to update | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***PutUsingPUT3Opts** | optional parameters | nil if no parameters
+**decoderId** | **string** | id of the csv decoder to update | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a PutUsingPUT3Opts struct
+Other parameters are passed through a pointer to a apiPutUsingPUT3Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **csvPayloadDescription** | [**optional.Interface of CsvPayloadDescription**](CsvPayloadDescription.md)| Csv decoder description | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **csvPayloadDescription** | [**CsvPayloadDescription**](CsvPayloadDescription.md) | Csv decoder description | 
 
 ### Return type
 
@@ -270,30 +440,53 @@ No authorization required
 
 ## TestUsingPOST3
 
-> PayloadDescriptionTestResult TestUsingPOST3(ctx, xAPIKEY, optional)
+> PayloadDescriptionTestResult TestUsingPOST3(ctx).XAPIKEY(xAPIKEY).DataDecodingTestRequest(dataDecodingTestRequest).Execute()
 
 Test a csv decoder format with an encoded payload
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    dataDecodingTestRequest := *openapiclient.NewCsvPayloadDescriptionTestRequest([]CsvColumn{)) // CsvPayloadDescriptionTestRequest | Csv format and encoded payload on which decoding shall be peformed (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DecodersCSVApi.TestUsingPOST3(context.Background()).XAPIKEY(xAPIKEY).DataDecodingTestRequest(dataDecodingTestRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DecodersCSVApi.TestUsingPOST3``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `TestUsingPOST3`: PayloadDescriptionTestResult
+    fmt.Fprintf(os.Stdout, "Response from `DecodersCSVApi.TestUsingPOST3`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTestUsingPOST3Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***TestUsingPOST3Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a TestUsingPOST3Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **dataDecodingTestRequest** | [**optional.Interface of CsvPayloadDescriptionTestRequest**](CsvPayloadDescriptionTestRequest.md)| Csv format and encoded payload on which decoding shall be peformed | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **dataDecodingTestRequest** | [**CsvPayloadDescriptionTestRequest**](CsvPayloadDescriptionTestRequest.md) | Csv format and encoded payload on which decoding shall be peformed | 
 
 ### Return type
 

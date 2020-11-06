@@ -11,32 +11,59 @@ Method | HTTP request | Description
 
 ## AddDataMessageUsingPOST
 
-> string AddDataMessageUsingPOST(ctx, streamId, xAPIKEY, optional)
+> string AddDataMessageUsingPOST(ctx, streamId).XAPIKEY(xAPIKEY).Data(data).Execute()
 
 Insert a new Data into the stream
 
-In order for the data to be enriched by decoders and pipelines functionalities, 'metadata.encoding' field must be set.<br><br>Restricted to API keys with at least one of the following roles : DATA_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    streamId := "streamId_example" // string | StreamId in which the data will be added. Should not contains following character or space : ' \\ \" ; { } ( )
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    data := *openapiclient.NewDataWeb(123) // DataWeb | DataMessage to add (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DataManagementDataStoreApi.AddDataMessageUsingPOST(context.Background(), streamId).XAPIKEY(xAPIKEY).Data(data).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DataManagementDataStoreApi.AddDataMessageUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AddDataMessageUsingPOST`: string
+    fmt.Fprintf(os.Stdout, "Response from `DataManagementDataStoreApi.AddDataMessageUsingPOST`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**streamId** | **string**| StreamId in which the data will be added. Should not contains following character or space : &#39; \\ \&quot; ; { } ( ) | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***AddDataMessageUsingPOSTOpts** | optional parameters | nil if no parameters
+**streamId** | **string** | StreamId in which the data will be added. Should not contains following character or space : &#39; \\ \&quot; ; { } ( ) | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a AddDataMessageUsingPOSTOpts struct
+Other parameters are passed through a pointer to a apiAddDataMessageUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **data** | [**optional.Interface of DataWeb**](DataWeb.md)| DataMessage to add | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **data** | [**DataWeb**](DataWeb.md) | DataMessage to add | 
 
 ### Return type
 
@@ -58,34 +85,63 @@ No authorization required
 
 ## RetrieveDataUsingGET
 
-> []DataStoredWeb RetrieveDataUsingGET(ctx, streamId, xAPIKEY, optional)
+> []DataStoredWeb RetrieveDataUsingGET(ctx, streamId).XAPIKEY(xAPIKEY).Limit(limit).TimeRange(timeRange).BookmarkId(bookmarkId).Execute()
 
 Retrieve data from the streamId
 
-return an array of StoredDataMessage matching the request parameters.<br><br>Restricted to API keys with at least one of the following roles : DATA_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    streamId := "streamId_example" // string | StreamId from which the data will be retrieved
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    limit := 987 // int32 | max number of data to return, value is limited to 1000 (optional) (default to 100)
+    timeRange := []string{"Inner_example"} // []string | filter data where timestamp is in timeRange (must be ISO 8601 formatted) : ?timeRange=[lowerbound],[upperbound]. Coma is mandatory, lowerbound and upperbound are optionals. Lowerbound is inclusiv, upperbound is exclusiv. (optional)
+    bookmarkId := "bookmarkId_example" // string | id of the last document retrieved that can be used to paginate : first result will be the one following this document id (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DataManagementDataStoreApi.RetrieveDataUsingGET(context.Background(), streamId).XAPIKEY(xAPIKEY).Limit(limit).TimeRange(timeRange).BookmarkId(bookmarkId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DataManagementDataStoreApi.RetrieveDataUsingGET``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RetrieveDataUsingGET`: []DataStoredWeb
+    fmt.Fprintf(os.Stdout, "Response from `DataManagementDataStoreApi.RetrieveDataUsingGET`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**streamId** | **string**| StreamId from which the data will be retrieved | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***RetrieveDataUsingGETOpts** | optional parameters | nil if no parameters
+**streamId** | **string** | StreamId from which the data will be retrieved | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a RetrieveDataUsingGETOpts struct
+Other parameters are passed through a pointer to a apiRetrieveDataUsingGETRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **limit** | **optional.Int32**| max number of data to return, value is limited to 1000 | [default to 100]
- **timeRange** | [**optional.Interface of []string**](string.md)| filter data where timestamp is in timeRange (must be ISO 8601 formatted) : ?timeRange&#x3D;[lowerbound],[upperbound]. Coma is mandatory, lowerbound and upperbound are optionals. Lowerbound is inclusiv, upperbound is exclusiv. | 
- **bookmarkId** | **optional.String**| id of the last document retrieved that can be used to paginate : first result will be the one following this document id | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **limit** | **int32** | max number of data to return, value is limited to 1000 | [default to 100]
+ **timeRange** | [**[]string**](string.md) | filter data where timestamp is in timeRange (must be ISO 8601 formatted) : ?timeRange&#x3D;[lowerbound],[upperbound]. Coma is mandatory, lowerbound and upperbound are optionals. Lowerbound is inclusiv, upperbound is exclusiv. | 
+ **bookmarkId** | **string** | id of the last document retrieved that can be used to paginate : first result will be the one following this document id | 
 
 ### Return type
 

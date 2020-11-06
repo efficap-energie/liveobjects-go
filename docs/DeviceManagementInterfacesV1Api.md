@@ -14,32 +14,59 @@ Method | HTTP request | Description
 
 ## AddInterfaceToDeviceUsingPOST
 
-> DeviceInterface AddInterfaceToDeviceUsingPOST(ctx, deviceId, xAPIKEY, optional)
+> DeviceInterface AddInterfaceToDeviceUsingPOST(ctx, deviceId).XAPIKEY(xAPIKEY).NewDeviceInterface(newDeviceInterface).Execute()
 
 Add an interface to a registered device
 
-<p>The <strong>definition</strong> depends on connector.</p><p><span style=\"text-decoration: underline;\">Lora definition</span>:</p><ul><li>\"devEUI\": interface EUI</li><li>\"appEUI\": appEUI of the interface</li><li>\"appKey\": appKey of the interface</li><li>\"activationType\": supported value: \"OTAA\"</li><li>\"profile\": profile of the interface</li><li>\"encoding\": (Optional) encoding type of the binary payload sent by the interface</li><li>\"connectivityOptions\": connectivity options used for the interface </li><ul><li>\"tdoa\": true/false </li><li>\"ackUl\": true/false</li></ul><li>\"connectivityPlan\": connectivity plan to use for the interface. Should be used preferably at connectivityOptions but at least one of two shall be defined.</li></ul><p><span style=\"text-decoration: underline;\">SMS definition</span>:</p><ul><li>\"msisdn\": interface msisdn</li><li>\"serverPhoneNumber\": (Optional) server phone number</li><li>\"encoding\": (Optional) name of the decoder that will be used to decode received SMS</li></ul><p><span style=\"text-decoration: underline;\">MQTT definition</span>:</p><ul><li>\"clientId\": interface client ID</li></ul><p><span style=\"text-decoration: underline;\">X-CONNECTOR definition</span>:</p><ul><li>\"nodeId\": id used by the external connector to identify the communicating device (e.g. PUB connector/v1/nodes/{nodeId}/status)</li></ul><br><br>Usage of this API will be reported in your access log under 'device_inventory' category.<br><br>Restricted to API keys with at least one of the following roles : DEVICE_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    deviceId := "deviceId_example" // string | device identifier. A Live Objects URN 'urn:lo:nsid:{namespace}:{id}' must respect the following regular expression <code>^urn:lo:nsid:([\\w\\-_]{1,128}):([\\w\\-_:]{1,128})$</code> (max 269 characters)
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    newDeviceInterface := *openapiclient.NewNewDeviceInterface() // NewDeviceInterface | The device interface to add (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DeviceManagementInterfacesV1Api.AddInterfaceToDeviceUsingPOST(context.Background(), deviceId).XAPIKEY(xAPIKEY).NewDeviceInterface(newDeviceInterface).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeviceManagementInterfacesV1Api.AddInterfaceToDeviceUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AddInterfaceToDeviceUsingPOST`: DeviceInterface
+    fmt.Fprintf(os.Stdout, "Response from `DeviceManagementInterfacesV1Api.AddInterfaceToDeviceUsingPOST`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**deviceId** | **string**| device identifier. A Live Objects URN &#39;urn:lo:nsid:{namespace}:{id}&#39; must respect the following regular expression &lt;code&gt;^urn:lo:nsid:([\\w\\-_]{1,128}):([\\w\\-_:]{1,128})$&lt;/code&gt; (max 269 characters) | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***AddInterfaceToDeviceUsingPOSTOpts** | optional parameters | nil if no parameters
+**deviceId** | **string** | device identifier. A Live Objects URN &#39;urn:lo:nsid:{namespace}:{id}&#39; must respect the following regular expression &lt;code&gt;^urn:lo:nsid:([\\w\\-_]{1,128}):([\\w\\-_:]{1,128})$&lt;/code&gt; (max 269 characters) | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a AddInterfaceToDeviceUsingPOSTOpts struct
+Other parameters are passed through a pointer to a apiAddInterfaceToDeviceUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **newDeviceInterface** | [**optional.Interface of NewDeviceInterface**](NewDeviceInterface.md)| The device interface to add | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **newDeviceInterface** | [**NewDeviceInterface**](NewDeviceInterface.md) | The device interface to add | 
 
 ### Return type
 
@@ -61,21 +88,58 @@ No authorization required
 
 ## DeleteInterfaceUsingDELETE
 
-> DeleteInterfaceUsingDELETE(ctx, deviceId, interfaceId, xAPIKEY)
+> DeleteInterfaceUsingDELETE(ctx, deviceId, interfaceId).XAPIKEY(xAPIKEY).Execute()
 
 Delete an interface
 
-Usage of this API will be reported in your access log under 'device_inventory' category.<br><br>Restricted to API keys with at least one of the following roles : DEVICE_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    deviceId := "deviceId_example" // string | device identifier. A Live Objects URN 'urn:lo:nsid:{namespace}:{id}' must respect the following regular expression <code>^urn:lo:nsid:([\\w\\-_]{1,128}):([\\w\\-_:]{1,128})$</code> (max 269 characters)
+    interfaceId := "interfaceId_example" // string | Must be {connector}:{nodeId}.
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DeviceManagementInterfacesV1Api.DeleteInterfaceUsingDELETE(context.Background(), deviceId, interfaceId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeviceManagementInterfacesV1Api.DeleteInterfaceUsingDELETE``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**deviceId** | **string**| device identifier. A Live Objects URN &#39;urn:lo:nsid:{namespace}:{id}&#39; must respect the following regular expression &lt;code&gt;^urn:lo:nsid:([\\w\\-_]{1,128}):([\\w\\-_:]{1,128})$&lt;/code&gt; (max 269 characters) | 
-**interfaceId** | **string**| Must be {connector}:{nodeId}. | 
-**xAPIKEY** | **string**| a valid API key | 
+**deviceId** | **string** | device identifier. A Live Objects URN &#39;urn:lo:nsid:{namespace}:{id}&#39; must respect the following regular expression &lt;code&gt;^urn:lo:nsid:([\\w\\-_]{1,128}):([\\w\\-_:]{1,128})$&lt;/code&gt; (max 269 characters) | 
+**interfaceId** | **string** | Must be {connector}:{nodeId}. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteInterfaceUsingDELETERequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -97,21 +161,60 @@ No authorization required
 
 ## GetInterfaceForADeviceUsingGET
 
-> DeviceInterface GetInterfaceForADeviceUsingGET(ctx, deviceId, interfaceId, xAPIKEY)
+> DeviceInterface GetInterfaceForADeviceUsingGET(ctx, deviceId, interfaceId).XAPIKEY(xAPIKEY).Execute()
 
 Get a specific interface for a registered device
 
-<p>The <strong>definition</strong> depends on connector.</p><p><span style=\"text-decoration: underline;\">Lora definition</span>:</p><ul><li>\"devEUI\": interface EUI</li><li>\"appEUI\": appEUI of the interface</li><li>\"appKey\": appKey of the interface</li><li>\"activationType\": supported value: \"OTAA\"</li><li>\"profile\": profile of the interface</li><li>\"encoding\": (Optional) encoding type of the binary payload sent by the interface</li><li>\"connectivityOptions\": connectivity options used for the interface </li><ul><li>\"tdoa\": true/false </li><li>\"ackUl\": true/false</li></ul><li>\"connectivityPlan\": connectivity plan to use for the interface. Should be used preferably at connectivityOptions but at least one of two shall be defined.</li></ul><p><span style=\"text-decoration: underline;\">SMS definition</span>:</p><ul><li>\"msisdn\": interface msisdn</li><li>\"serverPhoneNumber\": (Optional) server phone number</li><li>\"encoding\": (Optional) name of the decoder that will be used to decode received SMS</li></ul><p><span style=\"text-decoration: underline;\">MQTT definition</span>:</p><ul><li>\"clientId\": interface client ID</li></ul><p><span style=\"text-decoration: underline;\">X-CONNECTOR definition</span>:</p><ul><li>\"nodeId\": id used by the external connector to identify the communicating device (e.g. PUB connector/v1/nodes/{nodeId}/status)</li></ul><br /><p>The <strong>activity</strong> depends on connector.</p><p><span style=\"text-decoration: underline;\">Lora activity</span>:</p><ul><li>\"lastActivationTs\": (Optional) last activation date of the interface</li><li>\"lastDeactivationTs\": (Optional) last deactivation date of the interface</li><li>\"lastSignalLevel\": (Optional) last signal level</li><li>\"lastBatteryLevel\": (Optional) last battery level</li><li>\"lastDlFcnt\": (Optional) last downlink frame counter</li><li>\"lastUlFcnt\": (Optional) last uplink frame counter</li></ul><p><span style=\"text-decoration: underline;\">SMS activity</span>:</p><ul><li>\"lastUplink\": (Optional) last uplink date of the interface</li><ul><li>\"timestamp\": date of the activity</li><li>\"serverPhoneNumber\": server phone number used</li></ul><li>\"lastDownlink\": (Optional) last downlink date of the connector node</li><ul><li>\"timestamp\": date of the activity</li><li>\"serverPhoneNumber\": server phone number used</li></ul></ul><p><span style=\"text-decoration: underline;\">MQTT activity</span>:</p><ul><li>\"apiKeyId\": api key ID used</li><li>\"mqttVersion\": mqtt version used</li><li>\"mqttUsername\": mqtt username used</li><li>\"mqttTimeout\": mqtt timeout</li><li>\"remoteAddress\"</li><li>\"lastSessionStartTime\"</li><li>\"lastSessionEndTime\"</li></ul><br><br>Restricted to API keys with at least one of the following roles : DEVICE_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    deviceId := "deviceId_example" // string | device identifier. A Live Objects URN 'urn:lo:nsid:{namespace}:{id}' must respect the following regular expression <code>^urn:lo:nsid:([\\w\\-_]{1,128}):([\\w\\-_:]{1,128})$</code> (max 269 characters)
+    interfaceId := "interfaceId_example" // string | Must be {connector}:{nodeId}
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DeviceManagementInterfacesV1Api.GetInterfaceForADeviceUsingGET(context.Background(), deviceId, interfaceId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeviceManagementInterfacesV1Api.GetInterfaceForADeviceUsingGET``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetInterfaceForADeviceUsingGET`: DeviceInterface
+    fmt.Fprintf(os.Stdout, "Response from `DeviceManagementInterfacesV1Api.GetInterfaceForADeviceUsingGET`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**deviceId** | **string**| device identifier. A Live Objects URN &#39;urn:lo:nsid:{namespace}:{id}&#39; must respect the following regular expression &lt;code&gt;^urn:lo:nsid:([\\w\\-_]{1,128}):([\\w\\-_:]{1,128})$&lt;/code&gt; (max 269 characters) | 
-**interfaceId** | **string**| Must be {connector}:{nodeId} | 
-**xAPIKEY** | **string**| a valid API key | 
+**deviceId** | **string** | device identifier. A Live Objects URN &#39;urn:lo:nsid:{namespace}:{id}&#39; must respect the following regular expression &lt;code&gt;^urn:lo:nsid:([\\w\\-_]{1,128}):([\\w\\-_:]{1,128})$&lt;/code&gt; (max 269 characters) | 
+**interfaceId** | **string** | Must be {connector}:{nodeId} | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetInterfaceForADeviceUsingGETRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -133,20 +236,57 @@ No authorization required
 
 ## ListInterfacesForADeviceUsingGET
 
-> []DeviceInterface ListInterfacesForADeviceUsingGET(ctx, deviceId, xAPIKEY)
+> []DeviceInterface ListInterfacesForADeviceUsingGET(ctx, deviceId).XAPIKEY(xAPIKEY).Execute()
 
 Get the interface list for a registered device
 
-<p>The <strong>definition</strong> depends on connector.</p><p><span style=\"text-decoration: underline;\">Lora definition</span>:</p><ul><li>\"devEUI\": interface EUI</li><li>\"appEUI\": appEUI of the interface</li><li>\"appKey\": appKey of the interface</li><li>\"activationType\": supported value: \"OTAA\"</li><li>\"profile\": profile of the interface</li><li>\"encoding\": (Optional) encoding type of the binary payload sent by the interface</li><li>\"connectivityOptions\": connectivity options used for the interface </li><ul><li>\"tdoa\": true/false </li><li>\"ackUl\": true/false</li></ul><li>\"connectivityPlan\": connectivity plan to use for the interface. Should be used preferably at connectivityOptions but at least one of two shall be defined.</li></ul><p><span style=\"text-decoration: underline;\">SMS definition</span>:</p><ul><li>\"msisdn\": interface msisdn</li><li>\"serverPhoneNumber\": (Optional) server phone number</li><li>\"encoding\": (Optional) name of the decoder that will be used to decode received SMS</li></ul><p><span style=\"text-decoration: underline;\">MQTT definition</span>:</p><ul><li>\"clientId\": interface client ID</li></ul><p><span style=\"text-decoration: underline;\">X-CONNECTOR definition</span>:</p><ul><li>\"nodeId\": id used by the external connector to identify the communicating device (e.g. PUB connector/v1/nodes/{nodeId}/status)</li></ul><br /><p>The <strong>activity</strong> depends on connector.</p><p><span style=\"text-decoration: underline;\">Lora activity</span>:</p><ul><li>\"lastActivationTs\": (Optional) last activation date of the interface</li><li>\"lastDeactivationTs\": (Optional) last deactivation date of the interface</li><li>\"lastSignalLevel\": (Optional) last signal level</li><li>\"lastBatteryLevel\": (Optional) last battery level</li><li>\"lastDlFcnt\": (Optional) last downlink frame counter</li><li>\"lastUlFcnt\": (Optional) last uplink frame counter</li></ul><p><span style=\"text-decoration: underline;\">SMS activity</span>:</p><ul><li>\"lastUplink\": (Optional) last uplink date of the interface</li><ul><li>\"timestamp\": date of the activity</li><li>\"serverPhoneNumber\": server phone number used</li></ul><li>\"lastDownlink\": (Optional) last downlink date of the connector node</li><ul><li>\"timestamp\": date of the activity</li><li>\"serverPhoneNumber\": server phone number used</li></ul></ul><p><span style=\"text-decoration: underline;\">MQTT activity</span>:</p><ul><li>\"apiKeyId\": api key ID used</li><li>\"mqttVersion\": mqtt version used</li><li>\"mqttUsername\": mqtt username used</li><li>\"mqttTimeout\": mqtt timeout</li><li>\"remoteAddress\"</li><li>\"lastSessionStartTime\"</li><li>\"lastSessionEndTime\"</li></ul><br><br>Restricted to API keys with at least one of the following roles : DEVICE_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    deviceId := "deviceId_example" // string | device identifier. A Live Objects URN 'urn:lo:nsid:{namespace}:{id}' must respect the following regular expression <code>^urn:lo:nsid:([\\w\\-_]{1,128}):([\\w\\-_:]{1,128})$</code> (max 269 characters)
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DeviceManagementInterfacesV1Api.ListInterfacesForADeviceUsingGET(context.Background(), deviceId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeviceManagementInterfacesV1Api.ListInterfacesForADeviceUsingGET``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListInterfacesForADeviceUsingGET`: []DeviceInterface
+    fmt.Fprintf(os.Stdout, "Response from `DeviceManagementInterfacesV1Api.ListInterfacesForADeviceUsingGET`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**deviceId** | **string**| device identifier. A Live Objects URN &#39;urn:lo:nsid:{namespace}:{id}&#39; must respect the following regular expression &lt;code&gt;^urn:lo:nsid:([\\w\\-_]{1,128}):([\\w\\-_:]{1,128})$&lt;/code&gt; (max 269 characters) | 
-**xAPIKEY** | **string**| a valid API key | 
+**deviceId** | **string** | device identifier. A Live Objects URN &#39;urn:lo:nsid:{namespace}:{id}&#39; must respect the following regular expression &lt;code&gt;^urn:lo:nsid:([\\w\\-_]{1,128}):([\\w\\-_:]{1,128})$&lt;/code&gt; (max 269 characters) | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListInterfacesForADeviceUsingGETRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -168,34 +308,62 @@ No authorization required
 
 ## UpdateInterfaceUsingPATCH
 
-> DeviceInterface UpdateInterfaceUsingPATCH(ctx, deviceId, interfaceId, xAPIKEY, optional)
+> DeviceInterface UpdateInterfaceUsingPATCH(ctx, deviceId, interfaceId).XAPIKEY(xAPIKEY).Body(body).Execute()
 
 Update an interface
 
-<p>The <strong>definition</strong> depends on connector.</p><p><span style=\"text-decoration: underline;\">Lora definition</span>:</p><ul><li>\"devEUI\": interface EUI</li><li>\"appEUI\": appEUI of the interface</li><li>\"appKey\": appKey of the interface</li><li>\"activationType\": supported value: \"OTAA\"</li><li>\"profile\": profile of the interface</li><li>\"encoding\": (Optional) encoding type of the binary payload sent by the interface</li><li>\"connectivityOptions\": connectivity options used for the interface </li><ul><li>\"tdoa\": true/false </li><li>\"ackUl\": true/false</li></ul><li>\"connectivityPlan\": connectivity plan to use for the interface. Should be used preferably at connectivityOptions but at least one of two shall be defined.</li></ul><p><span style=\"text-decoration: underline;\">SMS definition</span>:</p><ul><li>\"msisdn\": interface msisdn</li><li>\"serverPhoneNumber\": (Optional) server phone number</li><li>\"encoding\": (Optional) name of the decoder that will be used to decode received SMS</li></ul><p><span style=\"text-decoration: underline;\">MQTT definition</span>:</p><ul><li>\"clientId\": interface client ID</li></ul><p><span style=\"text-decoration: underline;\">X-CONNECTOR definition</span>:</p><ul><li>\"nodeId\": id used by the external connector to identify the communicating device (e.g. PUB connector/v1/nodes/{nodeId}/status)</li></ul><br><br>Usage of this API will be reported in your access log under 'device_inventory' category.<br><br>Restricted to API keys with at least one of the following roles : DEVICE_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    deviceId := "deviceId_example" // string | device identifier. A Live Objects URN 'urn:lo:nsid:{namespace}:{id}' must respect the following regular expression <code>^urn:lo:nsid:([\\w\\-_]{1,128}):([\\w\\-_:]{1,128})$</code> (max 269 characters)
+    interfaceId := "interfaceId_example" // string | Must be {connector}:{nodeId}
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    body := *openapiclient.NewUpdateInterfaceReqWeb() // UpdateInterfaceReqWeb | The fields to update (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DeviceManagementInterfacesV1Api.UpdateInterfaceUsingPATCH(context.Background(), deviceId, interfaceId).XAPIKEY(xAPIKEY).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeviceManagementInterfacesV1Api.UpdateInterfaceUsingPATCH``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateInterfaceUsingPATCH`: DeviceInterface
+    fmt.Fprintf(os.Stdout, "Response from `DeviceManagementInterfacesV1Api.UpdateInterfaceUsingPATCH`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**deviceId** | **string**| device identifier. A Live Objects URN &#39;urn:lo:nsid:{namespace}:{id}&#39; must respect the following regular expression &lt;code&gt;^urn:lo:nsid:([\\w\\-_]{1,128}):([\\w\\-_:]{1,128})$&lt;/code&gt; (max 269 characters) | 
-**interfaceId** | **string**| Must be {connector}:{nodeId} | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***UpdateInterfaceUsingPATCHOpts** | optional parameters | nil if no parameters
+**deviceId** | **string** | device identifier. A Live Objects URN &#39;urn:lo:nsid:{namespace}:{id}&#39; must respect the following regular expression &lt;code&gt;^urn:lo:nsid:([\\w\\-_]{1,128}):([\\w\\-_:]{1,128})$&lt;/code&gt; (max 269 characters) | 
+**interfaceId** | **string** | Must be {connector}:{nodeId} | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a UpdateInterfaceUsingPATCHOpts struct
+Other parameters are passed through a pointer to a apiUpdateInterfaceUsingPATCHRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
-
- **body** | [**optional.Interface of UpdateInterfaceReqWeb**](UpdateInterfaceReqWeb.md)| The fields to update | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **body** | [**UpdateInterfaceReqWeb**](UpdateInterfaceReqWeb.md) | The fields to update | 
 
 ### Return type
 

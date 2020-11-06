@@ -16,32 +16,57 @@ Method | HTTP request | Description
 
 ## ActivateUsingPUT8
 
-> ActivateUsingPUT8(ctx, decoderId, xAPIKEY, optional)
+> ActivateUsingPUT8(ctx, decoderId).XAPIKEY(xAPIKEY).Enabled(enabled).Execute()
 
 Activate or deactivate a decoder
 
-Usage of this API will be reported in your access log under 'data_decoder' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    decoderId := "decoderId_example" // string | id of the binary decoder to activate or deactivate
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    enabled := true // bool | true to activate, false otherwise (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DecodersBinaryApi.ActivateUsingPUT8(context.Background(), decoderId).XAPIKEY(xAPIKEY).Enabled(enabled).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DecodersBinaryApi.ActivateUsingPUT8``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**decoderId** | **string**| id of the binary decoder to activate or deactivate | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***ActivateUsingPUT8Opts** | optional parameters | nil if no parameters
+**decoderId** | **string** | id of the binary decoder to activate or deactivate | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a ActivateUsingPUT8Opts struct
+Other parameters are passed through a pointer to a apiActivateUsingPUT8Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **enabled** | **optional.Bool**| true to activate, false otherwise | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **enabled** | **bool** | true to activate, false otherwise | 
 
 ### Return type
 
@@ -63,20 +88,55 @@ No authorization required
 
 ## DeleteUsingDELETE8
 
-> DeleteUsingDELETE8(ctx, decoderId, xAPIKEY)
+> DeleteUsingDELETE8(ctx, decoderId).XAPIKEY(xAPIKEY).Execute()
 
 Delete a binary decoder
 
-Usage of this API will be reported in your access log under 'data_decoder' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    decoderId := "decoderId_example" // string | id of the binary decoder to delete
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DecodersBinaryApi.DeleteUsingDELETE8(context.Background(), decoderId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DecodersBinaryApi.DeleteUsingDELETE8``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**decoderId** | **string**| id of the binary decoder to delete | 
-**xAPIKEY** | **string**| a valid API key | 
+**decoderId** | **string** | id of the binary decoder to delete | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteUsingDELETE8Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -98,20 +158,57 @@ No authorization required
 
 ## GetUsingGET10
 
-> BinaryPayloadDescription GetUsingGET10(ctx, decoderId, xAPIKEY)
+> BinaryPayloadDescription GetUsingGET10(ctx, decoderId).XAPIKEY(xAPIKEY).Execute()
 
 Retrieve a binary decoder
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    decoderId := "decoderId_example" // string | id of the binary decoder to retrieve
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DecodersBinaryApi.GetUsingGET10(context.Background(), decoderId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DecodersBinaryApi.GetUsingGET10``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsingGET10`: BinaryPayloadDescription
+    fmt.Fprintf(os.Stdout, "Response from `DecodersBinaryApi.GetUsingGET10`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**decoderId** | **string**| id of the binary decoder to retrieve | 
-**xAPIKEY** | **string**| a valid API key | 
+**decoderId** | **string** | id of the binary decoder to retrieve | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetUsingGET10Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -133,30 +230,53 @@ No authorization required
 
 ## ListUsingGET10
 
-> []BinaryPayloadDescription ListUsingGET10(ctx, xAPIKEY, optional)
+> []BinaryPayloadDescription ListUsingGET10(ctx).XAPIKEY(xAPIKEY).Tags(tags).Execute()
 
 Retrieve the list of binary decoders
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    tags := []string{"Inner_example"} // []string | target filtering tags (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DecodersBinaryApi.ListUsingGET10(context.Background()).XAPIKEY(xAPIKEY).Tags(tags).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DecodersBinaryApi.ListUsingGET10``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListUsingGET10`: []BinaryPayloadDescription
+    fmt.Fprintf(os.Stdout, "Response from `DecodersBinaryApi.ListUsingGET10`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListUsingGET10Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***ListUsingGET10Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a ListUsingGET10Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **tags** | [**optional.Interface of []string**](string.md)| target filtering tags | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **tags** | [**[]string**](string.md) | target filtering tags | 
 
 ### Return type
 
@@ -178,30 +298,53 @@ No authorization required
 
 ## PostUsingPOST10
 
-> BinaryPayloadDescription PostUsingPOST10(ctx, xAPIKEY, optional)
+> BinaryPayloadDescription PostUsingPOST10(ctx).XAPIKEY(xAPIKEY).BinaryPayloadDescription(binaryPayloadDescription).Execute()
 
 Create a binary decoder
 
-The number of binary decoders is limited to 100.<br><br>Usage of this API will be reported in your access log under 'data_decoder' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    binaryPayloadDescription := *openapiclient.NewBinaryPayloadDescription(false, "Encoding_example", "Format_example") // BinaryPayloadDescription | Binary decoder description (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DecodersBinaryApi.PostUsingPOST10(context.Background()).XAPIKEY(xAPIKEY).BinaryPayloadDescription(binaryPayloadDescription).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DecodersBinaryApi.PostUsingPOST10``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PostUsingPOST10`: BinaryPayloadDescription
+    fmt.Fprintf(os.Stdout, "Response from `DecodersBinaryApi.PostUsingPOST10`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostUsingPOST10Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***PostUsingPOST10Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a PostUsingPOST10Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **binaryPayloadDescription** | [**optional.Interface of BinaryPayloadDescription**](BinaryPayloadDescription.md)| Binary decoder description | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **binaryPayloadDescription** | [**BinaryPayloadDescription**](BinaryPayloadDescription.md) | Binary decoder description | 
 
 ### Return type
 
@@ -223,32 +366,59 @@ No authorization required
 
 ## PutUsingPUT2
 
-> BinaryPayloadDescription PutUsingPUT2(ctx, decoderId, xAPIKEY, optional)
+> BinaryPayloadDescription PutUsingPUT2(ctx, decoderId).XAPIKEY(xAPIKEY).BinaryPayloadDescription(binaryPayloadDescription).Execute()
 
 Update a binary decoder
 
-Usage of this API will be reported in your access log under 'data_decoder' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    decoderId := "decoderId_example" // string | id of the binary decoder to update
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    binaryPayloadDescription := *openapiclient.NewBinaryPayloadDescription(false, "Encoding_example", "Format_example") // BinaryPayloadDescription | Binary decoder description (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DecodersBinaryApi.PutUsingPUT2(context.Background(), decoderId).XAPIKEY(xAPIKEY).BinaryPayloadDescription(binaryPayloadDescription).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DecodersBinaryApi.PutUsingPUT2``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PutUsingPUT2`: BinaryPayloadDescription
+    fmt.Fprintf(os.Stdout, "Response from `DecodersBinaryApi.PutUsingPUT2`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**decoderId** | **string**| id of the binary decoder to update | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***PutUsingPUT2Opts** | optional parameters | nil if no parameters
+**decoderId** | **string** | id of the binary decoder to update | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a PutUsingPUT2Opts struct
+Other parameters are passed through a pointer to a apiPutUsingPUT2Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **binaryPayloadDescription** | [**optional.Interface of BinaryPayloadDescription**](BinaryPayloadDescription.md)| Binary decoder description | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **binaryPayloadDescription** | [**BinaryPayloadDescription**](BinaryPayloadDescription.md) | Binary decoder description | 
 
 ### Return type
 
@@ -270,30 +440,53 @@ No authorization required
 
 ## TestUsingPOST2
 
-> PayloadDescriptionTestResult TestUsingPOST2(ctx, xAPIKEY, optional)
+> PayloadDescriptionTestResult TestUsingPOST2(ctx).XAPIKEY(xAPIKEY).DataDecodingTestRequest(dataDecodingTestRequest).Execute()
 
 Test a binary decoder format with an encoded payload
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    dataDecodingTestRequest := *openapiclient.NewBinaryPayloadDescriptionTestRequest() // BinaryPayloadDescriptionTestRequest | Binary format and encoded payload on which decoding shall be peformed (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DecodersBinaryApi.TestUsingPOST2(context.Background()).XAPIKEY(xAPIKEY).DataDecodingTestRequest(dataDecodingTestRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DecodersBinaryApi.TestUsingPOST2``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `TestUsingPOST2`: PayloadDescriptionTestResult
+    fmt.Fprintf(os.Stdout, "Response from `DecodersBinaryApi.TestUsingPOST2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTestUsingPOST2Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***TestUsingPOST2Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a TestUsingPOST2Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **dataDecodingTestRequest** | [**optional.Interface of BinaryPayloadDescriptionTestRequest**](BinaryPayloadDescriptionTestRequest.md)| Binary format and encoded payload on which decoding shall be peformed | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **dataDecodingTestRequest** | [**BinaryPayloadDescriptionTestRequest**](BinaryPayloadDescriptionTestRequest.md) | Binary format and encoded payload on which decoding shall be peformed | 
 
 ### Return type
 

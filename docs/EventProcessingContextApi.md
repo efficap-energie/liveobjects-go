@@ -14,19 +14,51 @@ Method | HTTP request | Description
 
 ## ClearUsingDELETE
 
-> int64 ClearUsingDELETE(ctx, xAPIKEY)
+> int64 ClearUsingDELETE(ctx).XAPIKEY(xAPIKEY).Execute()
 
 Delete all context entries
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingContextApi.ClearUsingDELETE(context.Background()).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingContextApi.ClearUsingDELETE``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ClearUsingDELETE`: int64
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingContextApi.ClearUsingDELETE`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiClearUsingDELETERequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -48,20 +80,55 @@ No authorization required
 
 ## DeleteUsingDELETE15
 
-> DeleteUsingDELETE15(ctx, contextKey, xAPIKEY)
+> DeleteUsingDELETE15(ctx, contextKey).XAPIKEY(xAPIKEY).Execute()
 
 Delete a context key
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    contextKey := "contextKey_example" // string | id of the context to delete
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingContextApi.DeleteUsingDELETE15(context.Background(), contextKey).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingContextApi.DeleteUsingDELETE15``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**contextKey** | **string**| id of the context to delete | 
-**xAPIKEY** | **string**| a valid API key | 
+**contextKey** | **string** | id of the context to delete | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteUsingDELETE15Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -83,20 +150,57 @@ No authorization required
 
 ## GetUsingGET14
 
-> ContextContainer GetUsingGET14(ctx, contextKey, xAPIKEY)
+> ContextContainer GetUsingGET14(ctx, contextKey).XAPIKEY(xAPIKEY).Execute()
 
 Retrieve a context
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    contextKey := "contextKey_example" // string | id of the context to get
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingContextApi.GetUsingGET14(context.Background(), contextKey).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingContextApi.GetUsingGET14``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsingGET14`: ContextContainer
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingContextApi.GetUsingGET14`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**contextKey** | **string**| id of the context to get | 
-**xAPIKEY** | **string**| a valid API key | 
+**contextKey** | **string** | id of the context to get | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetUsingGET14Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -118,32 +222,57 @@ No authorization required
 
 ## ListUsingGET17
 
-> []ContextContainer ListUsingGET17(ctx, xAPIKEY, optional)
+> []ContextContainer ListUsingGET17(ctx).XAPIKEY(xAPIKEY).Page(page).Size(size).Tags(tags).Execute()
 
 Retrieve the list of contexts with optional tag filtering
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    page := 987 // int32 | The requested page number (optional) (default to 0)
+    size := 987 // int32 | The maximum number of items per page (optional) (default to 20)
+    tags := []string{"Inner_example"} // []string | Filtering tags (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingContextApi.ListUsingGET17(context.Background()).XAPIKEY(xAPIKEY).Page(page).Size(size).Tags(tags).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingContextApi.ListUsingGET17``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListUsingGET17`: []ContextContainer
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingContextApi.ListUsingGET17`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListUsingGET17Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***ListUsingGET17Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a ListUsingGET17Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **page** | **optional.Int32**| The requested page number | [default to 0]
- **size** | **optional.Int32**| The maximum number of items per page | [default to 20]
- **tags** | [**optional.Interface of []string**](string.md)| Filtering tags | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **page** | **int32** | The requested page number | [default to 0]
+ **size** | **int32** | The maximum number of items per page | [default to 20]
+ **tags** | [**[]string**](string.md) | Filtering tags | 
 
 ### Return type
 
@@ -165,32 +294,59 @@ No authorization required
 
 ## SaveUsingPUT
 
-> ContextContainer SaveUsingPUT(ctx, contextKey, xAPIKEY, optional)
+> ContextContainer SaveUsingPUT(ctx, contextKey).XAPIKEY(xAPIKEY).ContextContainer(contextContainer).Execute()
 
 Save a context
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    contextKey := "contextKey_example" // string | id of the context to save
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    contextContainer := *openapiclient.NewContextContainer(123) // ContextContainer | JSON context object to add (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingContextApi.SaveUsingPUT(context.Background(), contextKey).XAPIKEY(xAPIKEY).ContextContainer(contextContainer).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingContextApi.SaveUsingPUT``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SaveUsingPUT`: ContextContainer
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingContextApi.SaveUsingPUT`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**contextKey** | **string**| id of the context to save | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***SaveUsingPUTOpts** | optional parameters | nil if no parameters
+**contextKey** | **string** | id of the context to save | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a SaveUsingPUTOpts struct
+Other parameters are passed through a pointer to a apiSaveUsingPUTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **contextContainer** | [**optional.Interface of ContextContainer**](ContextContainer.md)| JSON context object to add | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **contextContainer** | [**ContextContainer**](ContextContainer.md) | JSON context object to add | 
 
 ### Return type
 

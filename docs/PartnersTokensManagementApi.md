@@ -10,30 +10,53 @@ Method | HTTP request | Description
 
 ## CreatePartnerTokenUsingPOST
 
-> PartnerToken CreatePartnerTokenUsingPOST(ctx, authorization, optional)
+> PartnerToken CreatePartnerTokenUsingPOST(ctx).Authorization(authorization).GrantType(grantType).Execute()
 
 Request a new Token
 
-Usage of this API will be reported in your access log under 'authentication' category.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    authorization := "authorization_example" // string | Basic Base64(clientId:clientSecret)
+    grantType := "grantType_example" // string | the authorization grant type. Must be set to \"client_credentials\" (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PartnersTokensManagementApi.CreatePartnerTokenUsingPOST(context.Background()).Authorization(authorization).GrantType(grantType).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PartnersTokensManagementApi.CreatePartnerTokenUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreatePartnerTokenUsingPOST`: PartnerToken
+    fmt.Fprintf(os.Stdout, "Response from `PartnersTokensManagementApi.CreatePartnerTokenUsingPOST`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreatePartnerTokenUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**authorization** | **string**| Basic Base64(clientId:clientSecret) | 
- **optional** | ***CreatePartnerTokenUsingPOSTOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a CreatePartnerTokenUsingPOSTOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **grantType** | **optional.String**| the authorization grant type. Must be set to \&quot;client_credentials\&quot; | 
+ **authorization** | **string** | Basic Base64(clientId:clientSecret) | 
+ **grantType** | **string** | the authorization grant type. Must be set to \&quot;client_credentials\&quot; | 
 
 ### Return type
 

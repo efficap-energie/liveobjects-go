@@ -15,20 +15,55 @@ Method | HTTP request | Description
 
 ## DeleteUsingDELETE19
 
-> DeleteUsingDELETE19(ctx, stateProcessingRuleId, xAPIKEY)
+> DeleteUsingDELETE19(ctx, stateProcessingRuleId).XAPIKEY(xAPIKEY).Execute()
 
 Delete a StateProcessingRule
 
-Usage of this API will be reported in your access log under 'alarming' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    stateProcessingRuleId := "stateProcessingRuleId_example" // string | id of the StateProcessingRule to delete
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingStateProcessingApi.DeleteUsingDELETE19(context.Background(), stateProcessingRuleId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingStateProcessingApi.DeleteUsingDELETE19``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**stateProcessingRuleId** | **string**| id of the StateProcessingRule to delete | 
-**xAPIKEY** | **string**| a valid API key | 
+**stateProcessingRuleId** | **string** | id of the StateProcessingRule to delete | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteUsingDELETE19Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -50,20 +85,57 @@ No authorization required
 
 ## GetUsingGET18
 
-> StateProcessingRule GetUsingGET18(ctx, stateProcessingRuleId, xAPIKEY)
+> StateProcessingRule GetUsingGET18(ctx, stateProcessingRuleId).XAPIKEY(xAPIKEY).Execute()
 
 Retrieve a StateProcessingRule
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    stateProcessingRuleId := "stateProcessingRuleId_example" // string | id of the StateProcessingRule to retrieve
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingStateProcessingApi.GetUsingGET18(context.Background(), stateProcessingRuleId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingStateProcessingApi.GetUsingGET18``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsingGET18`: StateProcessingRule
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingStateProcessingApi.GetUsingGET18`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**stateProcessingRuleId** | **string**| id of the StateProcessingRule to retrieve | 
-**xAPIKEY** | **string**| a valid API key | 
+**stateProcessingRuleId** | **string** | id of the StateProcessingRule to retrieve | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetUsingGET18Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -85,30 +157,53 @@ No authorization required
 
 ## ListUsingGET21
 
-> []StateProcessingRule ListUsingGET21(ctx, xAPIKEY, optional)
+> []StateProcessingRule ListUsingGET21(ctx).XAPIKEY(xAPIKEY).Name(name).Execute()
 
 Retrieve the list of all the StateProcessingRules or get a StateProcessingRule by its name
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    name := "name_example" // string | name of the StateProcessingRules to retrieve (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingStateProcessingApi.ListUsingGET21(context.Background()).XAPIKEY(xAPIKEY).Name(name).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingStateProcessingApi.ListUsingGET21``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListUsingGET21`: []StateProcessingRule
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingStateProcessingApi.ListUsingGET21`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListUsingGET21Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***ListUsingGET21Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a ListUsingGET21Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **name** | **optional.String**| name of the StateProcessingRules to retrieve | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **name** | **string** | name of the StateProcessingRules to retrieve | 
 
 ### Return type
 
@@ -130,30 +225,53 @@ No authorization required
 
 ## PostUsingPOST16
 
-> StateProcessingRule PostUsingPOST16(ctx, xAPIKEY, optional)
+> StateProcessingRule PostUsingPOST16(ctx).XAPIKEY(xAPIKEY).StateProcessingRule(stateProcessingRule).Execute()
 
 Create a StateProcessingRule
 
-Total number of StateProcessingRule is limited. Contact the commercial team or see developer guide to get more information.<br><br>Usage of this API will be reported in your access log under 'alarming' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    stateProcessingRule := *openapiclient.NewStateProcessingRule("Name_example") // StateProcessingRule | StateProcessingRule to add (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingStateProcessingApi.PostUsingPOST16(context.Background()).XAPIKEY(xAPIKEY).StateProcessingRule(stateProcessingRule).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingStateProcessingApi.PostUsingPOST16``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PostUsingPOST16`: StateProcessingRule
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingStateProcessingApi.PostUsingPOST16`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostUsingPOST16Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***PostUsingPOST16Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a PostUsingPOST16Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **stateProcessingRule** | [**optional.Interface of StateProcessingRule**](StateProcessingRule.md)| StateProcessingRule to add | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **stateProcessingRule** | [**StateProcessingRule**](StateProcessingRule.md) | StateProcessingRule to add | 
 
 ### Return type
 
@@ -175,30 +293,53 @@ No authorization required
 
 ## TestUsingPOST5
 
-> StateProcessingFunctionTestResult TestUsingPOST5(ctx, xAPIKEY, optional)
+> StateProcessingFunctionTestResult TestUsingPOST5(ctx).XAPIKEY(xAPIKEY).TestRequest(testRequest).Execute()
 
 test a  State Processing function
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    testRequest := *openapiclient.NewStateProcessingFunctionTest(*openapiclient.NewNewData(), 123) // StateProcessingFunctionTest | State Processing function test request (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingStateProcessingApi.TestUsingPOST5(context.Background()).XAPIKEY(xAPIKEY).TestRequest(testRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingStateProcessingApi.TestUsingPOST5``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `TestUsingPOST5`: StateProcessingFunctionTestResult
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingStateProcessingApi.TestUsingPOST5`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTestUsingPOST5Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***TestUsingPOST5Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a TestUsingPOST5Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **testRequest** | [**optional.Interface of StateProcessingFunctionTest**](StateProcessingFunctionTest.md)| State Processing function test request | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **testRequest** | [**StateProcessingFunctionTest**](StateProcessingFunctionTest.md) | State Processing function test request | 
 
 ### Return type
 
@@ -220,32 +361,57 @@ No authorization required
 
 ## UpdateUsingPUT10
 
-> UpdateUsingPUT10(ctx, stateProcessingRuleId, xAPIKEY, optional)
+> UpdateUsingPUT10(ctx, stateProcessingRuleId).XAPIKEY(xAPIKEY).StateProcessingRule(stateProcessingRule).Execute()
 
 Update a StateProcessingRule
 
-Usage of this API will be reported in your access log under 'alarming' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    stateProcessingRuleId := "stateProcessingRuleId_example" // string | id of the StateProcessingRule to update
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    stateProcessingRule := *openapiclient.NewStateProcessingRule("Name_example") // StateProcessingRule | updated StateProcessingRule (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingStateProcessingApi.UpdateUsingPUT10(context.Background(), stateProcessingRuleId).XAPIKEY(xAPIKEY).StateProcessingRule(stateProcessingRule).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingStateProcessingApi.UpdateUsingPUT10``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**stateProcessingRuleId** | **string**| id of the StateProcessingRule to update | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***UpdateUsingPUT10Opts** | optional parameters | nil if no parameters
+**stateProcessingRuleId** | **string** | id of the StateProcessingRule to update | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a UpdateUsingPUT10Opts struct
+Other parameters are passed through a pointer to a apiUpdateUsingPUT10Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **stateProcessingRule** | [**optional.Interface of StateProcessingRule**](StateProcessingRule.md)| updated StateProcessingRule | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **stateProcessingRule** | [**StateProcessingRule**](StateProcessingRule.md) | updated StateProcessingRule | 
 
 ### Return type
 

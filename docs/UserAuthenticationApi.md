@@ -16,29 +16,53 @@ Method | HTTP request | Description
 
 ## AuthenticateUserUsingPOST
 
-> AuthResWeb AuthenticateUserUsingPOST(ctx, optional)
+> AuthResWeb AuthenticateUserUsingPOST(ctx).Cookie(cookie).AuthenticationRequest(authenticationRequest).Execute()
 
 Authenticate a user
 
-Usage of this API will be reported in your access log under 'authentication' category.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    cookie := true // bool | if true, send the API key value in a secure cookie (optional) (default to false)
+    authenticationRequest := *openapiclient.NewAuthReqWeb("Password_example") // AuthReqWeb | body of authentication request (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UserAuthenticationApi.AuthenticateUserUsingPOST(context.Background()).Cookie(cookie).AuthenticationRequest(authenticationRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UserAuthenticationApi.AuthenticateUserUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AuthenticateUserUsingPOST`: AuthResWeb
+    fmt.Fprintf(os.Stdout, "Response from `UserAuthenticationApi.AuthenticateUserUsingPOST`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAuthenticateUserUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***AuthenticateUserUsingPOSTOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a AuthenticateUserUsingPOSTOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **cookie** | **optional.Bool**| if true, send the API key value in a secure cookie | [default to false]
- **authenticationRequest** | [**optional.Interface of AuthReqWeb**](AuthReqWeb.md)| body of authentication request | 
+ **cookie** | **bool** | if true, send the API key value in a secure cookie | [default to false]
+ **authenticationRequest** | [**AuthReqWeb**](AuthReqWeb.md) | body of authentication request | 
 
 ### Return type
 
@@ -60,17 +84,47 @@ No authorization required
 
 ## CookiesDeleteUsingDELETE
 
-> CookiesDeleteUsingDELETE(ctx, xAPIKEY)
+> CookiesDeleteUsingDELETE(ctx).XAPIKEY(xAPIKEY).Execute()
 
 cookiesDelete
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UserAuthenticationApi.CookiesDeleteUsingDELETE(context.Background()).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UserAuthenticationApi.CookiesDeleteUsingDELETE``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCookiesDeleteUsingDELETERequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -92,17 +146,49 @@ No authorization required
 
 ## GetTenantIdUsingGET
 
-> SimpleStringWeb GetTenantIdUsingGET(ctx, xAPIKEY)
+> SimpleStringWeb GetTenantIdUsingGET(ctx).XAPIKEY(xAPIKEY).Execute()
 
 Get your tenant id
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UserAuthenticationApi.GetTenantIdUsingGET(context.Background()).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UserAuthenticationApi.GetTenantIdUsingGET``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetTenantIdUsingGET`: SimpleStringWeb
+    fmt.Fprintf(os.Stdout, "Response from `UserAuthenticationApi.GetTenantIdUsingGET`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetTenantIdUsingGETRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -124,28 +210,49 @@ No authorization required
 
 ## LogoutUsingPOST
 
-> LogoutUsingPOST(ctx, xAPIKEY, optional)
+> LogoutUsingPOST(ctx).XAPIKEY(xAPIKEY).Cookie(cookie).Execute()
 
 Log out of the current session
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    cookie := true // bool | if true, send the API key value in a secure cookie (optional) (default to false)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UserAuthenticationApi.LogoutUsingPOST(context.Background()).XAPIKEY(xAPIKEY).Cookie(cookie).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UserAuthenticationApi.LogoutUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiLogoutUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***LogoutUsingPOSTOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a LogoutUsingPOSTOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **cookie** | **optional.Bool**| if true, send the API key value in a secure cookie | [default to false]
+ **xAPIKEY** | **string** | a valid API key | 
+ **cookie** | **bool** | if true, send the API key value in a secure cookie | [default to false]
 
 ### Return type
 
@@ -167,28 +274,49 @@ No authorization required
 
 ## ResetUserPasswordUsingPOST
 
-> ResetUserPasswordUsingPOST(ctx, optional)
+> ResetUserPasswordUsingPOST(ctx).UserResetPasswordRequest(userResetPasswordRequest).Execute()
 
 Reset user's password
 
-Usage of this API will be reported in your access log under 'authentication' category.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userResetPasswordRequest := *openapiclient.NewResetPasswordReqWeb("Captcha_example", "CaptchaToken_example", "UserLogin_example") // ResetPasswordReqWeb | body of user reset password  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UserAuthenticationApi.ResetUserPasswordUsingPOST(context.Background()).UserResetPasswordRequest(userResetPasswordRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UserAuthenticationApi.ResetUserPasswordUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiResetUserPasswordUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***ResetUserPasswordUsingPOSTOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a ResetUserPasswordUsingPOSTOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userResetPasswordRequest** | [**optional.Interface of ResetPasswordReqWeb**](ResetPasswordReqWeb.md)| body of user reset password  | 
+ **userResetPasswordRequest** | [**ResetPasswordReqWeb**](ResetPasswordReqWeb.md) | body of user reset password  | 
 
 ### Return type
 
@@ -210,30 +338,51 @@ No authorization required
 
 ## UpdateUserEmailWithTokenUsingPOST
 
-> UpdateUserEmailWithTokenUsingPOST(ctx, xAPIKEY, optional)
+> UpdateUserEmailWithTokenUsingPOST(ctx).XAPIKEY(xAPIKEY).UserUpdateEmailRequest(userUpdateEmailRequest).Execute()
 
 Update user's email
 
-Usage of this API will be reported in your access log under 'authentication' category.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    userUpdateEmailRequest := *openapiclient.NewUpdateEmailReqWeb("Captcha_example", "CaptchaToken_example", "TokenId_example") // UpdateEmailReqWeb | body of update User Email (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UserAuthenticationApi.UpdateUserEmailWithTokenUsingPOST(context.Background()).XAPIKEY(xAPIKEY).UserUpdateEmailRequest(userUpdateEmailRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UserAuthenticationApi.UpdateUserEmailWithTokenUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateUserEmailWithTokenUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***UpdateUserEmailWithTokenUsingPOSTOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a UpdateUserEmailWithTokenUsingPOSTOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **userUpdateEmailRequest** | [**optional.Interface of UpdateEmailReqWeb**](UpdateEmailReqWeb.md)| body of update User Email | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **userUpdateEmailRequest** | [**UpdateEmailReqWeb**](UpdateEmailReqWeb.md) | body of update User Email | 
 
 ### Return type
 
@@ -255,28 +404,49 @@ No authorization required
 
 ## UpdateUserPasswordWithTokenUsingPOST
 
-> UpdateUserPasswordWithTokenUsingPOST(ctx, optional)
+> UpdateUserPasswordWithTokenUsingPOST(ctx).UserUpdatePasswordRequest(userUpdatePasswordRequest).Execute()
 
 Update user's password
 
-Usage of this API will be reported in your access log under 'authentication' category.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userUpdatePasswordRequest := *openapiclient.NewUpdatePasswordWithTokenReqWeb("Captcha_example", "CaptchaToken_example", "Company_example", "FirstName_example", "LastName_example", "Login_example", "Password_example", "TokenId_example") // UpdatePasswordWithTokenReqWeb | body of user update password with token (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UserAuthenticationApi.UpdateUserPasswordWithTokenUsingPOST(context.Background()).UserUpdatePasswordRequest(userUpdatePasswordRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UserAuthenticationApi.UpdateUserPasswordWithTokenUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateUserPasswordWithTokenUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***UpdateUserPasswordWithTokenUsingPOSTOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a UpdateUserPasswordWithTokenUsingPOSTOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userUpdatePasswordRequest** | [**optional.Interface of UpdatePasswordWithTokenReqWeb**](UpdatePasswordWithTokenReqWeb.md)| body of user update password with token | 
+ **userUpdatePasswordRequest** | [**UpdatePasswordWithTokenReqWeb**](UpdatePasswordWithTokenReqWeb.md) | body of user update password with token | 
 
 ### Return type
 

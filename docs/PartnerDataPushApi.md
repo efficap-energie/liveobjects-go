@@ -10,20 +10,53 @@ Method | HTTP request | Description
 
 ## DataPushUsingPOST
 
-> string DataPushUsingPOST(ctx, authorization, data)
+> string DataPushUsingPOST(ctx).Authorization(authorization).Data(data).Execute()
 
 Push data
 
-Restricted to API keys with at least one of the following roles : IS_PARTNER.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    authorization := "authorization_example" // string | Bearer {token}
+    data := *openapiclient.NewPartnerDataItemSwagger(*openapiclient.NewMetadata(), 123) // PartnerDataItemSwagger | data
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PartnerDataPushApi.DataPushUsingPOST(context.Background()).Authorization(authorization).Data(data).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PartnerDataPushApi.DataPushUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DataPushUsingPOST`: string
+    fmt.Fprintf(os.Stdout, "Response from `PartnerDataPushApi.DataPushUsingPOST`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDataPushUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**authorization** | **string**| Bearer {token} | 
-**data** | [**PartnerDataItemSwagger**](PartnerDataItemSwagger.md)| data | 
+ **authorization** | **string** | Bearer {token} | 
+ **data** | [**PartnerDataItemSwagger**](PartnerDataItemSwagger.md) | data | 
 
 ### Return type
 

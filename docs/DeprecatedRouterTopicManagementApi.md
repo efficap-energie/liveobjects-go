@@ -10,32 +10,59 @@ Method | HTTP request | Description
 
 ## PublishUsingPOST
 
-> bool PublishUsingPOST(ctx, routingKey, xAPIKEY, optional)
+> bool PublishUsingPOST(ctx, routingKey).XAPIKEY(xAPIKEY).Payload(payload).Execute()
 
 Publishing a message into a ROUTER topic
 
-Restricted to API keys with at least one of the following roles : BUS_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    routingKey := "routingKey_example" // string | Routing Key
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    payload := 987 // string | payload (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DeprecatedRouterTopicManagementApi.PublishUsingPOST(context.Background(), routingKey).XAPIKEY(xAPIKEY).Payload(payload).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedRouterTopicManagementApi.PublishUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PublishUsingPOST`: bool
+    fmt.Fprintf(os.Stdout, "Response from `DeprecatedRouterTopicManagementApi.PublishUsingPOST`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**routingKey** | **string**| Routing Key | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***PublishUsingPOSTOpts** | optional parameters | nil if no parameters
+**routingKey** | **string** | Routing Key | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a PublishUsingPOSTOpts struct
+Other parameters are passed through a pointer to a apiPublishUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **payload** | **optional.String**| payload | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **payload** | **string** | payload | 
 
 ### Return type
 

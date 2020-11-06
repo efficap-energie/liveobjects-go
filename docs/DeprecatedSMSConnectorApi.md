@@ -10,30 +10,53 @@ Method | HTTP request | Description
 
 ## SendSMSUsingPOST
 
-> ConnectorStatusResponse SendSMSUsingPOST(ctx, xAPIKEY, optional)
+> ConnectorStatusResponse SendSMSUsingPOST(ctx).XAPIKEY(xAPIKEY).Request(request).Execute()
 
 send SMS by SMS Connector for a list of MSISDN
 
-Restricted to API keys with at least one of the following roles : DEVICE_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    request := *openapiclient.NewSMSConnectorSendSMSReqWeb([]string{"Msisdns_example"), "ServerPhoneNumber_example") // SMSConnectorSendSMSReqWeb | body to send SMS via SMS Connector (only one Payload field must be set) (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DeprecatedSMSConnectorApi.SendSMSUsingPOST(context.Background()).XAPIKEY(xAPIKEY).Request(request).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedSMSConnectorApi.SendSMSUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SendSMSUsingPOST`: ConnectorStatusResponse
+    fmt.Fprintf(os.Stdout, "Response from `DeprecatedSMSConnectorApi.SendSMSUsingPOST`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSendSMSUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***SendSMSUsingPOSTOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a SendSMSUsingPOSTOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **request** | [**optional.Interface of SmsConnectorSendSmsReqWeb**](SmsConnectorSendSmsReqWeb.md)| body to send SMS via SMS Connector (only one Payload field must be set) | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **request** | [**SMSConnectorSendSMSReqWeb**](SMSConnectorSendSMSReqWeb.md) | body to send SMS via SMS Connector (only one Payload field must be set) | 
 
 ### Return type
 

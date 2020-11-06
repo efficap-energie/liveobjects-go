@@ -16,30 +16,53 @@ Method | HTTP request | Description
 
 ## CreateBusinessSettingsUsingPOST
 
-> ConnectorStatusResponse CreateBusinessSettingsUsingPOST(ctx, xAPIKEY, optional)
+> ConnectorStatusResponse CreateBusinessSettingsUsingPOST(ctx).XAPIKEY(xAPIKEY).Request(request).Execute()
 
 Create a new business settings of SMS Connector (use Device management - Interfaces - V1 instead)
 
-Usage of this API will be reported in your access log under 'device_inventory' category.<br><br>Restricted to API keys with at least one of the following roles : DEVICE_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    request := *openapiclient.NewSMSConnectorBusinessSettingsCreationReqWeb([]Msisdns{*openapiclient.NewMsisdns("Msisdn_example")), "ServerPhoneNumber_example") // SMSConnectorBusinessSettingsCreationReqWeb | body to create business settings for SMS Connector (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DeprecatedSMSConnectorBusinessSettingsUseDeviceManagementConnectorNodesV1InsteadApi.CreateBusinessSettingsUsingPOST(context.Background()).XAPIKEY(xAPIKEY).Request(request).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedSMSConnectorBusinessSettingsUseDeviceManagementConnectorNodesV1InsteadApi.CreateBusinessSettingsUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateBusinessSettingsUsingPOST`: ConnectorStatusResponse
+    fmt.Fprintf(os.Stdout, "Response from `DeprecatedSMSConnectorBusinessSettingsUseDeviceManagementConnectorNodesV1InsteadApi.CreateBusinessSettingsUsingPOST`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBusinessSettingsUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***CreateBusinessSettingsUsingPOSTOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a CreateBusinessSettingsUsingPOSTOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **request** | [**optional.Interface of SmsConnectorBusinessSettingsCreationReqWeb**](SmsConnectorBusinessSettingsCreationReqWeb.md)| body to create business settings for SMS Connector | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **request** | [**SMSConnectorBusinessSettingsCreationReqWeb**](SMSConnectorBusinessSettingsCreationReqWeb.md) | body to create business settings for SMS Connector | 
 
 ### Return type
 
@@ -61,30 +84,53 @@ No authorization required
 
 ## DeleteBusinessSettingsByMsiSDNUsingDELETE
 
-> ConnectorStatusResponse DeleteBusinessSettingsByMsiSDNUsingDELETE(ctx, xAPIKEY, optional)
+> ConnectorStatusResponse DeleteBusinessSettingsByMsiSDNUsingDELETE(ctx).XAPIKEY(xAPIKEY).Request(request).Execute()
 
 Delete msisdn in business settings of SMS Connector
 
-Usage of this API will be reported in your access log under 'device_inventory' category.<br><br>Restricted to API keys with at least one of the following roles : DEVICE_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    request := *openapiclient.NewSMSConnectorBusinessSettingsDeleteMsisdnReqWeb([]string{"Msisdns_example"), "ServerPhoneNumber_example") // SMSConnectorBusinessSettingsDeleteMsisdnReqWeb | body to delete business settings per msisdn for SMS Connector (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DeprecatedSMSConnectorBusinessSettingsUseDeviceManagementConnectorNodesV1InsteadApi.DeleteBusinessSettingsByMsiSDNUsingDELETE(context.Background()).XAPIKEY(xAPIKEY).Request(request).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedSMSConnectorBusinessSettingsUseDeviceManagementConnectorNodesV1InsteadApi.DeleteBusinessSettingsByMsiSDNUsingDELETE``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteBusinessSettingsByMsiSDNUsingDELETE`: ConnectorStatusResponse
+    fmt.Fprintf(os.Stdout, "Response from `DeprecatedSMSConnectorBusinessSettingsUseDeviceManagementConnectorNodesV1InsteadApi.DeleteBusinessSettingsByMsiSDNUsingDELETE`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteBusinessSettingsByMsiSDNUsingDELETERequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***DeleteBusinessSettingsByMsiSDNUsingDELETEOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a DeleteBusinessSettingsByMsiSDNUsingDELETEOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **request** | [**optional.Interface of SmsConnectorBusinessSettingsDeleteMsisdnReqWeb**](SmsConnectorBusinessSettingsDeleteMsisdnReqWeb.md)| body to delete business settings per msisdn for SMS Connector | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **request** | [**SMSConnectorBusinessSettingsDeleteMsisdnReqWeb**](SMSConnectorBusinessSettingsDeleteMsisdnReqWeb.md) | body to delete business settings per msisdn for SMS Connector | 
 
 ### Return type
 
@@ -106,21 +152,58 @@ No authorization required
 
 ## DeleteBusinessSettingsForOneMsiSDNUsingDELETE
 
-> DeleteBusinessSettingsForOneMsiSDNUsingDELETE(ctx, serverPhoneNumber, msisdnNumber, xAPIKEY)
+> DeleteBusinessSettingsForOneMsiSDNUsingDELETE(ctx, serverPhoneNumber, msisdnNumber).XAPIKEY(xAPIKEY).Execute()
 
 Delete one msisdn in business settings of SMS Connector
 
-Usage of this API will be reported in your access log under 'device_inventory' category.<br><br>Restricted to API keys with at least one of the following roles : DEVICE_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    serverPhoneNumber := "serverPhoneNumber_example" // string | server phone number ex: \"20259\", // Must be defined in OfferSettings
+    msisdnNumber := "msisdnNumber_example" // string | msisdn number ex: \"0606060606\"
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DeprecatedSMSConnectorBusinessSettingsUseDeviceManagementConnectorNodesV1InsteadApi.DeleteBusinessSettingsForOneMsiSDNUsingDELETE(context.Background(), serverPhoneNumber, msisdnNumber).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedSMSConnectorBusinessSettingsUseDeviceManagementConnectorNodesV1InsteadApi.DeleteBusinessSettingsForOneMsiSDNUsingDELETE``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverPhoneNumber** | **string**| server phone number ex: \&quot;20259\&quot;, // Must be defined in OfferSettings | 
-**msisdnNumber** | **string**| msisdn number ex: \&quot;0606060606\&quot; | 
-**xAPIKEY** | **string**| a valid API key | 
+**serverPhoneNumber** | **string** | server phone number ex: \&quot;20259\&quot;, // Must be defined in OfferSettings | 
+**msisdnNumber** | **string** | msisdn number ex: \&quot;0606060606\&quot; | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteBusinessSettingsForOneMsiSDNUsingDELETERequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -142,32 +225,55 @@ No authorization required
 
 ## GetBusinessSettingsUsingGET
 
-> BusinessSettings GetBusinessSettingsUsingGET(ctx, serverPhoneNumber, xAPIKEY, optional)
+> BusinessSettings GetBusinessSettingsUsingGET(ctx).ServerPhoneNumber(serverPhoneNumber).XAPIKEY(xAPIKEY).DecoderName(decoderName).Execute()
 
 Get a business settings of SMS Connector
 
-Restricted to API keys with at least one of the following roles : DEVICE_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    serverPhoneNumber := "serverPhoneNumber_example" // string | the server phone number ex: \"20259\", // Must be defined in OfferSettings
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    decoderName := "decoderName_example" // string | the decoder Name ex: \"decoderName\" (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DeprecatedSMSConnectorBusinessSettingsUseDeviceManagementConnectorNodesV1InsteadApi.GetBusinessSettingsUsingGET(context.Background()).ServerPhoneNumber(serverPhoneNumber).XAPIKEY(xAPIKEY).DecoderName(decoderName).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedSMSConnectorBusinessSettingsUseDeviceManagementConnectorNodesV1InsteadApi.GetBusinessSettingsUsingGET``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBusinessSettingsUsingGET`: BusinessSettings
+    fmt.Fprintf(os.Stdout, "Response from `DeprecatedSMSConnectorBusinessSettingsUseDeviceManagementConnectorNodesV1InsteadApi.GetBusinessSettingsUsingGET`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBusinessSettingsUsingGETRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverPhoneNumber** | **string**| the server phone number ex: \&quot;20259\&quot;, // Must be defined in OfferSettings | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***GetBusinessSettingsUsingGETOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a GetBusinessSettingsUsingGETOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **decoderName** | **optional.String**| the decoder Name ex: \&quot;decoderName\&quot; | 
+ **serverPhoneNumber** | **string** | the server phone number ex: \&quot;20259\&quot;, // Must be defined in OfferSettings | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **decoderName** | **string** | the decoder Name ex: \&quot;decoderName\&quot; | 
 
 ### Return type
 
@@ -189,38 +295,63 @@ No authorization required
 
 ## ListMsisdnUsingGET
 
-> SmsConnectorMsisdnPageWeb ListMsisdnUsingGET(ctx, serverPhoneNumber, xAPIKEY, optional)
+> SMSConnectorMsisdnPageWeb ListMsisdnUsingGET(ctx).ServerPhoneNumber(serverPhoneNumber).XAPIKEY(xAPIKEY).DecoderName(decoderName).Size(size).Page(page).Execute()
 
 List msisdn of business settings of SMS Connector
 
-Restricted to API keys with at least one of the following roles : DEVICE_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    serverPhoneNumber := "serverPhoneNumber_example" // string | the server phone number ex: \"20259\", // Must be defined in OfferSettings
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    decoderName := "decoderName_example" // string | the decoder Name ex: \"decoderName\" (optional)
+    size := 987 // int32 | the maximum number of items per page (optional, highest value is 1000) (optional) (default to 20)
+    page := 987 // int32 | the requested page number (optional) (optional) (default to 0)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DeprecatedSMSConnectorBusinessSettingsUseDeviceManagementConnectorNodesV1InsteadApi.ListMsisdnUsingGET(context.Background()).ServerPhoneNumber(serverPhoneNumber).XAPIKEY(xAPIKEY).DecoderName(decoderName).Size(size).Page(page).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedSMSConnectorBusinessSettingsUseDeviceManagementConnectorNodesV1InsteadApi.ListMsisdnUsingGET``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListMsisdnUsingGET`: SMSConnectorMsisdnPageWeb
+    fmt.Fprintf(os.Stdout, "Response from `DeprecatedSMSConnectorBusinessSettingsUseDeviceManagementConnectorNodesV1InsteadApi.ListMsisdnUsingGET`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListMsisdnUsingGETRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverPhoneNumber** | **string**| the server phone number ex: \&quot;20259\&quot;, // Must be defined in OfferSettings | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***ListMsisdnUsingGETOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a ListMsisdnUsingGETOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **decoderName** | **optional.String**| the decoder Name ex: \&quot;decoderName\&quot; | 
- **size** | **optional.Int32**| the maximum number of items per page (optional, highest value is 1000) | [default to 20]
- **page** | **optional.Int32**| the requested page number (optional) | [default to 0]
+ **serverPhoneNumber** | **string** | the server phone number ex: \&quot;20259\&quot;, // Must be defined in OfferSettings | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **decoderName** | **string** | the decoder Name ex: \&quot;decoderName\&quot; | 
+ **size** | **int32** | the maximum number of items per page (optional, highest value is 1000) | [default to 20]
+ **page** | **int32** | the requested page number (optional) | [default to 0]
 
 ### Return type
 
-[**SmsConnectorMsisdnPageWeb**](SMSConnectorMsisdnPageWeb.md)
+[**SMSConnectorMsisdnPageWeb**](SMSConnectorMsisdnPageWeb.md)
 
 ### Authorization
 
@@ -238,35 +369,59 @@ No authorization required
 
 ## ListSettingsUsingGET
 
-> SmsConnectorBusinessSettingsPageWeb ListSettingsUsingGET(ctx, xAPIKEY, optional)
+> SMSConnectorBusinessSettingsPageWeb ListSettingsUsingGET(ctx).XAPIKEY(xAPIKEY).Size(size).Page(page).Execute()
 
 List all the business settings of the SMSConnector for a tenant
 
-Restricted to API keys with at least one of the following roles : DEVICE_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    size := 987 // int32 | the maximum number of items per page (optional, highest value is 1000) (optional) (default to 20)
+    page := 987 // int32 | the requested page number (optional) (optional) (default to 0)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DeprecatedSMSConnectorBusinessSettingsUseDeviceManagementConnectorNodesV1InsteadApi.ListSettingsUsingGET(context.Background()).XAPIKEY(xAPIKEY).Size(size).Page(page).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedSMSConnectorBusinessSettingsUseDeviceManagementConnectorNodesV1InsteadApi.ListSettingsUsingGET``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListSettingsUsingGET`: SMSConnectorBusinessSettingsPageWeb
+    fmt.Fprintf(os.Stdout, "Response from `DeprecatedSMSConnectorBusinessSettingsUseDeviceManagementConnectorNodesV1InsteadApi.ListSettingsUsingGET`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListSettingsUsingGETRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***ListSettingsUsingGETOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a ListSettingsUsingGETOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **size** | **optional.Int32**| the maximum number of items per page (optional, highest value is 1000) | [default to 20]
- **page** | **optional.Int32**| the requested page number (optional) | [default to 0]
+ **xAPIKEY** | **string** | a valid API key | 
+ **size** | **int32** | the maximum number of items per page (optional, highest value is 1000) | [default to 20]
+ **page** | **int32** | the requested page number (optional) | [default to 0]
 
 ### Return type
 
-[**SmsConnectorBusinessSettingsPageWeb**](SMSConnectorBusinessSettingsPageWeb.md)
+[**SMSConnectorBusinessSettingsPageWeb**](SMSConnectorBusinessSettingsPageWeb.md)
 
 ### Authorization
 
@@ -284,32 +439,59 @@ No authorization required
 
 ## UpdateBusinessSettingsUsingPOST
 
-> ConnectorStatusResponse UpdateBusinessSettingsUsingPOST(ctx, serverPhoneNumber, xAPIKEY, optional)
+> ConnectorStatusResponse UpdateBusinessSettingsUsingPOST(ctx, serverPhoneNumber).XAPIKEY(xAPIKEY).Request(request).Execute()
 
 Update business settings of the SMSConnector
 
-Usage of this API will be reported in your access log under 'device_inventory' category.<br><br>Restricted to API keys with at least one of the following roles : DEVICE_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    serverPhoneNumber := "serverPhoneNumber_example" // string | server phone number ex: \"20259\", // Must be defined in OfferSettings
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    request := *openapiclient.NewSMSConnectorBusinessSettingsUpdateReqWeb() // SMSConnectorBusinessSettingsUpdateReqWeb | body to update business settings for SMS Connector (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DeprecatedSMSConnectorBusinessSettingsUseDeviceManagementConnectorNodesV1InsteadApi.UpdateBusinessSettingsUsingPOST(context.Background(), serverPhoneNumber).XAPIKEY(xAPIKEY).Request(request).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedSMSConnectorBusinessSettingsUseDeviceManagementConnectorNodesV1InsteadApi.UpdateBusinessSettingsUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateBusinessSettingsUsingPOST`: ConnectorStatusResponse
+    fmt.Fprintf(os.Stdout, "Response from `DeprecatedSMSConnectorBusinessSettingsUseDeviceManagementConnectorNodesV1InsteadApi.UpdateBusinessSettingsUsingPOST`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**serverPhoneNumber** | **string**| server phone number ex: \&quot;20259\&quot;, // Must be defined in OfferSettings | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***UpdateBusinessSettingsUsingPOSTOpts** | optional parameters | nil if no parameters
+**serverPhoneNumber** | **string** | server phone number ex: \&quot;20259\&quot;, // Must be defined in OfferSettings | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a UpdateBusinessSettingsUsingPOSTOpts struct
+Other parameters are passed through a pointer to a apiUpdateBusinessSettingsUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **request** | [**optional.Interface of SmsConnectorBusinessSettingsUpdateReqWeb**](SmsConnectorBusinessSettingsUpdateReqWeb.md)| body to update business settings for SMS Connector | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **request** | [**SMSConnectorBusinessSettingsUpdateReqWeb**](SMSConnectorBusinessSettingsUpdateReqWeb.md) | body to update business settings for SMS Connector | 
 
 ### Return type
 

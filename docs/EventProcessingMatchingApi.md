@@ -15,20 +15,55 @@ Method | HTTP request | Description
 
 ## DeleteUsingDELETE18
 
-> DeleteUsingDELETE18(ctx, matchingRuleId, xAPIKEY)
+> DeleteUsingDELETE18(ctx, matchingRuleId).XAPIKEY(xAPIKEY).Execute()
 
 Delete a MatchingRule
 
-Usage of this API will be reported in your access log under 'alarming' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    matchingRuleId := "matchingRuleId_example" // string | id of the MatchingRule to delete
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingMatchingApi.DeleteUsingDELETE18(context.Background(), matchingRuleId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingMatchingApi.DeleteUsingDELETE18``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**matchingRuleId** | **string**| id of the MatchingRule to delete | 
-**xAPIKEY** | **string**| a valid API key | 
+**matchingRuleId** | **string** | id of the MatchingRule to delete | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteUsingDELETE18Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -50,20 +85,57 @@ No authorization required
 
 ## GetUsingGET17
 
-> MatchingRule GetUsingGET17(ctx, matchingRuleId, xAPIKEY)
+> MatchingRule GetUsingGET17(ctx, matchingRuleId).XAPIKEY(xAPIKEY).Execute()
 
 Retrieve a MatchingRule
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    matchingRuleId := "matchingRuleId_example" // string | id of the MatchingRule to retrieve
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingMatchingApi.GetUsingGET17(context.Background(), matchingRuleId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingMatchingApi.GetUsingGET17``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsingGET17`: MatchingRule
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingMatchingApi.GetUsingGET17`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**matchingRuleId** | **string**| id of the MatchingRule to retrieve | 
-**xAPIKEY** | **string**| a valid API key | 
+**matchingRuleId** | **string** | id of the MatchingRule to retrieve | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetUsingGET17Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -85,30 +157,53 @@ No authorization required
 
 ## ListUsingGET20
 
-> []MatchingRule ListUsingGET20(ctx, xAPIKEY, optional)
+> []MatchingRule ListUsingGET20(ctx).XAPIKEY(xAPIKEY).Name(name).Execute()
 
 Retrieve the list of all the MatchingRules or get a MatchingRule by its name
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    name := "name_example" // string | name of the MatchingRule to retrieve (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingMatchingApi.ListUsingGET20(context.Background()).XAPIKEY(xAPIKEY).Name(name).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingMatchingApi.ListUsingGET20``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListUsingGET20`: []MatchingRule
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingMatchingApi.ListUsingGET20`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListUsingGET20Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***ListUsingGET20Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a ListUsingGET20Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **name** | **optional.String**| name of the MatchingRule to retrieve | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **name** | **string** | name of the MatchingRule to retrieve | 
 
 ### Return type
 
@@ -130,30 +225,53 @@ No authorization required
 
 ## PostUsingPOST15
 
-> MatchingRule PostUsingPOST15(ctx, xAPIKEY, optional)
+> MatchingRule PostUsingPOST15(ctx).XAPIKEY(xAPIKEY).MatchRule(matchRule).Execute()
 
 Create a MatchingRule
 
-Total number of MatchingRules is limited. Contact the commercial team or see developer guide to get more information.<br><br>Usage of this API will be reported in your access log under 'alarming' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    matchRule := *openapiclient.NewMatchingRule("Name_example") // MatchingRule | MatchingRule to add (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingMatchingApi.PostUsingPOST15(context.Background()).XAPIKEY(xAPIKEY).MatchRule(matchRule).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingMatchingApi.PostUsingPOST15``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PostUsingPOST15`: MatchingRule
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingMatchingApi.PostUsingPOST15`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostUsingPOST15Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***PostUsingPOST15Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a PostUsingPOST15Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **matchRule** | [**optional.Interface of MatchingRule**](MatchingRule.md)| MatchingRule to add | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **matchRule** | [**MatchingRule**](MatchingRule.md) | MatchingRule to add | 
 
 ### Return type
 
@@ -175,30 +293,53 @@ No authorization required
 
 ## TestUsingPOST4
 
-> DataMatchResult TestUsingPOST4(ctx, xAPIKEY, optional)
+> DataMatchResult TestUsingPOST4(ctx).XAPIKEY(xAPIKEY).DataMatchTest(dataMatchTest).Execute()
 
 Test a JsonLogic predicate with some data sample
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    dataMatchTest := *openapiclient.NewDataMatchTest(123, 123) // DataMatchTest | jsonLogic predicate and json data of the evaluation test you want to perform (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingMatchingApi.TestUsingPOST4(context.Background()).XAPIKEY(xAPIKEY).DataMatchTest(dataMatchTest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingMatchingApi.TestUsingPOST4``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `TestUsingPOST4`: DataMatchResult
+    fmt.Fprintf(os.Stdout, "Response from `EventProcessingMatchingApi.TestUsingPOST4`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTestUsingPOST4Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***TestUsingPOST4Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a TestUsingPOST4Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **dataMatchTest** | [**optional.Interface of DataMatchTest**](DataMatchTest.md)| jsonLogic predicate and json data of the evaluation test you want to perform | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **dataMatchTest** | [**DataMatchTest**](DataMatchTest.md) | jsonLogic predicate and json data of the evaluation test you want to perform | 
 
 ### Return type
 
@@ -220,32 +361,57 @@ No authorization required
 
 ## UpdateUsingPUT9
 
-> UpdateUsingPUT9(ctx, matchingRuleId, xAPIKEY, optional)
+> UpdateUsingPUT9(ctx, matchingRuleId).XAPIKEY(xAPIKEY).MatchingRule(matchingRule).Execute()
 
 Update a MatchingRule
 
-Usage of this API will be reported in your access log under 'alarming' category.<br><br>Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    matchingRuleId := "matchingRuleId_example" // string | id of the MatchingRule to update
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    matchingRule := *openapiclient.NewMatchingRule("Name_example") // MatchingRule | updated MatchingRule (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.EventProcessingMatchingApi.UpdateUsingPUT9(context.Background(), matchingRuleId).XAPIKEY(xAPIKEY).MatchingRule(matchingRule).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EventProcessingMatchingApi.UpdateUsingPUT9``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**matchingRuleId** | **string**| id of the MatchingRule to update | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***UpdateUsingPUT9Opts** | optional parameters | nil if no parameters
+**matchingRuleId** | **string** | id of the MatchingRule to update | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a UpdateUsingPUT9Opts struct
+Other parameters are passed through a pointer to a apiUpdateUsingPUT9Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **matchingRule** | [**optional.Interface of MatchingRule**](MatchingRule.md)| updated MatchingRule | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **matchingRule** | [**MatchingRule**](MatchingRule.md) | updated MatchingRule | 
 
 ### Return type
 

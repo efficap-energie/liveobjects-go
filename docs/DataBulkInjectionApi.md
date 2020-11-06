@@ -10,30 +10,53 @@ Method | HTTP request | Description
 
 ## AddDataBulkUsingPOST
 
-> string AddDataBulkUsingPOST(ctx, xAPIKEY, optional)
+> string AddDataBulkUsingPOST(ctx).XAPIKEY(xAPIKEY).DataBulk(dataBulk).Execute()
 
 Insert a bulk of new Data
 
-Restricted to API keys with at least one of the following roles : DATA_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    dataBulk := []DataBulkItemWeb{*openapiclient.NewDataBulkItemWeb(123)} // []DataBulkItemWeb | Bulk of Data to add (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DataBulkInjectionApi.AddDataBulkUsingPOST(context.Background()).XAPIKEY(xAPIKEY).DataBulk(dataBulk).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DataBulkInjectionApi.AddDataBulkUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AddDataBulkUsingPOST`: string
+    fmt.Fprintf(os.Stdout, "Response from `DataBulkInjectionApi.AddDataBulkUsingPOST`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAddDataBulkUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***AddDataBulkUsingPOSTOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a AddDataBulkUsingPOSTOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **dataBulk** | [**optional.Interface of []DataBulkItemWeb**](DataBulkItemWeb.md)| Bulk of Data to add | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **dataBulk** | [**[]DataBulkItemWeb**](DataBulkItemWeb.md) | Bulk of Data to add | 
 
 ### Return type
 

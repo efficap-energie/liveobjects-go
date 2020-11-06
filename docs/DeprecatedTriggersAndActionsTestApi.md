@@ -4,36 +4,59 @@ All URIs are relative to *https://liveobjects.orange-business.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**TestHttpPushUsingPOST**](DeprecatedTriggersAndActionsTestApi.md#TestHttpPushUsingPOST) | **Post** /api/v0/event2action/test/http-push | Post an http request for testing a webhook
+[**TestHttpPushUsingPOST1**](DeprecatedTriggersAndActionsTestApi.md#TestHttpPushUsingPOST1) | **Post** /api/v0/event2action/test/http-push | Post an http request for testing a webhook
 
 
 
-## TestHttpPushUsingPOST
+## TestHttpPushUsingPOST1
 
-> HttpPushTestResult TestHttpPushUsingPOST(ctx, xAPIKEY, optional)
+> HttpPushTestResult TestHttpPushUsingPOST1(ctx).XAPIKEY(xAPIKEY).Req(req).Execute()
 
 Post an http request for testing a webhook
 
-Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    req := *openapiclient.NewHttpPushWebhookTest() // HttpPushWebhookTest | Http push request to be tested (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DeprecatedTriggersAndActionsTestApi.TestHttpPushUsingPOST1(context.Background()).XAPIKEY(xAPIKEY).Req(req).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedTriggersAndActionsTestApi.TestHttpPushUsingPOST1``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `TestHttpPushUsingPOST1`: HttpPushTestResult
+    fmt.Fprintf(os.Stdout, "Response from `DeprecatedTriggersAndActionsTestApi.TestHttpPushUsingPOST1`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTestHttpPushUsingPOST1Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***TestHttpPushUsingPOSTOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a TestHttpPushUsingPOSTOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **req** | [**optional.Interface of HttpPushWebhookTest**](HttpPushWebhookTest.md)| Http push request to be tested | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **req** | [**HttpPushWebhookTest**](HttpPushWebhookTest.md) | Http push request to be tested | 
 
 ### Return type
 

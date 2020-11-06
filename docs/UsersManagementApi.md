@@ -20,30 +20,51 @@ Method | HTTP request | Description
 
 ## ActivateUserUsingPOST3
 
-> ActivateUserUsingPOST3(ctx, xAPIKEY, optional)
+> ActivateUserUsingPOST3(ctx).XAPIKEY(xAPIKEY).UserActivationRequest(userActivationRequest).Execute()
 
 Activate a user in a tenant account
 
-Usage of this API will be reported in your access log under 'user' category.<br><br>Restricted to API keys with at least one of the following roles : USER_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    userActivationRequest := *openapiclient.NewUserActivationReqWeb("TenantId_example", "UserId_example") // UserActivationReqWeb | body of user activation (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersManagementApi.ActivateUserUsingPOST3(context.Background()).XAPIKEY(xAPIKEY).UserActivationRequest(userActivationRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersManagementApi.ActivateUserUsingPOST3``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiActivateUserUsingPOST3Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***ActivateUserUsingPOST3Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a ActivateUserUsingPOST3Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **userActivationRequest** | [**optional.Interface of UserActivationReqWeb**](UserActivationReqWeb.md)| body of user activation | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **userActivationRequest** | [**UserActivationReqWeb**](UserActivationReqWeb.md) | body of user activation | 
 
 ### Return type
 
@@ -65,30 +86,53 @@ No authorization required
 
 ## CreateUserAccountUsingPOST3
 
-> User CreateUserAccountUsingPOST3(ctx, xAPIKEY, optional)
+> User CreateUserAccountUsingPOST3(ctx).XAPIKEY(xAPIKEY).UserCreationRequest(userCreationRequest).Execute()
 
 Create a user
 
-Usage of this API will be reported in your access log under 'user' category.<br><br>Restricted to API keys with at least one of the following roles : USER_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    userCreationRequest := *openapiclient.NewUserCreationReqWeb("Email_example", "Login_example", []string{"Roles_example"), "TenantId_example") // UserCreationReqWeb | body of user creation (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersManagementApi.CreateUserAccountUsingPOST3(context.Background()).XAPIKEY(xAPIKEY).UserCreationRequest(userCreationRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersManagementApi.CreateUserAccountUsingPOST3``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateUserAccountUsingPOST3`: User
+    fmt.Fprintf(os.Stdout, "Response from `UsersManagementApi.CreateUserAccountUsingPOST3`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateUserAccountUsingPOST3Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***CreateUserAccountUsingPOST3Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a CreateUserAccountUsingPOST3Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **userCreationRequest** | [**optional.Interface of UserCreationReqWeb**](UserCreationReqWeb.md)| body of user creation | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **userCreationRequest** | [**UserCreationReqWeb**](UserCreationReqWeb.md) | body of user creation | 
 
 ### Return type
 
@@ -110,32 +154,57 @@ No authorization required
 
 ## DeleteUserUsingDELETE3
 
-> DeleteUserUsingDELETE3(ctx, userId, xAPIKEY, optional)
+> DeleteUserUsingDELETE3(ctx, userId).XAPIKEY(xAPIKEY).TenantId(tenantId).Execute()
 
 Delete a user in a tenant account
 
-Usage of this API will be reported in your access log under 'user' category.<br><br>Restricted to API keys with at least one of the following roles : USER_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userId := "userId_example" // string | the User Identifier. Expected identifier (max 24 characters)
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    tenantId := "tenantId_example" // string | identifier of tenant account ex: \"57xxxxxxxxxxxxxxxxxxxxxx\". Expected identifier (max 24 characters) (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersManagementApi.DeleteUserUsingDELETE3(context.Background(), userId).XAPIKEY(xAPIKEY).TenantId(tenantId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersManagementApi.DeleteUserUsingDELETE3``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string**| the User Identifier. Expected identifier (max 24 characters) | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***DeleteUserUsingDELETE3Opts** | optional parameters | nil if no parameters
+**userId** | **string** | the User Identifier. Expected identifier (max 24 characters) | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a DeleteUserUsingDELETE3Opts struct
+Other parameters are passed through a pointer to a apiDeleteUserUsingDELETE3Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **tenantId** | **optional.String**| identifier of tenant account ex: \&quot;57xxxxxxxxxxxxxxxxxxxxxx\&quot;. Expected identifier (max 24 characters) | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **tenantId** | **string** | identifier of tenant account ex: \&quot;57xxxxxxxxxxxxxxxxxxxxxx\&quot;. Expected identifier (max 24 characters) | 
 
 ### Return type
 
@@ -157,17 +226,49 @@ No authorization required
 
 ## GetCurrentUserUsingGET
 
-> User GetCurrentUserUsingGET(ctx, xAPIKEY)
+> User GetCurrentUserUsingGET(ctx).XAPIKEY(xAPIKEY).Execute()
 
 Get a \"myself\" user data of Tenant
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersManagementApi.GetCurrentUserUsingGET(context.Background()).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersManagementApi.GetCurrentUserUsingGET``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetCurrentUserUsingGET`: User
+    fmt.Fprintf(os.Stdout, "Response from `UsersManagementApi.GetCurrentUserUsingGET`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetCurrentUserUsingGETRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -189,17 +290,49 @@ No authorization required
 
 ## GetUserPortalDataUsingGET
 
-> map[string]interface{} GetUserPortalDataUsingGET(ctx, xAPIKEY)
+> map[string]interface{} GetUserPortalDataUsingGET(ctx).XAPIKEY(xAPIKEY).Execute()
 
 Get the portal data of me
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersManagementApi.GetUserPortalDataUsingGET(context.Background()).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersManagementApi.GetUserPortalDataUsingGET``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUserPortalDataUsingGET`: map[string]interface{}
+    fmt.Fprintf(os.Stdout, "Response from `UsersManagementApi.GetUserPortalDataUsingGET`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetUserPortalDataUsingGETRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -221,32 +354,59 @@ No authorization required
 
 ## GetUserUsingGET3
 
-> User GetUserUsingGET3(ctx, userId, xAPIKEY, optional)
+> User GetUserUsingGET3(ctx, userId).XAPIKEY(xAPIKEY).TenantId(tenantId).Execute()
 
 Get details of a user in a tenant account
 
-Restricted to API keys with at least one of the following roles : USER_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userId := "userId_example" // string | the User Identifier
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    tenantId := "tenantId_example" // string | identifier of tenant account ex: \"57xxxxxxxxxxxxxxxxxxxxxx\". Expected identifier (max 24 characters) (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersManagementApi.GetUserUsingGET3(context.Background(), userId).XAPIKEY(xAPIKEY).TenantId(tenantId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersManagementApi.GetUserUsingGET3``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUserUsingGET3`: User
+    fmt.Fprintf(os.Stdout, "Response from `UsersManagementApi.GetUserUsingGET3`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string**| the User Identifier | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***GetUserUsingGET3Opts** | optional parameters | nil if no parameters
+**userId** | **string** | the User Identifier | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a GetUserUsingGET3Opts struct
+Other parameters are passed through a pointer to a apiGetUserUsingGET3Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **tenantId** | **optional.String**| identifier of tenant account ex: \&quot;57xxxxxxxxxxxxxxxxxxxxxx\&quot;. Expected identifier (max 24 characters) | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **tenantId** | **string** | identifier of tenant account ex: \&quot;57xxxxxxxxxxxxxxxxxxxxxx\&quot;. Expected identifier (max 24 characters) | 
 
 ### Return type
 
@@ -268,40 +428,73 @@ No authorization required
 
 ## ListUsersUsingGET1
 
-> PageableUser ListUsersUsingGET1(ctx, xAPIKEY, optional)
+> PageableUser ListUsersUsingGET1(ctx).XAPIKEY(xAPIKEY).Size(size).Page(page).TenantId(tenantId).Login(login).Email(email).ExternalProvider(externalProvider).ExternalId(externalId).ExternalLogin(externalLogin).Roles(roles).RolesNotIn(rolesNotIn).UserState(userState).Execute()
 
 List all users in a tenant account
 
-Restricted to API keys with at least one of the following roles : USER_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    size := 987 // int32 | the maximum number of items per page (optional, highest value is 1000) (optional) (default to 20)
+    page := 987 // int32 | the requested page number (optional) (optional) (default to 0)
+    tenantId := "tenantId_example" // string | identifier of tenant account (optional) ex: \"57xxxxxxxxxxxxxxxxxxxxxx\" (optional)
+    login := "login_example" // string | login of tenant account (optional) ex: \"login_name\" (optional)
+    email := "email_example" // string | email of tenant account (optional) ex: \"myAccount@mail.com\" (optional)
+    externalProvider := "externalProvider_example" // string | external (IDP) provider of tenant account (optional) ex: \"SIU\" (optional)
+    externalId := "externalId_example" // string | external (IDP) identifier of tenant account (optional) ex: \"57xxxxxxxxxxxxxxxxxxxxxx\" (optional)
+    externalLogin := "externalLogin_example" // string | external (IDP) login of tenant account (optional) ex: \"login_name\" (optional)
+    roles := []string{"Inner_example"} // []string | roles of tenant account (optional) ex: \"[TENANT_ADMIN, USER_KEY]\" (optional)
+    rolesNotIn := []string{"Inner_example"} // []string | roles not in tenant account (optional) ex: \"[LPWA_ORANGE_ADMIN]\" (optional)
+    userState := []string{"Inner_example"} // []string | userState of tenant account (optional) ex: \"[enabled]\" (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersManagementApi.ListUsersUsingGET1(context.Background()).XAPIKEY(xAPIKEY).Size(size).Page(page).TenantId(tenantId).Login(login).Email(email).ExternalProvider(externalProvider).ExternalId(externalId).ExternalLogin(externalLogin).Roles(roles).RolesNotIn(rolesNotIn).UserState(userState).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersManagementApi.ListUsersUsingGET1``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListUsersUsingGET1`: PageableUser
+    fmt.Fprintf(os.Stdout, "Response from `UsersManagementApi.ListUsersUsingGET1`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListUsersUsingGET1Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***ListUsersUsingGET1Opts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a ListUsersUsingGET1Opts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **size** | **optional.Int32**| the maximum number of items per page (optional, highest value is 1000) | [default to 20]
- **page** | **optional.Int32**| the requested page number (optional) | [default to 0]
- **tenantId** | **optional.String**| identifier of tenant account (optional) ex: \&quot;57xxxxxxxxxxxxxxxxxxxxxx\&quot; | 
- **login** | **optional.String**| login of tenant account (optional) ex: \&quot;login_name\&quot; | 
- **email** | **optional.String**| email of tenant account (optional) ex: \&quot;myAccount@mail.com\&quot; | 
- **externalProvider** | **optional.String**| external (IDP) provider of tenant account (optional) ex: \&quot;SIU\&quot; | 
- **externalId** | **optional.String**| external (IDP) identifier of tenant account (optional) ex: \&quot;57xxxxxxxxxxxxxxxxxxxxxx\&quot; | 
- **externalLogin** | **optional.String**| external (IDP) login of tenant account (optional) ex: \&quot;login_name\&quot; | 
- **roles** | [**optional.Interface of []string**](string.md)| roles of tenant account (optional) ex: \&quot;[TENANT_ADMIN, USER_KEY]\&quot; | 
- **rolesNotIn** | [**optional.Interface of []string**](string.md)| roles not in tenant account (optional) ex: \&quot;[LPWA_ORANGE_ADMIN]\&quot; | 
- **userState** | [**optional.Interface of []string**](string.md)| userState of tenant account (optional) ex: \&quot;[enabled]\&quot; | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **size** | **int32** | the maximum number of items per page (optional, highest value is 1000) | [default to 20]
+ **page** | **int32** | the requested page number (optional) | [default to 0]
+ **tenantId** | **string** | identifier of tenant account (optional) ex: \&quot;57xxxxxxxxxxxxxxxxxxxxxx\&quot; | 
+ **login** | **string** | login of tenant account (optional) ex: \&quot;login_name\&quot; | 
+ **email** | **string** | email of tenant account (optional) ex: \&quot;myAccount@mail.com\&quot; | 
+ **externalProvider** | **string** | external (IDP) provider of tenant account (optional) ex: \&quot;SIU\&quot; | 
+ **externalId** | **string** | external (IDP) identifier of tenant account (optional) ex: \&quot;57xxxxxxxxxxxxxxxxxxxxxx\&quot; | 
+ **externalLogin** | **string** | external (IDP) login of tenant account (optional) ex: \&quot;login_name\&quot; | 
+ **roles** | [**[]string**](string.md) | roles of tenant account (optional) ex: \&quot;[TENANT_ADMIN, USER_KEY]\&quot; | 
+ **rolesNotIn** | [**[]string**](string.md) | roles not in tenant account (optional) ex: \&quot;[LPWA_ORANGE_ADMIN]\&quot; | 
+ **userState** | [**[]string**](string.md) | userState of tenant account (optional) ex: \&quot;[enabled]\&quot; | 
 
 ### Return type
 
@@ -323,32 +516,57 @@ No authorization required
 
 ## UpdateUserPasswordUsingPOST
 
-> UpdateUserPasswordUsingPOST(ctx, userId, xAPIKEY, optional)
+> UpdateUserPasswordUsingPOST(ctx, userId).XAPIKEY(xAPIKEY).UserUpdatePasswordRequest(userUpdatePasswordRequest).Execute()
 
 Update user password
 
-Usage of this API will be reported in your access log under 'user' category.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userId := "userId_example" // string | the User Identifier. Expected identifier (max 24 characters)
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    userUpdatePasswordRequest := *openapiclient.NewUpdatePasswordReqWeb("Captcha_example", "CaptchaToken_example", "NewPassword_example", "OldPassword_example", "TokenId_example") // UpdatePasswordReqWeb | body of user update password (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersManagementApi.UpdateUserPasswordUsingPOST(context.Background(), userId).XAPIKEY(xAPIKEY).UserUpdatePasswordRequest(userUpdatePasswordRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersManagementApi.UpdateUserPasswordUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string**| the User Identifier. Expected identifier (max 24 characters) | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***UpdateUserPasswordUsingPOSTOpts** | optional parameters | nil if no parameters
+**userId** | **string** | the User Identifier. Expected identifier (max 24 characters) | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a UpdateUserPasswordUsingPOSTOpts struct
+Other parameters are passed through a pointer to a apiUpdateUserPasswordUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **userUpdatePasswordRequest** | [**optional.Interface of UpdatePasswordReqWeb**](UpdatePasswordReqWeb.md)| body of user update password | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **userUpdatePasswordRequest** | [**UpdatePasswordReqWeb**](UpdatePasswordReqWeb.md) | body of user update password | 
 
 ### Return type
 
@@ -370,20 +588,51 @@ No authorization required
 
 ## UpdateUserPasswordWithTokenWithoutCaptchaUsingPOST
 
-> UpdateUserPasswordWithTokenWithoutCaptchaUsingPOST(ctx, xAPIKEY, userUpdatePasswordRequest)
+> UpdateUserPasswordWithTokenWithoutCaptchaUsingPOST(ctx).XAPIKEY(xAPIKEY).UserUpdatePasswordRequest(userUpdatePasswordRequest).Execute()
 
 Update user password with a token
 
-Usage of this API will be reported in your access log under 'user' category.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    userUpdatePasswordRequest := *openapiclient.NewUpdatePasswordWithTokenReqWeb("Captcha_example", "CaptchaToken_example", "Company_example", "FirstName_example", "LastName_example", "Login_example", "Password_example", "TokenId_example") // UpdatePasswordWithTokenReqWeb | userUpdatePasswordRequest
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersManagementApi.UpdateUserPasswordWithTokenWithoutCaptchaUsingPOST(context.Background()).XAPIKEY(xAPIKEY).UserUpdatePasswordRequest(userUpdatePasswordRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersManagementApi.UpdateUserPasswordWithTokenWithoutCaptchaUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateUserPasswordWithTokenWithoutCaptchaUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
-**userUpdatePasswordRequest** | [**UpdatePasswordWithTokenReqWeb**](UpdatePasswordWithTokenReqWeb.md)| userUpdatePasswordRequest | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **userUpdatePasswordRequest** | [**UpdatePasswordWithTokenReqWeb**](UpdatePasswordWithTokenReqWeb.md) | userUpdatePasswordRequest | 
 
 ### Return type
 
@@ -405,28 +654,49 @@ No authorization required
 
 ## UpdateUserPortalDataUsingPUT
 
-> UpdateUserPortalDataUsingPUT(ctx, xAPIKEY, optional)
+> UpdateUserPortalDataUsingPUT(ctx).XAPIKEY(xAPIKEY).PortalData(portalData).Execute()
 
 Update the portal data of me
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    portalData := 987 // map[string]interface{} | body of my user portal data Update (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersManagementApi.UpdateUserPortalDataUsingPUT(context.Background()).XAPIKEY(xAPIKEY).PortalData(portalData).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersManagementApi.UpdateUserPortalDataUsingPUT``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateUserPortalDataUsingPUTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***UpdateUserPortalDataUsingPUTOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a UpdateUserPortalDataUsingPUTOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **portalData** | **optional.Map[string]interface{}**| body of my user portal data Update | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **portalData** | **map[string]interface{}** | body of my user portal data Update | 
 
 ### Return type
 
@@ -448,32 +718,59 @@ No authorization required
 
 ## UpdateUserUsingPOST1
 
-> User UpdateUserUsingPOST1(ctx, userId, xAPIKEY, optional)
+> User UpdateUserUsingPOST1(ctx, userId).XAPIKEY(xAPIKEY).UserUpdateRequest(userUpdateRequest).Execute()
 
 Update a user
 
-Usage of this API will be reported in your access log under 'user' category.<br><br>Restricted to API keys with at least one of the following roles : USER_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    userId := "userId_example" // string | the User Identifier. Expected identifier (max 24 characters)
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    userUpdateRequest := *openapiclient.NewUserUpdateReqWeb("State_example") // UserUpdateReqWeb | body of user update (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.UsersManagementApi.UpdateUserUsingPOST1(context.Background(), userId).XAPIKEY(xAPIKEY).UserUpdateRequest(userUpdateRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsersManagementApi.UpdateUserUsingPOST1``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateUserUsingPOST1`: User
+    fmt.Fprintf(os.Stdout, "Response from `UsersManagementApi.UpdateUserUsingPOST1`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string**| the User Identifier. Expected identifier (max 24 characters) | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***UpdateUserUsingPOST1Opts** | optional parameters | nil if no parameters
+**userId** | **string** | the User Identifier. Expected identifier (max 24 characters) | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a UpdateUserUsingPOST1Opts struct
+Other parameters are passed through a pointer to a apiUpdateUserUsingPOST1Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **userUpdateRequest** | [**optional.Interface of UserUpdateReqWeb**](UserUpdateReqWeb.md)| body of user update | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **userUpdateRequest** | [**UserUpdateReqWeb**](UserUpdateReqWeb.md) | body of user update | 
 
 ### Return type
 

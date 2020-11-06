@@ -4,40 +4,63 @@ All URIs are relative to *https://liveobjects.orange-business.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateGroupUsingPOST**](DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.md#CreateGroupUsingPOST) | **Post** /api/v0/groups | Create a group
-[**DeleteGroupUsingDELETE**](DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.md#DeleteGroupUsingDELETE) | **Delete** /api/v0/groups/{groupId} | Delete a group
-[**GetGroupUsingGET**](DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.md#GetGroupUsingGET) | **Get** /api/v0/groups/{groupId} | Get a group
-[**ListGroupsUsingGET**](DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.md#ListGroupsUsingGET) | **Get** /api/v0/groups | List registered groups
-[**UpdateGroupUsingPUT**](DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.md#UpdateGroupUsingPUT) | **Put** /api/v0/groups/{groupId} | Update a group
+[**CreateGroupUsingPOST1**](DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.md#CreateGroupUsingPOST1) | **Post** /api/v0/groups | Create a group
+[**DeleteGroupUsingDELETE1**](DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.md#DeleteGroupUsingDELETE1) | **Delete** /api/v0/groups/{groupId} | Delete a group
+[**GetGroupUsingGET1**](DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.md#GetGroupUsingGET1) | **Get** /api/v0/groups/{groupId} | Get a group
+[**ListGroupsUsingGET1**](DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.md#ListGroupsUsingGET1) | **Get** /api/v0/groups | List registered groups
+[**UpdateGroupUsingPUT1**](DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.md#UpdateGroupUsingPUT1) | **Put** /api/v0/groups/{groupId} | Update a group
 
 
 
-## CreateGroupUsingPOST
+## CreateGroupUsingPOST1
 
-> Group CreateGroupUsingPOST(ctx, xAPIKEY, optional)
+> Group CreateGroupUsingPOST1(ctx).XAPIKEY(xAPIKEY).Request(request).Execute()
 
 Create a group
 
-Usage of this API will be reported in your access log under 'device_inventory' category.<br><br>Restricted to API keys with at least one of the following roles : DEVICE_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    request := *openapiclient.NewGroupCreateRequest("PathNode_example") // GroupCreateRequest | The group to register (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.CreateGroupUsingPOST1(context.Background()).XAPIKEY(xAPIKEY).Request(request).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.CreateGroupUsingPOST1``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateGroupUsingPOST1`: Group
+    fmt.Fprintf(os.Stdout, "Response from `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.CreateGroupUsingPOST1`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateGroupUsingPOST1Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***CreateGroupUsingPOSTOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a CreateGroupUsingPOSTOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **request** | [**optional.Interface of GroupCreateRequest**](GroupCreateRequest.md)| The group to register | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **request** | [**GroupCreateRequest**](GroupCreateRequest.md) | The group to register | 
 
 ### Return type
 
@@ -57,22 +80,57 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## DeleteGroupUsingDELETE
+## DeleteGroupUsingDELETE1
 
-> DeleteGroupUsingDELETE(ctx, groupId, xAPIKEY)
+> DeleteGroupUsingDELETE1(ctx, groupId).XAPIKEY(xAPIKEY).Execute()
 
 Delete a group
 
-Usage of this API will be reported in your access log under 'device_inventory' category.<br><br>Restricted to API keys with at least one of the following roles : DEVICE_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    groupId := "groupId_example" // string | targeted for deletion group identifier. Expected string (max 6 characters)
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.DeleteGroupUsingDELETE1(context.Background(), groupId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.DeleteGroupUsingDELETE1``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**groupId** | **string**| targeted for deletion group identifier. Expected string (max 6 characters) | 
-**xAPIKEY** | **string**| a valid API key | 
+**groupId** | **string** | targeted for deletion group identifier. Expected string (max 6 characters) | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteGroupUsingDELETE1Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -92,22 +150,59 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## GetGroupUsingGET
+## GetGroupUsingGET1
 
-> Group GetGroupUsingGET(ctx, groupId, xAPIKEY)
+> Group GetGroupUsingGET1(ctx, groupId).XAPIKEY(xAPIKEY).Execute()
 
 Get a group
 
-Restricted to API keys with at least one of the following roles : DEVICE_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    groupId := "groupId_example" // string | the Group Identifier. Expected string (max 6 characters)
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.GetGroupUsingGET1(context.Background(), groupId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.GetGroupUsingGET1``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetGroupUsingGET1`: Group
+    fmt.Fprintf(os.Stdout, "Response from `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.GetGroupUsingGET1`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**groupId** | **string**| the Group Identifier. Expected string (max 6 characters) | 
-**xAPIKEY** | **string**| a valid API key | 
+**groupId** | **string** | the Group Identifier. Expected string (max 6 characters) | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetGroupUsingGET1Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -127,34 +222,59 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## ListGroupsUsingGET
+## ListGroupsUsingGET1
 
-> PageableGroup ListGroupsUsingGET(ctx, xAPIKEY, optional)
+> PageableGroup ListGroupsUsingGET1(ctx).XAPIKEY(xAPIKEY).Size(size).Page(page).Parent(parent).Execute()
 
 List registered groups
 
-Restricted to API keys with at least one of the following roles : DEVICE_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    size := 987 // int64 | the maximum number of items per page (optional, highest value is 1000) (optional) (default to 20)
+    page := 987 // int64 | the requested page number (optional) (optional) (default to 0)
+    parent := "parent_example" // string | filter list by group's parent. Expected string (max 6 characters) (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.ListGroupsUsingGET1(context.Background()).XAPIKEY(xAPIKEY).Size(size).Page(page).Parent(parent).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.ListGroupsUsingGET1``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListGroupsUsingGET1`: PageableGroup
+    fmt.Fprintf(os.Stdout, "Response from `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.ListGroupsUsingGET1`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListGroupsUsingGET1Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***ListGroupsUsingGETOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a ListGroupsUsingGETOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **size** | **optional.Int64**| the maximum number of items per page (optional, highest value is 1000) | [default to 20]
- **page** | **optional.Int64**| the requested page number (optional) | [default to 0]
- **parent** | **optional.String**| filter list by group&#39;s parent. Expected string (max 6 characters) | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **size** | **int64** | the maximum number of items per page (optional, highest value is 1000) | [default to 20]
+ **page** | **int64** | the requested page number (optional) | [default to 0]
+ **parent** | **string** | filter list by group&#39;s parent. Expected string (max 6 characters) | 
 
 ### Return type
 
@@ -174,34 +294,61 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## UpdateGroupUsingPUT
+## UpdateGroupUsingPUT1
 
-> Group UpdateGroupUsingPUT(ctx, groupId, xAPIKEY, optional)
+> Group UpdateGroupUsingPUT1(ctx, groupId).XAPIKEY(xAPIKEY).Body(body).Execute()
 
 Update a group
 
-Usage of this API will be reported in your access log under 'device_inventory' category.<br><br>Restricted to API keys with at least one of the following roles : DEVICE_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    groupId := "groupId_example" // string | identifier to update group. Expected string (max 6 characters)
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    body := *openapiclient.NewGroupUpdateRequest("PathNode_example") // GroupUpdateRequest | The group to register (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.UpdateGroupUsingPUT1(context.Background(), groupId).XAPIKEY(xAPIKEY).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.UpdateGroupUsingPUT1``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateGroupUsingPUT1`: Group
+    fmt.Fprintf(os.Stdout, "Response from `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.UpdateGroupUsingPUT1`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**groupId** | **string**| identifier to update group. Expected string (max 6 characters) | 
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***UpdateGroupUsingPUTOpts** | optional parameters | nil if no parameters
+**groupId** | **string** | identifier to update group. Expected string (max 6 characters) | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a UpdateGroupUsingPUTOpts struct
+Other parameters are passed through a pointer to a apiUpdateGroupUsingPUT1Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
-
- **body** | [**optional.Interface of GroupUpdateRequest**](GroupUpdateRequest.md)| The group to register | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **body** | [**GroupUpdateRequest**](GroupUpdateRequest.md) | The group to register | 
 
 ### Return type
 

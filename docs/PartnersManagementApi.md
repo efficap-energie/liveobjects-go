@@ -11,21 +11,57 @@ Method | HTTP request | Description
 
 ## AddOptionToTenantUsingPOST
 
-> AddOptionToTenantUsingPOST(ctx, tenantId, authorization, req)
+> AddOptionToTenantUsingPOST(ctx, tenantId).Authorization(authorization).Req(req).Execute()
 
 Subscribe an option for a partner's tenant
 
-Usage of this API will be reported in your access log under 'admin_account' category.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    tenantId := "tenantId_example" // string | Tenant identifier
+    authorization := "authorization_example" // string | Bearer {token}
+    req := *openapiclient.NewOptionPartnerTenant("Id_example") // OptionPartnerTenant | req
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PartnersManagementApi.AddOptionToTenantUsingPOST(context.Background(), tenantId).Authorization(authorization).Req(req).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PartnersManagementApi.AddOptionToTenantUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**tenantId** | **string**| Tenant identifier | 
-**authorization** | **string**| Bearer {token} | 
-**req** | [**OptionPartnerTenant**](OptionPartnerTenant.md)| req | 
+**tenantId** | **string** | Tenant identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAddOptionToTenantUsingPOSTRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **authorization** | **string** | Bearer {token} | 
+ **req** | [**OptionPartnerTenant**](OptionPartnerTenant.md) | req | 
 
 ### Return type
 
@@ -47,20 +83,53 @@ No authorization required
 
 ## CreateTenantByPartnerUsingPOST
 
-> PartnerTenant CreateTenantByPartnerUsingPOST(ctx, authorization, req)
+> PartnerTenant CreateTenantByPartnerUsingPOST(ctx).Authorization(authorization).Req(req).Execute()
 
 Create a partner's tenant
 
-Usage of this API will be reported in your access log under 'admin_account' category.<br><br>Restricted to API keys with at least one of the following roles : IS_PARTNER.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    authorization := "authorization_example" // string | Bearer {token}
+    req := *openapiclient.NewAddPartnerTenantRequest("Email_example", "Language_example", "Login_example", "Name_example", "OfferMappingId_example") // AddPartnerTenantRequest | req
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PartnersManagementApi.CreateTenantByPartnerUsingPOST(context.Background()).Authorization(authorization).Req(req).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PartnersManagementApi.CreateTenantByPartnerUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateTenantByPartnerUsingPOST`: PartnerTenant
+    fmt.Fprintf(os.Stdout, "Response from `PartnersManagementApi.CreateTenantByPartnerUsingPOST`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateTenantByPartnerUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**authorization** | **string**| Bearer {token} | 
-**req** | [**AddPartnerTenantRequest**](AddPartnerTenantRequest.md)| req | 
+ **authorization** | **string** | Bearer {token} | 
+ **req** | [**AddPartnerTenantRequest**](AddPartnerTenantRequest.md) | req | 
 
 ### Return type
 

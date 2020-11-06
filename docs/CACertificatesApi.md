@@ -13,30 +13,53 @@ Method | HTTP request | Description
 
 ## CreateUsingPOST
 
-> CaCertificateCreateResWeb CreateUsingPOST(ctx, xAPIKEY, optional)
+> CaCertificateCreateResWeb CreateUsingPOST(ctx).XAPIKEY(xAPIKEY).CaCertificate(caCertificate).Execute()
 
 Upload CA certificate
 
-Usage of this API will be reported in your access log under 'security' category.<br><br>Restricted to API keys with at least one of the following roles : API_KEY_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+    caCertificate := *openapiclient.NewCaCertificateCreateReqWeb("Certificate_example", "Comment_example") // CaCertificateCreateReqWeb | Root or intermediate Certification Authority (CA) certificate. Only PEM format is supported. Certificate chains are not allowed. In case that intermediates CA are used, it must be the intermediate CA certificate which signs the devices certificates. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.CACertificatesApi.CreateUsingPOST(context.Background()).XAPIKEY(xAPIKEY).CaCertificate(caCertificate).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CACertificatesApi.CreateUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateUsingPOST`: CaCertificateCreateResWeb
+    fmt.Fprintf(os.Stdout, "Response from `CACertificatesApi.CreateUsingPOST`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
- **optional** | ***CreateUsingPOSTOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a CreateUsingPOSTOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **caCertificate** | [**optional.Interface of CaCertificateCreateReqWeb**](CaCertificateCreateReqWeb.md)| Root or intermediate Certification Authority (CA) certificate. Only PEM format is supported. Certificate chains are not allowed. In case that intermediates CA are used, it must be the intermediate CA certificate which signs the devices certificates. | 
+ **xAPIKEY** | **string** | a valid API key | 
+ **caCertificate** | [**CaCertificateCreateReqWeb**](CaCertificateCreateReqWeb.md) | Root or intermediate Certification Authority (CA) certificate. Only PEM format is supported. Certificate chains are not allowed. In case that intermediates CA are used, it must be the intermediate CA certificate which signs the devices certificates. | 
 
 ### Return type
 
@@ -58,20 +81,55 @@ No authorization required
 
 ## DeleteUsingDELETE9
 
-> DeleteUsingDELETE9(ctx, certificateId, xAPIKEY)
+> DeleteUsingDELETE9(ctx, certificateId).XAPIKEY(xAPIKEY).Execute()
 
 Delete CA certificate
 
-Usage of this API will be reported in your access log under 'security' category.<br><br>Restricted to API keys with at least one of the following roles : API_KEY_W.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    certificateId := "certificateId_example" // string | id of the CA certificate to delete
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.CACertificatesApi.DeleteUsingDELETE9(context.Background(), certificateId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CACertificatesApi.DeleteUsingDELETE9``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**certificateId** | **string**| id of the CA certificate to delete | 
-**xAPIKEY** | **string**| a valid API key | 
+**certificateId** | **string** | id of the CA certificate to delete | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteUsingDELETE9Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -93,19 +151,51 @@ No authorization required
 
 ## ListUsingGET11
 
-> []CaCertificate ListUsingGET11(ctx, xAPIKEY)
+> []CaCertificate ListUsingGET11(ctx).XAPIKEY(xAPIKEY).Execute()
 
 List CA certificates
 
-Restricted to API keys with at least one of the following roles : API_KEY_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.CACertificatesApi.ListUsingGET11(context.Background()).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CACertificatesApi.ListUsingGET11``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListUsingGET11`: []CaCertificate
+    fmt.Fprintf(os.Stdout, "Response from `CACertificatesApi.ListUsingGET11`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListUsingGET11Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**xAPIKEY** | **string**| a valid API key | 
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
@@ -127,20 +217,57 @@ No authorization required
 
 ## RetrieveUsingGET
 
-> CaCertificate RetrieveUsingGET(ctx, certificateId, xAPIKEY)
+> CaCertificate RetrieveUsingGET(ctx, certificateId).XAPIKEY(xAPIKEY).Execute()
 
 Retrieve CA certificate
 
-Restricted to API keys with at least one of the following roles : API_KEY_R.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    certificateId := "certificateId_example" // string | id of the CA certificate
+    xAPIKEY := "xAPIKEY_example" // string | a valid API key
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.CACertificatesApi.RetrieveUsingGET(context.Background(), certificateId).XAPIKEY(xAPIKEY).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CACertificatesApi.RetrieveUsingGET``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RetrieveUsingGET`: CaCertificate
+    fmt.Fprintf(os.Stdout, "Response from `CACertificatesApi.RetrieveUsingGET`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**certificateId** | **string**| id of the CA certificate | 
-**xAPIKEY** | **string**| a valid API key | 
+**certificateId** | **string** | id of the CA certificate | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRetrieveUsingGETRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xAPIKEY** | **string** | a valid API key | 
 
 ### Return type
 
