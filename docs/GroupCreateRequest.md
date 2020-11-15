@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Description** | Pointer to **string** | group description. Expected string (max 255 characters) | [optional] 
-**Parent** | Pointer to **string** | reference to group&#39;s parent (id). Expected string (max 6 characters) | [optional] 
+**ParentId** | Pointer to **string** | reference to group&#39;s parent (id). Expected string (max 6 characters) | [optional] 
 **PathNode** | **string** | group&#39;s local id in path (unique for groups in same parent).Authorized: letter (lowercase and uppercase), accented characters, number, space, dash, underscore and simple quote. A valid path must respect the following regular expression &lt;code&gt;^[\\wÀ-ÖØ-öø-ÿ&#39; -]{1,255}&lt;/code&gt;.Expected string (max 255 characters) | 
 
 ## Methods
@@ -52,30 +52,30 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### GetParent
+### GetParentId
 
-`func (o *GroupCreateRequest) GetParent() string`
+`func (o *GroupCreateRequest) GetParentId() string`
 
-GetParent returns the Parent field if non-nil, zero value otherwise.
+GetParentId returns the ParentId field if non-nil, zero value otherwise.
 
-### GetParentOk
+### GetParentIdOk
 
-`func (o *GroupCreateRequest) GetParentOk() (*string, bool)`
+`func (o *GroupCreateRequest) GetParentIdOk() (*string, bool)`
 
-GetParentOk returns a tuple with the Parent field if it's non-nil, zero value otherwise
+GetParentIdOk returns a tuple with the ParentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetParent
+### SetParentId
 
-`func (o *GroupCreateRequest) SetParent(v string)`
+`func (o *GroupCreateRequest) SetParentId(v string)`
 
-SetParent sets Parent field to given value.
+SetParentId sets ParentId field to given value.
 
-### HasParent
+### HasParentId
 
-`func (o *GroupCreateRequest) HasParent() bool`
+`func (o *GroupCreateRequest) HasParentId() bool`
 
-HasParent returns a boolean if a field has been set.
+HasParentId returns a boolean if a field has been set.
 
 ### GetPathNode
 

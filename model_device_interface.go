@@ -30,7 +30,7 @@ type DeviceInterface struct {
 	// Base definition
 	Definition *map[string]interface{} `json:"definition,omitempty"`
 	// Last contact date
-	LastContact *string `json:"lastContact,omitempty"`
+	LastContact  *string                `json:"lastContact,omitempty"`
 	Capabilities *InterfaceCapabilities `json:"capabilities,omitempty"`
 	// Interface activity
 	Activity *map[string]interface{} `json:"activity,omitempty"`
@@ -38,15 +38,6 @@ type DeviceInterface struct {
 	Created *string `json:"created,omitempty"`
 	// Date/time of the device update
 	Updated *string `json:"updated,omitempty"`
-}
-
-// NewDeviceInterface instantiates a new DeviceInterface object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewDeviceInterface() *DeviceInterface {
-	this := DeviceInterface{}
-	return &this
 }
 
 // NewDeviceInterfaceWithDefaults instantiates a new DeviceInterface object
@@ -482,5 +473,3 @@ func (v *NullableDeviceInterface) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

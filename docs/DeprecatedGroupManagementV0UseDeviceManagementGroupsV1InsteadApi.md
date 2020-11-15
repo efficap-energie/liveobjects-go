@@ -4,17 +4,17 @@ All URIs are relative to *https://liveobjects.orange-business.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateGroupUsingPOST1**](DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.md#CreateGroupUsingPOST1) | **Post** /api/v0/groups | Create a group
-[**DeleteGroupUsingDELETE1**](DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.md#DeleteGroupUsingDELETE1) | **Delete** /api/v0/groups/{groupId} | Delete a group
-[**GetGroupUsingGET1**](DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.md#GetGroupUsingGET1) | **Get** /api/v0/groups/{groupId} | Get a group
-[**ListGroupsUsingGET1**](DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.md#ListGroupsUsingGET1) | **Get** /api/v0/groups | List registered groups
-[**UpdateGroupUsingPUT1**](DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.md#UpdateGroupUsingPUT1) | **Put** /api/v0/groups/{groupId} | Update a group
+[**CreateGroupUsingPOST**](DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.md#CreateGroupUsingPOST) | **Post** /api/v0/groups | Create a group
+[**DeleteGroupUsingDELETE**](DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.md#DeleteGroupUsingDELETE) | **Delete** /api/v0/groups/{groupId} | Delete a group
+[**GetGroupUsingGET**](DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.md#GetGroupUsingGET) | **Get** /api/v0/groups/{groupId} | Get a group
+[**ListGroupsUsingGET**](DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.md#ListGroupsUsingGET) | **Get** /api/v0/groups | List registered groups
+[**UpdateGroupUsingPUT**](DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.md#UpdateGroupUsingPUT) | **Put** /api/v0/groups/{groupId} | Update a group
 
 
 
-## CreateGroupUsingPOST1
+## CreateGroupUsingPOST
 
-> Group CreateGroupUsingPOST1(ctx).XAPIKEY(xAPIKEY).Request(request).Execute()
+> Group CreateGroupUsingPOST(ctx).XAPIKEY(xAPIKEY).Request(request).Execute()
 
 Create a group
 
@@ -38,13 +38,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.CreateGroupUsingPOST1(context.Background()).XAPIKEY(xAPIKEY).Request(request).Execute()
+    resp, r, err := api_client.DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.CreateGroupUsingPOST(context.Background()).XAPIKEY(xAPIKEY).Request(request).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.CreateGroupUsingPOST1``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.CreateGroupUsingPOST``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateGroupUsingPOST1`: Group
-    fmt.Fprintf(os.Stdout, "Response from `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.CreateGroupUsingPOST1`: %v\n", resp)
+    // response from `CreateGroupUsingPOST`: Group
+    fmt.Fprintf(os.Stdout, "Response from `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.CreateGroupUsingPOST`: %v\n", resp)
 }
 ```
 
@@ -54,7 +54,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateGroupUsingPOST1Request struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateGroupUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -80,9 +80,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## DeleteGroupUsingDELETE1
+## DeleteGroupUsingDELETE
 
-> DeleteGroupUsingDELETE1(ctx, groupId).XAPIKEY(xAPIKEY).Execute()
+> DeleteGroupUsingDELETE(ctx, groupId).XAPIKEY(xAPIKEY).Execute()
 
 Delete a group
 
@@ -106,9 +106,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.DeleteGroupUsingDELETE1(context.Background(), groupId).XAPIKEY(xAPIKEY).Execute()
+    resp, r, err := api_client.DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.DeleteGroupUsingDELETE(context.Background(), groupId).XAPIKEY(xAPIKEY).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.DeleteGroupUsingDELETE1``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.DeleteGroupUsingDELETE``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -124,7 +124,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeleteGroupUsingDELETE1Request struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteGroupUsingDELETERequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -150,9 +150,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## GetGroupUsingGET1
+## GetGroupUsingGET
 
-> Group GetGroupUsingGET1(ctx, groupId).XAPIKEY(xAPIKEY).Execute()
+> Group GetGroupUsingGET(ctx, groupId).XAPIKEY(xAPIKEY).Execute()
 
 Get a group
 
@@ -176,13 +176,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.GetGroupUsingGET1(context.Background(), groupId).XAPIKEY(xAPIKEY).Execute()
+    resp, r, err := api_client.DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.GetGroupUsingGET(context.Background(), groupId).XAPIKEY(xAPIKEY).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.GetGroupUsingGET1``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.GetGroupUsingGET``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetGroupUsingGET1`: Group
-    fmt.Fprintf(os.Stdout, "Response from `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.GetGroupUsingGET1`: %v\n", resp)
+    // response from `GetGroupUsingGET`: Group
+    fmt.Fprintf(os.Stdout, "Response from `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.GetGroupUsingGET`: %v\n", resp)
 }
 ```
 
@@ -196,7 +196,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetGroupUsingGET1Request struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetGroupUsingGETRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -222,9 +222,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## ListGroupsUsingGET1
+## ListGroupsUsingGET
 
-> PageableGroup ListGroupsUsingGET1(ctx).XAPIKEY(xAPIKEY).Size(size).Page(page).Parent(parent).Execute()
+> PageableGroup ListGroupsUsingGET(ctx).XAPIKEY(xAPIKEY).Size(size).Page(page).Parent(parent).Execute()
 
 List registered groups
 
@@ -250,13 +250,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.ListGroupsUsingGET1(context.Background()).XAPIKEY(xAPIKEY).Size(size).Page(page).Parent(parent).Execute()
+    resp, r, err := api_client.DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.ListGroupsUsingGET(context.Background()).XAPIKEY(xAPIKEY).Size(size).Page(page).Parent(parent).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.ListGroupsUsingGET1``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.ListGroupsUsingGET``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListGroupsUsingGET1`: PageableGroup
-    fmt.Fprintf(os.Stdout, "Response from `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.ListGroupsUsingGET1`: %v\n", resp)
+    // response from `ListGroupsUsingGET`: PageableGroup
+    fmt.Fprintf(os.Stdout, "Response from `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.ListGroupsUsingGET`: %v\n", resp)
 }
 ```
 
@@ -266,7 +266,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListGroupsUsingGET1Request struct via the builder pattern
+Other parameters are passed through a pointer to a apiListGroupsUsingGETRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -294,9 +294,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## UpdateGroupUsingPUT1
+## UpdateGroupUsingPUT
 
-> Group UpdateGroupUsingPUT1(ctx, groupId).XAPIKEY(xAPIKEY).Body(body).Execute()
+> Group UpdateGroupUsingPUT(ctx, groupId).XAPIKEY(xAPIKEY).Body(body).Execute()
 
 Update a group
 
@@ -321,13 +321,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.UpdateGroupUsingPUT1(context.Background(), groupId).XAPIKEY(xAPIKEY).Body(body).Execute()
+    resp, r, err := api_client.DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.UpdateGroupUsingPUT(context.Background(), groupId).XAPIKEY(xAPIKEY).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.UpdateGroupUsingPUT1``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.UpdateGroupUsingPUT``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateGroupUsingPUT1`: Group
-    fmt.Fprintf(os.Stdout, "Response from `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.UpdateGroupUsingPUT1`: %v\n", resp)
+    // response from `UpdateGroupUsingPUT`: Group
+    fmt.Fprintf(os.Stdout, "Response from `DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi.UpdateGroupUsingPUT`: %v\n", resp)
 }
 ```
 
@@ -341,7 +341,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateGroupUsingPUT1Request struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateGroupUsingPUTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

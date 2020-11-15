@@ -26,34 +26,34 @@ var (
 // DeprecatedTriggersAndActionsTestApiService DeprecatedTriggersAndActionsTestApi service
 type DeprecatedTriggersAndActionsTestApiService service
 
-type ApiTestHttpPushUsingPOST1Request struct {
+type ApiTestHttpPushUsingPOSTRequest struct {
 	ctx _context.Context
 	ApiService *DeprecatedTriggersAndActionsTestApiService
 	xAPIKEY *string
 	req *HttpPushWebhookTest
 }
 
-func (r ApiTestHttpPushUsingPOST1Request) XAPIKEY(xAPIKEY string) ApiTestHttpPushUsingPOST1Request {
+func (r ApiTestHttpPushUsingPOSTRequest) XAPIKEY(xAPIKEY string) ApiTestHttpPushUsingPOSTRequest {
 	r.xAPIKEY = &xAPIKEY
 	return r
 }
-func (r ApiTestHttpPushUsingPOST1Request) Req(req HttpPushWebhookTest) ApiTestHttpPushUsingPOST1Request {
+func (r ApiTestHttpPushUsingPOSTRequest) Req(req HttpPushWebhookTest) ApiTestHttpPushUsingPOSTRequest {
 	r.req = &req
 	return r
 }
 
-func (r ApiTestHttpPushUsingPOST1Request) Execute() (HttpPushTestResult, *_nethttp.Response, error) {
-	return r.ApiService.TestHttpPushUsingPOST1Execute(r)
+func (r ApiTestHttpPushUsingPOSTRequest) Execute() (HttpPushTestResult, *_nethttp.Response, error) {
+	return r.ApiService.TestHttpPushUsingPOSTExecute(r)
 }
 
 /*
- * TestHttpPushUsingPOST1 Post an http request for testing a webhook
+ * TestHttpPushUsingPOST Post an http request for testing a webhook
  * Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiTestHttpPushUsingPOST1Request
+ * @return ApiTestHttpPushUsingPOSTRequest
  */
-func (a *DeprecatedTriggersAndActionsTestApiService) TestHttpPushUsingPOST1(ctx _context.Context) ApiTestHttpPushUsingPOST1Request {
-	return ApiTestHttpPushUsingPOST1Request{
+func (a *DeprecatedTriggersAndActionsTestApiService) TestHttpPushUsingPOST(ctx _context.Context) ApiTestHttpPushUsingPOSTRequest {
+	return ApiTestHttpPushUsingPOSTRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -63,7 +63,7 @@ func (a *DeprecatedTriggersAndActionsTestApiService) TestHttpPushUsingPOST1(ctx 
  * Execute executes the request
  * @return HttpPushTestResult
  */
-func (a *DeprecatedTriggersAndActionsTestApiService) TestHttpPushUsingPOST1Execute(r ApiTestHttpPushUsingPOST1Request) (HttpPushTestResult, *_nethttp.Response, error) {
+func (a *DeprecatedTriggersAndActionsTestApiService) TestHttpPushUsingPOSTExecute(r ApiTestHttpPushUsingPOSTRequest) (HttpPushTestResult, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -73,7 +73,7 @@ func (a *DeprecatedTriggersAndActionsTestApiService) TestHttpPushUsingPOST1Execu
 		localVarReturnValue  HttpPushTestResult
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedTriggersAndActionsTestApiService.TestHttpPushUsingPOST1")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedTriggersAndActionsTestApiService.TestHttpPushUsingPOST")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}

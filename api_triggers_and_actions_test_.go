@@ -26,34 +26,34 @@ var (
 // TriggersAndActionsTestApiService TriggersAndActionsTestApi service
 type TriggersAndActionsTestApiService service
 
-type ApiTestHttpPushUsingPOSTRequest struct {
+type ApiTestHttpPushUsingPOST1Request struct {
 	ctx _context.Context
 	ApiService *TriggersAndActionsTestApiService
 	xAPIKEY *string
 	req *HttpPushWebhookTest
 }
 
-func (r ApiTestHttpPushUsingPOSTRequest) XAPIKEY(xAPIKEY string) ApiTestHttpPushUsingPOSTRequest {
+func (r ApiTestHttpPushUsingPOST1Request) XAPIKEY(xAPIKEY string) ApiTestHttpPushUsingPOST1Request {
 	r.xAPIKEY = &xAPIKEY
 	return r
 }
-func (r ApiTestHttpPushUsingPOSTRequest) Req(req HttpPushWebhookTest) ApiTestHttpPushUsingPOSTRequest {
+func (r ApiTestHttpPushUsingPOST1Request) Req(req HttpPushWebhookTest) ApiTestHttpPushUsingPOST1Request {
 	r.req = &req
 	return r
 }
 
-func (r ApiTestHttpPushUsingPOSTRequest) Execute() (HttpPushTestResult, *_nethttp.Response, error) {
-	return r.ApiService.TestHttpPushUsingPOSTExecute(r)
+func (r ApiTestHttpPushUsingPOST1Request) Execute() (HttpPushTestResult, *_nethttp.Response, error) {
+	return r.ApiService.TestHttpPushUsingPOST1Execute(r)
 }
 
 /*
- * TestHttpPushUsingPOST Post an http request for testing a webhook
+ * TestHttpPushUsingPOST1 Post an http request for testing a webhook
  * Restricted to API keys with at least one of the following roles : DATA_PROCESSING_W.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiTestHttpPushUsingPOSTRequest
+ * @return ApiTestHttpPushUsingPOST1Request
  */
-func (a *TriggersAndActionsTestApiService) TestHttpPushUsingPOST(ctx _context.Context) ApiTestHttpPushUsingPOSTRequest {
-	return ApiTestHttpPushUsingPOSTRequest{
+func (a *TriggersAndActionsTestApiService) TestHttpPushUsingPOST1(ctx _context.Context) ApiTestHttpPushUsingPOST1Request {
+	return ApiTestHttpPushUsingPOST1Request{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -63,7 +63,7 @@ func (a *TriggersAndActionsTestApiService) TestHttpPushUsingPOST(ctx _context.Co
  * Execute executes the request
  * @return HttpPushTestResult
  */
-func (a *TriggersAndActionsTestApiService) TestHttpPushUsingPOSTExecute(r ApiTestHttpPushUsingPOSTRequest) (HttpPushTestResult, *_nethttp.Response, error) {
+func (a *TriggersAndActionsTestApiService) TestHttpPushUsingPOST1Execute(r ApiTestHttpPushUsingPOST1Request) (HttpPushTestResult, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -73,7 +73,7 @@ func (a *TriggersAndActionsTestApiService) TestHttpPushUsingPOSTExecute(r ApiTes
 		localVarReturnValue  HttpPushTestResult
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TriggersAndActionsTestApiService.TestHttpPushUsingPOST")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TriggersAndActionsTestApiService.TestHttpPushUsingPOST1")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}

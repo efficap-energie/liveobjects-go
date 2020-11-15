@@ -27,34 +27,34 @@ var (
 // DeviceManagementGroupsV1ApiService DeviceManagementGroupsV1Api service
 type DeviceManagementGroupsV1ApiService service
 
-type ApiCreateGroupUsingPOSTRequest struct {
+type ApiCreateGroupUsingPOST1Request struct {
 	ctx _context.Context
 	ApiService *DeviceManagementGroupsV1ApiService
 	xAPIKEY *string
 	request *GroupCreateRequest
 }
 
-func (r ApiCreateGroupUsingPOSTRequest) XAPIKEY(xAPIKEY string) ApiCreateGroupUsingPOSTRequest {
+func (r ApiCreateGroupUsingPOST1Request) XAPIKEY(xAPIKEY string) ApiCreateGroupUsingPOST1Request {
 	r.xAPIKEY = &xAPIKEY
 	return r
 }
-func (r ApiCreateGroupUsingPOSTRequest) Request(request GroupCreateRequest) ApiCreateGroupUsingPOSTRequest {
+func (r ApiCreateGroupUsingPOST1Request) Request(request GroupCreateRequest) ApiCreateGroupUsingPOST1Request {
 	r.request = &request
 	return r
 }
 
-func (r ApiCreateGroupUsingPOSTRequest) Execute() (Group, *_nethttp.Response, error) {
-	return r.ApiService.CreateGroupUsingPOSTExecute(r)
+func (r ApiCreateGroupUsingPOST1Request) Execute() (Group, *_nethttp.Response, error) {
+	return r.ApiService.CreateGroupUsingPOST1Execute(r)
 }
 
 /*
- * CreateGroupUsingPOST Create a group
+ * CreateGroupUsingPOST1 Create a group
  * Usage of this API will be reported in your access log under 'device_inventory' category.<br><br>Restricted to API keys with at least one of the following roles : DEVICE_W.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateGroupUsingPOSTRequest
+ * @return ApiCreateGroupUsingPOST1Request
  */
-func (a *DeviceManagementGroupsV1ApiService) CreateGroupUsingPOST(ctx _context.Context) ApiCreateGroupUsingPOSTRequest {
-	return ApiCreateGroupUsingPOSTRequest{
+func (a *DeviceManagementGroupsV1ApiService) CreateGroupUsingPOST1(ctx _context.Context) ApiCreateGroupUsingPOST1Request {
+	return ApiCreateGroupUsingPOST1Request{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -64,7 +64,7 @@ func (a *DeviceManagementGroupsV1ApiService) CreateGroupUsingPOST(ctx _context.C
  * Execute executes the request
  * @return Group
  */
-func (a *DeviceManagementGroupsV1ApiService) CreateGroupUsingPOSTExecute(r ApiCreateGroupUsingPOSTRequest) (Group, *_nethttp.Response, error) {
+func (a *DeviceManagementGroupsV1ApiService) CreateGroupUsingPOST1Execute(r ApiCreateGroupUsingPOST1Request) (Group, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -74,7 +74,7 @@ func (a *DeviceManagementGroupsV1ApiService) CreateGroupUsingPOSTExecute(r ApiCr
 		localVarReturnValue  Group
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceManagementGroupsV1ApiService.CreateGroupUsingPOST")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceManagementGroupsV1ApiService.CreateGroupUsingPOST1")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -183,31 +183,31 @@ func (a *DeviceManagementGroupsV1ApiService) CreateGroupUsingPOSTExecute(r ApiCr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteGroupUsingDELETERequest struct {
+type ApiDeleteGroupUsingDELETE1Request struct {
 	ctx _context.Context
 	ApiService *DeviceManagementGroupsV1ApiService
 	id string
 	xAPIKEY *string
 }
 
-func (r ApiDeleteGroupUsingDELETERequest) XAPIKEY(xAPIKEY string) ApiDeleteGroupUsingDELETERequest {
+func (r ApiDeleteGroupUsingDELETE1Request) XAPIKEY(xAPIKEY string) ApiDeleteGroupUsingDELETE1Request {
 	r.xAPIKEY = &xAPIKEY
 	return r
 }
 
-func (r ApiDeleteGroupUsingDELETERequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.DeleteGroupUsingDELETEExecute(r)
+func (r ApiDeleteGroupUsingDELETE1Request) Execute() (*_nethttp.Response, error) {
+	return r.ApiService.DeleteGroupUsingDELETE1Execute(r)
 }
 
 /*
- * DeleteGroupUsingDELETE Delete a group
+ * DeleteGroupUsingDELETE1 Delete a group
  * Usage of this API will be reported in your access log under 'device_inventory' category.<br><br>Restricted to API keys with at least one of the following roles : DEVICE_W.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id targeted for deletion group identifier. Expected string (max 6 characters)
- * @return ApiDeleteGroupUsingDELETERequest
+ * @return ApiDeleteGroupUsingDELETE1Request
  */
-func (a *DeviceManagementGroupsV1ApiService) DeleteGroupUsingDELETE(ctx _context.Context, id string) ApiDeleteGroupUsingDELETERequest {
-	return ApiDeleteGroupUsingDELETERequest{
+func (a *DeviceManagementGroupsV1ApiService) DeleteGroupUsingDELETE1(ctx _context.Context, id string) ApiDeleteGroupUsingDELETE1Request {
+	return ApiDeleteGroupUsingDELETE1Request{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -217,7 +217,7 @@ func (a *DeviceManagementGroupsV1ApiService) DeleteGroupUsingDELETE(ctx _context
 /*
  * Execute executes the request
  */
-func (a *DeviceManagementGroupsV1ApiService) DeleteGroupUsingDELETEExecute(r ApiDeleteGroupUsingDELETERequest) (*_nethttp.Response, error) {
+func (a *DeviceManagementGroupsV1ApiService) DeleteGroupUsingDELETE1Execute(r ApiDeleteGroupUsingDELETE1Request) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -226,7 +226,7 @@ func (a *DeviceManagementGroupsV1ApiService) DeleteGroupUsingDELETEExecute(r Api
 		localVarFileBytes    []byte
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceManagementGroupsV1ApiService.DeleteGroupUsingDELETE")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceManagementGroupsV1ApiService.DeleteGroupUsingDELETE1")
 	if err != nil {
 		return nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -315,31 +315,31 @@ func (a *DeviceManagementGroupsV1ApiService) DeleteGroupUsingDELETEExecute(r Api
 	return localVarHTTPResponse, nil
 }
 
-type ApiGetGroupUsingGETRequest struct {
+type ApiGetGroupUsingGET1Request struct {
 	ctx _context.Context
 	ApiService *DeviceManagementGroupsV1ApiService
 	id string
 	xAPIKEY *string
 }
 
-func (r ApiGetGroupUsingGETRequest) XAPIKEY(xAPIKEY string) ApiGetGroupUsingGETRequest {
+func (r ApiGetGroupUsingGET1Request) XAPIKEY(xAPIKEY string) ApiGetGroupUsingGET1Request {
 	r.xAPIKEY = &xAPIKEY
 	return r
 }
 
-func (r ApiGetGroupUsingGETRequest) Execute() (Group, *_nethttp.Response, error) {
-	return r.ApiService.GetGroupUsingGETExecute(r)
+func (r ApiGetGroupUsingGET1Request) Execute() (Group, *_nethttp.Response, error) {
+	return r.ApiService.GetGroupUsingGET1Execute(r)
 }
 
 /*
- * GetGroupUsingGET Get a group
+ * GetGroupUsingGET1 Get a group
  * Restricted to API keys with at least one of the following roles : DEVICE_R.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id the Group Identifier. Expected string (max 6 characters)
- * @return ApiGetGroupUsingGETRequest
+ * @return ApiGetGroupUsingGET1Request
  */
-func (a *DeviceManagementGroupsV1ApiService) GetGroupUsingGET(ctx _context.Context, id string) ApiGetGroupUsingGETRequest {
-	return ApiGetGroupUsingGETRequest{
+func (a *DeviceManagementGroupsV1ApiService) GetGroupUsingGET1(ctx _context.Context, id string) ApiGetGroupUsingGET1Request {
+	return ApiGetGroupUsingGET1Request{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -350,7 +350,7 @@ func (a *DeviceManagementGroupsV1ApiService) GetGroupUsingGET(ctx _context.Conte
  * Execute executes the request
  * @return Group
  */
-func (a *DeviceManagementGroupsV1ApiService) GetGroupUsingGETExecute(r ApiGetGroupUsingGETRequest) (Group, *_nethttp.Response, error) {
+func (a *DeviceManagementGroupsV1ApiService) GetGroupUsingGET1Execute(r ApiGetGroupUsingGET1Request) (Group, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -360,7 +360,7 @@ func (a *DeviceManagementGroupsV1ApiService) GetGroupUsingGETExecute(r ApiGetGro
 		localVarReturnValue  Group
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceManagementGroupsV1ApiService.GetGroupUsingGET")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceManagementGroupsV1ApiService.GetGroupUsingGET1")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -458,7 +458,7 @@ func (a *DeviceManagementGroupsV1ApiService) GetGroupUsingGETExecute(r ApiGetGro
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListGroupsUsingGETRequest struct {
+type ApiListGroupsUsingGET1Request struct {
 	ctx _context.Context
 	ApiService *DeviceManagementGroupsV1ApiService
 	xAPIKEY *string
@@ -468,39 +468,39 @@ type ApiListGroupsUsingGETRequest struct {
 	xTotalCount *bool
 }
 
-func (r ApiListGroupsUsingGETRequest) XAPIKEY(xAPIKEY string) ApiListGroupsUsingGETRequest {
+func (r ApiListGroupsUsingGET1Request) XAPIKEY(xAPIKEY string) ApiListGroupsUsingGET1Request {
 	r.xAPIKEY = &xAPIKEY
 	return r
 }
-func (r ApiListGroupsUsingGETRequest) Limit(limit int32) ApiListGroupsUsingGETRequest {
+func (r ApiListGroupsUsingGET1Request) Limit(limit int32) ApiListGroupsUsingGET1Request {
 	r.limit = &limit
 	return r
 }
-func (r ApiListGroupsUsingGETRequest) Offset(offset int32) ApiListGroupsUsingGETRequest {
+func (r ApiListGroupsUsingGET1Request) Offset(offset int32) ApiListGroupsUsingGET1Request {
 	r.offset = &offset
 	return r
 }
-func (r ApiListGroupsUsingGETRequest) ParentId(parentId string) ApiListGroupsUsingGETRequest {
+func (r ApiListGroupsUsingGET1Request) ParentId(parentId string) ApiListGroupsUsingGET1Request {
 	r.parentId = &parentId
 	return r
 }
-func (r ApiListGroupsUsingGETRequest) XTotalCount(xTotalCount bool) ApiListGroupsUsingGETRequest {
+func (r ApiListGroupsUsingGET1Request) XTotalCount(xTotalCount bool) ApiListGroupsUsingGET1Request {
 	r.xTotalCount = &xTotalCount
 	return r
 }
 
-func (r ApiListGroupsUsingGETRequest) Execute() ([]Group, *_nethttp.Response, error) {
-	return r.ApiService.ListGroupsUsingGETExecute(r)
+func (r ApiListGroupsUsingGET1Request) Execute() ([]Group, *_nethttp.Response, error) {
+	return r.ApiService.ListGroupsUsingGET1Execute(r)
 }
 
 /*
- * ListGroupsUsingGET List registered groups
+ * ListGroupsUsingGET1 List registered groups
  * Restricted to API keys with at least one of the following roles : DEVICE_R.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListGroupsUsingGETRequest
+ * @return ApiListGroupsUsingGET1Request
  */
-func (a *DeviceManagementGroupsV1ApiService) ListGroupsUsingGET(ctx _context.Context) ApiListGroupsUsingGETRequest {
-	return ApiListGroupsUsingGETRequest{
+func (a *DeviceManagementGroupsV1ApiService) ListGroupsUsingGET1(ctx _context.Context) ApiListGroupsUsingGET1Request {
+	return ApiListGroupsUsingGET1Request{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -510,7 +510,7 @@ func (a *DeviceManagementGroupsV1ApiService) ListGroupsUsingGET(ctx _context.Con
  * Execute executes the request
  * @return []Group
  */
-func (a *DeviceManagementGroupsV1ApiService) ListGroupsUsingGETExecute(r ApiListGroupsUsingGETRequest) ([]Group, *_nethttp.Response, error) {
+func (a *DeviceManagementGroupsV1ApiService) ListGroupsUsingGET1Execute(r ApiListGroupsUsingGET1Request) ([]Group, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -520,7 +520,7 @@ func (a *DeviceManagementGroupsV1ApiService) ListGroupsUsingGETExecute(r ApiList
 		localVarReturnValue  []Group
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceManagementGroupsV1ApiService.ListGroupsUsingGET")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceManagementGroupsV1ApiService.ListGroupsUsingGET1")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -619,7 +619,7 @@ func (a *DeviceManagementGroupsV1ApiService) ListGroupsUsingGETExecute(r ApiList
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateGroupUsingPUTRequest struct {
+type ApiUpdateGroupUsingPUT1Request struct {
 	ctx _context.Context
 	ApiService *DeviceManagementGroupsV1ApiService
 	id string
@@ -627,28 +627,28 @@ type ApiUpdateGroupUsingPUTRequest struct {
 	body *GroupUpdateRequest
 }
 
-func (r ApiUpdateGroupUsingPUTRequest) XAPIKEY(xAPIKEY string) ApiUpdateGroupUsingPUTRequest {
+func (r ApiUpdateGroupUsingPUT1Request) XAPIKEY(xAPIKEY string) ApiUpdateGroupUsingPUT1Request {
 	r.xAPIKEY = &xAPIKEY
 	return r
 }
-func (r ApiUpdateGroupUsingPUTRequest) Body(body GroupUpdateRequest) ApiUpdateGroupUsingPUTRequest {
+func (r ApiUpdateGroupUsingPUT1Request) Body(body GroupUpdateRequest) ApiUpdateGroupUsingPUT1Request {
 	r.body = &body
 	return r
 }
 
-func (r ApiUpdateGroupUsingPUTRequest) Execute() (Group, *_nethttp.Response, error) {
-	return r.ApiService.UpdateGroupUsingPUTExecute(r)
+func (r ApiUpdateGroupUsingPUT1Request) Execute() (Group, *_nethttp.Response, error) {
+	return r.ApiService.UpdateGroupUsingPUT1Execute(r)
 }
 
 /*
- * UpdateGroupUsingPUT Update a group
+ * UpdateGroupUsingPUT1 Update a group
  * Usage of this API will be reported in your access log under 'device_inventory' category.<br><br>Restricted to API keys with at least one of the following roles : DEVICE_W.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id identifier to update group. Expected string (max 6 characters)
- * @return ApiUpdateGroupUsingPUTRequest
+ * @return ApiUpdateGroupUsingPUT1Request
  */
-func (a *DeviceManagementGroupsV1ApiService) UpdateGroupUsingPUT(ctx _context.Context, id string) ApiUpdateGroupUsingPUTRequest {
-	return ApiUpdateGroupUsingPUTRequest{
+func (a *DeviceManagementGroupsV1ApiService) UpdateGroupUsingPUT1(ctx _context.Context, id string) ApiUpdateGroupUsingPUT1Request {
+	return ApiUpdateGroupUsingPUT1Request{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -659,7 +659,7 @@ func (a *DeviceManagementGroupsV1ApiService) UpdateGroupUsingPUT(ctx _context.Co
  * Execute executes the request
  * @return Group
  */
-func (a *DeviceManagementGroupsV1ApiService) UpdateGroupUsingPUTExecute(r ApiUpdateGroupUsingPUTRequest) (Group, *_nethttp.Response, error) {
+func (a *DeviceManagementGroupsV1ApiService) UpdateGroupUsingPUT1Execute(r ApiUpdateGroupUsingPUT1Request) (Group, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -669,7 +669,7 @@ func (a *DeviceManagementGroupsV1ApiService) UpdateGroupUsingPUTExecute(r ApiUpd
 		localVarReturnValue  Group
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceManagementGroupsV1ApiService.UpdateGroupUsingPUT")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeviceManagementGroupsV1ApiService.UpdateGroupUsingPUT1")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}

@@ -4,17 +4,17 @@ All URIs are relative to *https://liveobjects.orange-business.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateGroupUsingPOST**](DeviceManagementGroupsV1Api.md#CreateGroupUsingPOST) | **Post** /api/v1/deviceMgt/groups | Create a group
-[**DeleteGroupUsingDELETE**](DeviceManagementGroupsV1Api.md#DeleteGroupUsingDELETE) | **Delete** /api/v1/deviceMgt/groups/{id} | Delete a group
-[**GetGroupUsingGET**](DeviceManagementGroupsV1Api.md#GetGroupUsingGET) | **Get** /api/v1/deviceMgt/groups/{id} | Get a group
-[**ListGroupsUsingGET**](DeviceManagementGroupsV1Api.md#ListGroupsUsingGET) | **Get** /api/v1/deviceMgt/groups | List registered groups
-[**UpdateGroupUsingPUT**](DeviceManagementGroupsV1Api.md#UpdateGroupUsingPUT) | **Put** /api/v1/deviceMgt/groups/{id} | Update a group
+[**CreateGroupUsingPOST1**](DeviceManagementGroupsV1Api.md#CreateGroupUsingPOST1) | **Post** /api/v1/deviceMgt/groups | Create a group
+[**DeleteGroupUsingDELETE1**](DeviceManagementGroupsV1Api.md#DeleteGroupUsingDELETE1) | **Delete** /api/v1/deviceMgt/groups/{id} | Delete a group
+[**GetGroupUsingGET1**](DeviceManagementGroupsV1Api.md#GetGroupUsingGET1) | **Get** /api/v1/deviceMgt/groups/{id} | Get a group
+[**ListGroupsUsingGET1**](DeviceManagementGroupsV1Api.md#ListGroupsUsingGET1) | **Get** /api/v1/deviceMgt/groups | List registered groups
+[**UpdateGroupUsingPUT1**](DeviceManagementGroupsV1Api.md#UpdateGroupUsingPUT1) | **Put** /api/v1/deviceMgt/groups/{id} | Update a group
 
 
 
-## CreateGroupUsingPOST
+## CreateGroupUsingPOST1
 
-> Group CreateGroupUsingPOST(ctx).XAPIKEY(xAPIKEY).Request(request).Execute()
+> Group CreateGroupUsingPOST1(ctx).XAPIKEY(xAPIKEY).Request(request).Execute()
 
 Create a group
 
@@ -38,13 +38,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DeviceManagementGroupsV1Api.CreateGroupUsingPOST(context.Background()).XAPIKEY(xAPIKEY).Request(request).Execute()
+    resp, r, err := api_client.DeviceManagementGroupsV1Api.CreateGroupUsingPOST1(context.Background()).XAPIKEY(xAPIKEY).Request(request).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DeviceManagementGroupsV1Api.CreateGroupUsingPOST``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DeviceManagementGroupsV1Api.CreateGroupUsingPOST1``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateGroupUsingPOST`: Group
-    fmt.Fprintf(os.Stdout, "Response from `DeviceManagementGroupsV1Api.CreateGroupUsingPOST`: %v\n", resp)
+    // response from `CreateGroupUsingPOST1`: Group
+    fmt.Fprintf(os.Stdout, "Response from `DeviceManagementGroupsV1Api.CreateGroupUsingPOST1`: %v\n", resp)
 }
 ```
 
@@ -54,7 +54,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateGroupUsingPOSTRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateGroupUsingPOST1Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -80,9 +80,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## DeleteGroupUsingDELETE
+## DeleteGroupUsingDELETE1
 
-> DeleteGroupUsingDELETE(ctx, id).XAPIKEY(xAPIKEY).Execute()
+> DeleteGroupUsingDELETE1(ctx, id).XAPIKEY(xAPIKEY).Execute()
 
 Delete a group
 
@@ -106,9 +106,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DeviceManagementGroupsV1Api.DeleteGroupUsingDELETE(context.Background(), id).XAPIKEY(xAPIKEY).Execute()
+    resp, r, err := api_client.DeviceManagementGroupsV1Api.DeleteGroupUsingDELETE1(context.Background(), id).XAPIKEY(xAPIKEY).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DeviceManagementGroupsV1Api.DeleteGroupUsingDELETE``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DeviceManagementGroupsV1Api.DeleteGroupUsingDELETE1``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -124,7 +124,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeleteGroupUsingDELETERequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteGroupUsingDELETE1Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -150,9 +150,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## GetGroupUsingGET
+## GetGroupUsingGET1
 
-> Group GetGroupUsingGET(ctx, id).XAPIKEY(xAPIKEY).Execute()
+> Group GetGroupUsingGET1(ctx, id).XAPIKEY(xAPIKEY).Execute()
 
 Get a group
 
@@ -176,13 +176,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DeviceManagementGroupsV1Api.GetGroupUsingGET(context.Background(), id).XAPIKEY(xAPIKEY).Execute()
+    resp, r, err := api_client.DeviceManagementGroupsV1Api.GetGroupUsingGET1(context.Background(), id).XAPIKEY(xAPIKEY).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DeviceManagementGroupsV1Api.GetGroupUsingGET``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DeviceManagementGroupsV1Api.GetGroupUsingGET1``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetGroupUsingGET`: Group
-    fmt.Fprintf(os.Stdout, "Response from `DeviceManagementGroupsV1Api.GetGroupUsingGET`: %v\n", resp)
+    // response from `GetGroupUsingGET1`: Group
+    fmt.Fprintf(os.Stdout, "Response from `DeviceManagementGroupsV1Api.GetGroupUsingGET1`: %v\n", resp)
 }
 ```
 
@@ -196,7 +196,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetGroupUsingGETRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetGroupUsingGET1Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -222,9 +222,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## ListGroupsUsingGET
+## ListGroupsUsingGET1
 
-> []Group ListGroupsUsingGET(ctx).XAPIKEY(xAPIKEY).Limit(limit).Offset(offset).ParentId(parentId).XTotalCount(xTotalCount).Execute()
+> []Group ListGroupsUsingGET1(ctx).XAPIKEY(xAPIKEY).Limit(limit).Offset(offset).ParentId(parentId).XTotalCount(xTotalCount).Execute()
 
 List registered groups
 
@@ -251,13 +251,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DeviceManagementGroupsV1Api.ListGroupsUsingGET(context.Background()).XAPIKEY(xAPIKEY).Limit(limit).Offset(offset).ParentId(parentId).XTotalCount(xTotalCount).Execute()
+    resp, r, err := api_client.DeviceManagementGroupsV1Api.ListGroupsUsingGET1(context.Background()).XAPIKEY(xAPIKEY).Limit(limit).Offset(offset).ParentId(parentId).XTotalCount(xTotalCount).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DeviceManagementGroupsV1Api.ListGroupsUsingGET``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DeviceManagementGroupsV1Api.ListGroupsUsingGET1``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListGroupsUsingGET`: []Group
-    fmt.Fprintf(os.Stdout, "Response from `DeviceManagementGroupsV1Api.ListGroupsUsingGET`: %v\n", resp)
+    // response from `ListGroupsUsingGET1`: []Group
+    fmt.Fprintf(os.Stdout, "Response from `DeviceManagementGroupsV1Api.ListGroupsUsingGET1`: %v\n", resp)
 }
 ```
 
@@ -267,7 +267,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListGroupsUsingGETRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListGroupsUsingGET1Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -296,9 +296,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## UpdateGroupUsingPUT
+## UpdateGroupUsingPUT1
 
-> Group UpdateGroupUsingPUT(ctx, id).XAPIKEY(xAPIKEY).Body(body).Execute()
+> Group UpdateGroupUsingPUT1(ctx, id).XAPIKEY(xAPIKEY).Body(body).Execute()
 
 Update a group
 
@@ -323,13 +323,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DeviceManagementGroupsV1Api.UpdateGroupUsingPUT(context.Background(), id).XAPIKEY(xAPIKEY).Body(body).Execute()
+    resp, r, err := api_client.DeviceManagementGroupsV1Api.UpdateGroupUsingPUT1(context.Background(), id).XAPIKEY(xAPIKEY).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DeviceManagementGroupsV1Api.UpdateGroupUsingPUT``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DeviceManagementGroupsV1Api.UpdateGroupUsingPUT1``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateGroupUsingPUT`: Group
-    fmt.Fprintf(os.Stdout, "Response from `DeviceManagementGroupsV1Api.UpdateGroupUsingPUT`: %v\n", resp)
+    // response from `UpdateGroupUsingPUT1`: Group
+    fmt.Fprintf(os.Stdout, "Response from `DeviceManagementGroupsV1Api.UpdateGroupUsingPUT1`: %v\n", resp)
 }
 ```
 
@@ -343,7 +343,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateGroupUsingPUTRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateGroupUsingPUT1Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes

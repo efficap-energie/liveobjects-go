@@ -18,34 +18,34 @@ import (
 // Group struct for Group
 type Group struct {
 	// Date/time when group was first registered
-	CreationTs int64 `json:"creationTs"`
-	// group description
+	Created string `json:"created"`
+	// Group description
 	Description string `json:"description"`
 	// Group identifier
-	GroupId string `json:"groupId"`
-	// Date/time when group status has been lastly updated
-	LastUpdateTs int64 `json:"lastUpdateTs"`
-	// parent
-	Parent string `json:"parent"`
-	// path
+	Id string `json:"id"`
+	// Parent group identifier
+	ParentId string `json:"parentId"`
+	// Path
 	Path string `json:"path"`
-	// path node
+	// Path node
 	PathNode string `json:"pathNode"`
+	// Date/time when group status has been lastly updated
+	Updated string `json:"updated"`
 }
 
 // NewGroup instantiates a new Group object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGroup(creationTs int64, description string, groupId string, lastUpdateTs int64, parent string, path string, pathNode string, ) *Group {
+func NewGroup(created string, description string, id string, parentId string, path string, pathNode string, updated string, ) *Group {
 	this := Group{}
-	this.CreationTs = creationTs
+	this.Created = created
 	this.Description = description
-	this.GroupId = groupId
-	this.LastUpdateTs = lastUpdateTs
-	this.Parent = parent
+	this.Id = id
+	this.ParentId = parentId
 	this.Path = path
 	this.PathNode = pathNode
+	this.Updated = updated
 	return &this
 }
 
@@ -57,28 +57,28 @@ func NewGroupWithDefaults() *Group {
 	return &this
 }
 
-// GetCreationTs returns the CreationTs field value
-func (o *Group) GetCreationTs() int64 {
+// GetCreated returns the Created field value
+func (o *Group) GetCreated() string {
 	if o == nil  {
-		var ret int64
+		var ret string
 		return ret
 	}
 
-	return o.CreationTs
+	return o.Created
 }
 
-// GetCreationTsOk returns a tuple with the CreationTs field value
+// GetCreatedOk returns a tuple with the Created field value
 // and a boolean to check if the value has been set.
-func (o *Group) GetCreationTsOk() (*int64, bool) {
+func (o *Group) GetCreatedOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.CreationTs, true
+	return &o.Created, true
 }
 
-// SetCreationTs sets field value
-func (o *Group) SetCreationTs(v int64) {
-	o.CreationTs = v
+// SetCreated sets field value
+func (o *Group) SetCreated(v string) {
+	o.Created = v
 }
 
 // GetDescription returns the Description field value
@@ -105,76 +105,52 @@ func (o *Group) SetDescription(v string) {
 	o.Description = v
 }
 
-// GetGroupId returns the GroupId field value
-func (o *Group) GetGroupId() string {
+// GetId returns the Id field value
+func (o *Group) GetId() string {
 	if o == nil  {
 		var ret string
 		return ret
 	}
 
-	return o.GroupId
+	return o.Id
 }
 
-// GetGroupIdOk returns a tuple with the GroupId field value
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Group) GetGroupIdOk() (*string, bool) {
+func (o *Group) GetIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.GroupId, true
+	return &o.Id, true
 }
 
-// SetGroupId sets field value
-func (o *Group) SetGroupId(v string) {
-	o.GroupId = v
+// SetId sets field value
+func (o *Group) SetId(v string) {
+	o.Id = v
 }
 
-// GetLastUpdateTs returns the LastUpdateTs field value
-func (o *Group) GetLastUpdateTs() int64 {
-	if o == nil  {
-		var ret int64
-		return ret
-	}
-
-	return o.LastUpdateTs
-}
-
-// GetLastUpdateTsOk returns a tuple with the LastUpdateTs field value
-// and a boolean to check if the value has been set.
-func (o *Group) GetLastUpdateTsOk() (*int64, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.LastUpdateTs, true
-}
-
-// SetLastUpdateTs sets field value
-func (o *Group) SetLastUpdateTs(v int64) {
-	o.LastUpdateTs = v
-}
-
-// GetParent returns the Parent field value
-func (o *Group) GetParent() string {
+// GetParentId returns the ParentId field value
+func (o *Group) GetParentId() string {
 	if o == nil  {
 		var ret string
 		return ret
 	}
 
-	return o.Parent
+	return o.ParentId
 }
 
-// GetParentOk returns a tuple with the Parent field value
+// GetParentIdOk returns a tuple with the ParentId field value
 // and a boolean to check if the value has been set.
-func (o *Group) GetParentOk() (*string, bool) {
+func (o *Group) GetParentIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
-	return &o.Parent, true
+	return &o.ParentId, true
 }
 
-// SetParent sets field value
-func (o *Group) SetParent(v string) {
-	o.Parent = v
+// SetParentId sets field value
+func (o *Group) SetParentId(v string) {
+	o.ParentId = v
 }
 
 // GetPath returns the Path field value
@@ -225,28 +201,52 @@ func (o *Group) SetPathNode(v string) {
 	o.PathNode = v
 }
 
+// GetUpdated returns the Updated field value
+func (o *Group) GetUpdated() string {
+	if o == nil  {
+		var ret string
+		return ret
+	}
+
+	return o.Updated
+}
+
+// GetUpdatedOk returns a tuple with the Updated field value
+// and a boolean to check if the value has been set.
+func (o *Group) GetUpdatedOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Updated, true
+}
+
+// SetUpdated sets field value
+func (o *Group) SetUpdated(v string) {
+	o.Updated = v
+}
+
 func (o Group) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["creationTs"] = o.CreationTs
+		toSerialize["created"] = o.Created
 	}
 	if true {
 		toSerialize["description"] = o.Description
 	}
 	if true {
-		toSerialize["groupId"] = o.GroupId
+		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["lastUpdateTs"] = o.LastUpdateTs
-	}
-	if true {
-		toSerialize["parent"] = o.Parent
+		toSerialize["parentId"] = o.ParentId
 	}
 	if true {
 		toSerialize["path"] = o.Path
 	}
 	if true {
 		toSerialize["pathNode"] = o.PathNode
+	}
+	if true {
+		toSerialize["updated"] = o.Updated
 	}
 	return json.Marshal(toSerialize)
 }

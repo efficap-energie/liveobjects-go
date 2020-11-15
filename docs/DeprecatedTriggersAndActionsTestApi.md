@@ -4,13 +4,13 @@ All URIs are relative to *https://liveobjects.orange-business.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**TestHttpPushUsingPOST1**](DeprecatedTriggersAndActionsTestApi.md#TestHttpPushUsingPOST1) | **Post** /api/v0/event2action/test/http-push | Post an http request for testing a webhook
+[**TestHttpPushUsingPOST**](DeprecatedTriggersAndActionsTestApi.md#TestHttpPushUsingPOST) | **Post** /api/v0/event2action/test/http-push | Post an http request for testing a webhook
 
 
 
-## TestHttpPushUsingPOST1
+## TestHttpPushUsingPOST
 
-> HttpPushTestResult TestHttpPushUsingPOST1(ctx).XAPIKEY(xAPIKEY).Req(req).Execute()
+> HttpPushTestResult TestHttpPushUsingPOST(ctx).XAPIKEY(xAPIKEY).Req(req).Execute()
 
 Post an http request for testing a webhook
 
@@ -34,13 +34,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DeprecatedTriggersAndActionsTestApi.TestHttpPushUsingPOST1(context.Background()).XAPIKEY(xAPIKEY).Req(req).Execute()
+    resp, r, err := api_client.DeprecatedTriggersAndActionsTestApi.TestHttpPushUsingPOST(context.Background()).XAPIKEY(xAPIKEY).Req(req).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedTriggersAndActionsTestApi.TestHttpPushUsingPOST1``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DeprecatedTriggersAndActionsTestApi.TestHttpPushUsingPOST``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `TestHttpPushUsingPOST1`: HttpPushTestResult
-    fmt.Fprintf(os.Stdout, "Response from `DeprecatedTriggersAndActionsTestApi.TestHttpPushUsingPOST1`: %v\n", resp)
+    // response from `TestHttpPushUsingPOST`: HttpPushTestResult
+    fmt.Fprintf(os.Stdout, "Response from `DeprecatedTriggersAndActionsTestApi.TestHttpPushUsingPOST`: %v\n", resp)
 }
 ```
 
@@ -50,7 +50,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTestHttpPushUsingPOST1Request struct via the builder pattern
+Other parameters are passed through a pointer to a apiTestHttpPushUsingPOSTRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

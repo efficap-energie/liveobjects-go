@@ -20,7 +20,7 @@ type GroupCreateRequest struct {
 	// group description. Expected string (max 255 characters)
 	Description *string `json:"description,omitempty"`
 	// reference to group's parent (id). Expected string (max 6 characters)
-	Parent *string `json:"parent,omitempty"`
+	ParentId *string `json:"parentId,omitempty"`
 	// group's local id in path (unique for groups in same parent).Authorized: letter (lowercase and uppercase), accented characters, number, space, dash, underscore and simple quote. A valid path must respect the following regular expression <code>^[\\wÀ-ÖØ-öø-ÿ' -]{1,255}</code>.Expected string (max 255 characters)
 	PathNode string `json:"pathNode"`
 }
@@ -75,36 +75,36 @@ func (o *GroupCreateRequest) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetParent returns the Parent field value if set, zero value otherwise.
-func (o *GroupCreateRequest) GetParent() string {
-	if o == nil || o.Parent == nil {
+// GetParentId returns the ParentId field value if set, zero value otherwise.
+func (o *GroupCreateRequest) GetParentId() string {
+	if o == nil || o.ParentId == nil {
 		var ret string
 		return ret
 	}
-	return *o.Parent
+	return *o.ParentId
 }
 
-// GetParentOk returns a tuple with the Parent field value if set, nil otherwise
+// GetParentIdOk returns a tuple with the ParentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GroupCreateRequest) GetParentOk() (*string, bool) {
-	if o == nil || o.Parent == nil {
+func (o *GroupCreateRequest) GetParentIdOk() (*string, bool) {
+	if o == nil || o.ParentId == nil {
 		return nil, false
 	}
-	return o.Parent, true
+	return o.ParentId, true
 }
 
-// HasParent returns a boolean if a field has been set.
-func (o *GroupCreateRequest) HasParent() bool {
-	if o != nil && o.Parent != nil {
+// HasParentId returns a boolean if a field has been set.
+func (o *GroupCreateRequest) HasParentId() bool {
+	if o != nil && o.ParentId != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetParent gets a reference to the given string and assigns it to the Parent field.
-func (o *GroupCreateRequest) SetParent(v string) {
-	o.Parent = &v
+// SetParentId gets a reference to the given string and assigns it to the ParentId field.
+func (o *GroupCreateRequest) SetParentId(v string) {
+	o.ParentId = &v
 }
 
 // GetPathNode returns the PathNode field value
@@ -136,8 +136,8 @@ func (o GroupCreateRequest) MarshalJSON() ([]byte, error) {
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	if o.Parent != nil {
-		toSerialize["parent"] = o.Parent
+	if o.ParentId != nil {
+		toSerialize["parentId"] = o.ParentId
 	}
 	if true {
 		toSerialize["pathNode"] = o.PathNode

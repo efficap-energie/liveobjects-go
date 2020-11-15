@@ -27,34 +27,34 @@ var (
 // DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApi service
 type DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService service
 
-type ApiCreateGroupUsingPOST1Request struct {
+type ApiCreateGroupUsingPOSTRequest struct {
 	ctx _context.Context
 	ApiService *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService
 	xAPIKEY *string
 	request *GroupCreateRequest
 }
 
-func (r ApiCreateGroupUsingPOST1Request) XAPIKEY(xAPIKEY string) ApiCreateGroupUsingPOST1Request {
+func (r ApiCreateGroupUsingPOSTRequest) XAPIKEY(xAPIKEY string) ApiCreateGroupUsingPOSTRequest {
 	r.xAPIKEY = &xAPIKEY
 	return r
 }
-func (r ApiCreateGroupUsingPOST1Request) Request(request GroupCreateRequest) ApiCreateGroupUsingPOST1Request {
+func (r ApiCreateGroupUsingPOSTRequest) Request(request GroupCreateRequest) ApiCreateGroupUsingPOSTRequest {
 	r.request = &request
 	return r
 }
 
-func (r ApiCreateGroupUsingPOST1Request) Execute() (Group, *_nethttp.Response, error) {
-	return r.ApiService.CreateGroupUsingPOST1Execute(r)
+func (r ApiCreateGroupUsingPOSTRequest) Execute() (Group, *_nethttp.Response, error) {
+	return r.ApiService.CreateGroupUsingPOSTExecute(r)
 }
 
 /*
- * CreateGroupUsingPOST1 Create a group
+ * CreateGroupUsingPOST Create a group
  * Usage of this API will be reported in your access log under 'device_inventory' category.<br><br>Restricted to API keys with at least one of the following roles : DEVICE_W.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateGroupUsingPOST1Request
+ * @return ApiCreateGroupUsingPOSTRequest
  */
-func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService) CreateGroupUsingPOST1(ctx _context.Context) ApiCreateGroupUsingPOST1Request {
-	return ApiCreateGroupUsingPOST1Request{
+func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService) CreateGroupUsingPOST(ctx _context.Context) ApiCreateGroupUsingPOSTRequest {
+	return ApiCreateGroupUsingPOSTRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -64,7 +64,7 @@ func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService
  * Execute executes the request
  * @return Group
  */
-func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService) CreateGroupUsingPOST1Execute(r ApiCreateGroupUsingPOST1Request) (Group, *_nethttp.Response, error) {
+func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService) CreateGroupUsingPOSTExecute(r ApiCreateGroupUsingPOSTRequest) (Group, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -74,7 +74,7 @@ func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService
 		localVarReturnValue  Group
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService.CreateGroupUsingPOST1")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService.CreateGroupUsingPOST")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -183,31 +183,31 @@ func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteGroupUsingDELETE1Request struct {
+type ApiDeleteGroupUsingDELETERequest struct {
 	ctx _context.Context
 	ApiService *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService
 	groupId string
 	xAPIKEY *string
 }
 
-func (r ApiDeleteGroupUsingDELETE1Request) XAPIKEY(xAPIKEY string) ApiDeleteGroupUsingDELETE1Request {
+func (r ApiDeleteGroupUsingDELETERequest) XAPIKEY(xAPIKEY string) ApiDeleteGroupUsingDELETERequest {
 	r.xAPIKEY = &xAPIKEY
 	return r
 }
 
-func (r ApiDeleteGroupUsingDELETE1Request) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.DeleteGroupUsingDELETE1Execute(r)
+func (r ApiDeleteGroupUsingDELETERequest) Execute() (*_nethttp.Response, error) {
+	return r.ApiService.DeleteGroupUsingDELETEExecute(r)
 }
 
 /*
- * DeleteGroupUsingDELETE1 Delete a group
+ * DeleteGroupUsingDELETE Delete a group
  * Usage of this API will be reported in your access log under 'device_inventory' category.<br><br>Restricted to API keys with at least one of the following roles : DEVICE_W.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param groupId targeted for deletion group identifier. Expected string (max 6 characters)
- * @return ApiDeleteGroupUsingDELETE1Request
+ * @return ApiDeleteGroupUsingDELETERequest
  */
-func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService) DeleteGroupUsingDELETE1(ctx _context.Context, groupId string) ApiDeleteGroupUsingDELETE1Request {
-	return ApiDeleteGroupUsingDELETE1Request{
+func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService) DeleteGroupUsingDELETE(ctx _context.Context, groupId string) ApiDeleteGroupUsingDELETERequest {
+	return ApiDeleteGroupUsingDELETERequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -217,7 +217,7 @@ func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService
 /*
  * Execute executes the request
  */
-func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService) DeleteGroupUsingDELETE1Execute(r ApiDeleteGroupUsingDELETE1Request) (*_nethttp.Response, error) {
+func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService) DeleteGroupUsingDELETEExecute(r ApiDeleteGroupUsingDELETERequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -226,7 +226,7 @@ func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService
 		localVarFileBytes    []byte
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService.DeleteGroupUsingDELETE1")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService.DeleteGroupUsingDELETE")
 	if err != nil {
 		return nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -315,31 +315,31 @@ func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService
 	return localVarHTTPResponse, nil
 }
 
-type ApiGetGroupUsingGET1Request struct {
+type ApiGetGroupUsingGETRequest struct {
 	ctx _context.Context
 	ApiService *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService
 	groupId string
 	xAPIKEY *string
 }
 
-func (r ApiGetGroupUsingGET1Request) XAPIKEY(xAPIKEY string) ApiGetGroupUsingGET1Request {
+func (r ApiGetGroupUsingGETRequest) XAPIKEY(xAPIKEY string) ApiGetGroupUsingGETRequest {
 	r.xAPIKEY = &xAPIKEY
 	return r
 }
 
-func (r ApiGetGroupUsingGET1Request) Execute() (Group, *_nethttp.Response, error) {
-	return r.ApiService.GetGroupUsingGET1Execute(r)
+func (r ApiGetGroupUsingGETRequest) Execute() (Group, *_nethttp.Response, error) {
+	return r.ApiService.GetGroupUsingGETExecute(r)
 }
 
 /*
- * GetGroupUsingGET1 Get a group
+ * GetGroupUsingGET Get a group
  * Restricted to API keys with at least one of the following roles : DEVICE_R.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param groupId the Group Identifier. Expected string (max 6 characters)
- * @return ApiGetGroupUsingGET1Request
+ * @return ApiGetGroupUsingGETRequest
  */
-func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService) GetGroupUsingGET1(ctx _context.Context, groupId string) ApiGetGroupUsingGET1Request {
-	return ApiGetGroupUsingGET1Request{
+func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService) GetGroupUsingGET(ctx _context.Context, groupId string) ApiGetGroupUsingGETRequest {
+	return ApiGetGroupUsingGETRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -350,7 +350,7 @@ func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService
  * Execute executes the request
  * @return Group
  */
-func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService) GetGroupUsingGET1Execute(r ApiGetGroupUsingGET1Request) (Group, *_nethttp.Response, error) {
+func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService) GetGroupUsingGETExecute(r ApiGetGroupUsingGETRequest) (Group, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -360,7 +360,7 @@ func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService
 		localVarReturnValue  Group
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService.GetGroupUsingGET1")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService.GetGroupUsingGET")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -458,7 +458,7 @@ func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListGroupsUsingGET1Request struct {
+type ApiListGroupsUsingGETRequest struct {
 	ctx _context.Context
 	ApiService *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService
 	xAPIKEY *string
@@ -467,35 +467,35 @@ type ApiListGroupsUsingGET1Request struct {
 	parent *string
 }
 
-func (r ApiListGroupsUsingGET1Request) XAPIKEY(xAPIKEY string) ApiListGroupsUsingGET1Request {
+func (r ApiListGroupsUsingGETRequest) XAPIKEY(xAPIKEY string) ApiListGroupsUsingGETRequest {
 	r.xAPIKEY = &xAPIKEY
 	return r
 }
-func (r ApiListGroupsUsingGET1Request) Size(size int64) ApiListGroupsUsingGET1Request {
+func (r ApiListGroupsUsingGETRequest) Size(size int64) ApiListGroupsUsingGETRequest {
 	r.size = &size
 	return r
 }
-func (r ApiListGroupsUsingGET1Request) Page(page int64) ApiListGroupsUsingGET1Request {
+func (r ApiListGroupsUsingGETRequest) Page(page int64) ApiListGroupsUsingGETRequest {
 	r.page = &page
 	return r
 }
-func (r ApiListGroupsUsingGET1Request) Parent(parent string) ApiListGroupsUsingGET1Request {
+func (r ApiListGroupsUsingGETRequest) Parent(parent string) ApiListGroupsUsingGETRequest {
 	r.parent = &parent
 	return r
 }
 
-func (r ApiListGroupsUsingGET1Request) Execute() (PageableGroup, *_nethttp.Response, error) {
-	return r.ApiService.ListGroupsUsingGET1Execute(r)
+func (r ApiListGroupsUsingGETRequest) Execute() (PageableGroup, *_nethttp.Response, error) {
+	return r.ApiService.ListGroupsUsingGETExecute(r)
 }
 
 /*
- * ListGroupsUsingGET1 List registered groups
+ * ListGroupsUsingGET List registered groups
  * Restricted to API keys with at least one of the following roles : DEVICE_R.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListGroupsUsingGET1Request
+ * @return ApiListGroupsUsingGETRequest
  */
-func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService) ListGroupsUsingGET1(ctx _context.Context) ApiListGroupsUsingGET1Request {
-	return ApiListGroupsUsingGET1Request{
+func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService) ListGroupsUsingGET(ctx _context.Context) ApiListGroupsUsingGETRequest {
+	return ApiListGroupsUsingGETRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -505,7 +505,7 @@ func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService
  * Execute executes the request
  * @return PageableGroup
  */
-func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService) ListGroupsUsingGET1Execute(r ApiListGroupsUsingGET1Request) (PageableGroup, *_nethttp.Response, error) {
+func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService) ListGroupsUsingGETExecute(r ApiListGroupsUsingGETRequest) (PageableGroup, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -515,7 +515,7 @@ func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService
 		localVarReturnValue  PageableGroup
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService.ListGroupsUsingGET1")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService.ListGroupsUsingGET")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -611,7 +611,7 @@ func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateGroupUsingPUT1Request struct {
+type ApiUpdateGroupUsingPUTRequest struct {
 	ctx _context.Context
 	ApiService *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService
 	groupId string
@@ -619,28 +619,28 @@ type ApiUpdateGroupUsingPUT1Request struct {
 	body *GroupUpdateRequest
 }
 
-func (r ApiUpdateGroupUsingPUT1Request) XAPIKEY(xAPIKEY string) ApiUpdateGroupUsingPUT1Request {
+func (r ApiUpdateGroupUsingPUTRequest) XAPIKEY(xAPIKEY string) ApiUpdateGroupUsingPUTRequest {
 	r.xAPIKEY = &xAPIKEY
 	return r
 }
-func (r ApiUpdateGroupUsingPUT1Request) Body(body GroupUpdateRequest) ApiUpdateGroupUsingPUT1Request {
+func (r ApiUpdateGroupUsingPUTRequest) Body(body GroupUpdateRequest) ApiUpdateGroupUsingPUTRequest {
 	r.body = &body
 	return r
 }
 
-func (r ApiUpdateGroupUsingPUT1Request) Execute() (Group, *_nethttp.Response, error) {
-	return r.ApiService.UpdateGroupUsingPUT1Execute(r)
+func (r ApiUpdateGroupUsingPUTRequest) Execute() (Group, *_nethttp.Response, error) {
+	return r.ApiService.UpdateGroupUsingPUTExecute(r)
 }
 
 /*
- * UpdateGroupUsingPUT1 Update a group
+ * UpdateGroupUsingPUT Update a group
  * Usage of this API will be reported in your access log under 'device_inventory' category.<br><br>Restricted to API keys with at least one of the following roles : DEVICE_W.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param groupId identifier to update group. Expected string (max 6 characters)
- * @return ApiUpdateGroupUsingPUT1Request
+ * @return ApiUpdateGroupUsingPUTRequest
  */
-func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService) UpdateGroupUsingPUT1(ctx _context.Context, groupId string) ApiUpdateGroupUsingPUT1Request {
-	return ApiUpdateGroupUsingPUT1Request{
+func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService) UpdateGroupUsingPUT(ctx _context.Context, groupId string) ApiUpdateGroupUsingPUTRequest {
+	return ApiUpdateGroupUsingPUTRequest{
 		ApiService: a,
 		ctx: ctx,
 		groupId: groupId,
@@ -651,7 +651,7 @@ func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService
  * Execute executes the request
  * @return Group
  */
-func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService) UpdateGroupUsingPUT1Execute(r ApiUpdateGroupUsingPUT1Request) (Group, *_nethttp.Response, error) {
+func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService) UpdateGroupUsingPUTExecute(r ApiUpdateGroupUsingPUTRequest) (Group, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -661,7 +661,7 @@ func (a *DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService
 		localVarReturnValue  Group
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService.UpdateGroupUsingPUT1")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedGroupManagementV0UseDeviceManagementGroupsV1InsteadApiService.UpdateGroupUsingPUT")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}

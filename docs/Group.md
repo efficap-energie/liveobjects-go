@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreationTs** | **int64** | Date/time when group was first registered | 
-**Description** | **string** | group description | 
-**GroupId** | **string** | Group identifier | 
-**LastUpdateTs** | **int64** | Date/time when group status has been lastly updated | 
-**Parent** | **string** | parent | 
-**Path** | **string** | path | 
-**PathNode** | **string** | path node | 
+**Created** | **string** | Date/time when group was first registered | 
+**Description** | **string** | Group description | 
+**Id** | **string** | Group identifier | 
+**ParentId** | **string** | Parent group identifier | 
+**Path** | **string** | Path | 
+**PathNode** | **string** | Path node | 
+**Updated** | **string** | Date/time when group status has been lastly updated | 
 
 ## Methods
 
 ### NewGroup
 
-`func NewGroup(creationTs int64, description string, groupId string, lastUpdateTs int64, parent string, path string, pathNode string, ) *Group`
+`func NewGroup(created string, description string, id string, parentId string, path string, pathNode string, updated string, ) *Group`
 
 NewGroup instantiates a new Group object
 This constructor will assign default values to properties that have it defined,
@@ -31,24 +31,24 @@ NewGroupWithDefaults instantiates a new Group object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetCreationTs
+### GetCreated
 
-`func (o *Group) GetCreationTs() int64`
+`func (o *Group) GetCreated() string`
 
-GetCreationTs returns the CreationTs field if non-nil, zero value otherwise.
+GetCreated returns the Created field if non-nil, zero value otherwise.
 
-### GetCreationTsOk
+### GetCreatedOk
 
-`func (o *Group) GetCreationTsOk() (*int64, bool)`
+`func (o *Group) GetCreatedOk() (*string, bool)`
 
-GetCreationTsOk returns a tuple with the CreationTs field if it's non-nil, zero value otherwise
+GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCreationTs
+### SetCreated
 
-`func (o *Group) SetCreationTs(v int64)`
+`func (o *Group) SetCreated(v string)`
 
-SetCreationTs sets CreationTs field to given value.
+SetCreated sets Created field to given value.
 
 
 ### GetDescription
@@ -71,64 +71,44 @@ and a boolean to check if the value has been set.
 SetDescription sets Description field to given value.
 
 
-### GetGroupId
+### GetId
 
-`func (o *Group) GetGroupId() string`
+`func (o *Group) GetId() string`
 
-GetGroupId returns the GroupId field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetGroupIdOk
+### GetIdOk
 
-`func (o *Group) GetGroupIdOk() (*string, bool)`
+`func (o *Group) GetIdOk() (*string, bool)`
 
-GetGroupIdOk returns a tuple with the GroupId field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetGroupId
+### SetId
 
-`func (o *Group) SetGroupId(v string)`
+`func (o *Group) SetId(v string)`
 
-SetGroupId sets GroupId field to given value.
+SetId sets Id field to given value.
 
 
-### GetLastUpdateTs
+### GetParentId
 
-`func (o *Group) GetLastUpdateTs() int64`
+`func (o *Group) GetParentId() string`
 
-GetLastUpdateTs returns the LastUpdateTs field if non-nil, zero value otherwise.
+GetParentId returns the ParentId field if non-nil, zero value otherwise.
 
-### GetLastUpdateTsOk
+### GetParentIdOk
 
-`func (o *Group) GetLastUpdateTsOk() (*int64, bool)`
+`func (o *Group) GetParentIdOk() (*string, bool)`
 
-GetLastUpdateTsOk returns a tuple with the LastUpdateTs field if it's non-nil, zero value otherwise
+GetParentIdOk returns a tuple with the ParentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLastUpdateTs
+### SetParentId
 
-`func (o *Group) SetLastUpdateTs(v int64)`
+`func (o *Group) SetParentId(v string)`
 
-SetLastUpdateTs sets LastUpdateTs field to given value.
-
-
-### GetParent
-
-`func (o *Group) GetParent() string`
-
-GetParent returns the Parent field if non-nil, zero value otherwise.
-
-### GetParentOk
-
-`func (o *Group) GetParentOk() (*string, bool)`
-
-GetParentOk returns a tuple with the Parent field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetParent
-
-`func (o *Group) SetParent(v string)`
-
-SetParent sets Parent field to given value.
+SetParentId sets ParentId field to given value.
 
 
 ### GetPath
@@ -169,6 +149,26 @@ and a boolean to check if the value has been set.
 `func (o *Group) SetPathNode(v string)`
 
 SetPathNode sets PathNode field to given value.
+
+
+### GetUpdated
+
+`func (o *Group) GetUpdated() string`
+
+GetUpdated returns the Updated field if non-nil, zero value otherwise.
+
+### GetUpdatedOk
+
+`func (o *Group) GetUpdatedOk() (*string, bool)`
+
+GetUpdatedOk returns a tuple with the Updated field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdated
+
+`func (o *Group) SetUpdated(v string)`
+
+SetUpdated sets Updated field to given value.
 
 
 

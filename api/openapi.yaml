@@ -193,7 +193,7 @@ tags:
   name: event-processing-state-processing-controller
 - description: FIFO management and publication
   name: fifo-controller
-- description: Group management
+- description: group management
   name: group-controller
 - description: assets inventory
   name: inventory-asset-namespaces-controller
@@ -3305,7 +3305,7 @@ paths:
     post:
       description: 'Restricted to API keys with at least one of the following roles
         : DATA_PROCESSING_W.'
-      operationId: testHttpPushUsingPOST_1
+      operationId: testHttpPushUsingPOST
       parameters:
       - description: a valid API key
         in: header
@@ -4475,7 +4475,7 @@ paths:
     get:
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
-      operationId: listGroupsUsingGET_1
+      operationId: listGroupsUsingGET
       parameters:
       - description: the maximum number of items per page (optional, highest value
           is 1000)
@@ -4529,7 +4529,7 @@ paths:
       description: 'Usage of this API will be reported in your access log under ''device_inventory''
         category.<br><br>Restricted to API keys with at least one of the following
         roles : DEVICE_W.'
-      operationId: createGroupUsingPOST_1
+      operationId: createGroupUsingPOST
       parameters:
       - description: a valid API key
         in: header
@@ -4585,7 +4585,7 @@ paths:
       description: 'Usage of this API will be reported in your access log under ''device_inventory''
         category.<br><br>Restricted to API keys with at least one of the following
         roles : DEVICE_W.'
-      operationId: deleteGroupUsingDELETE_1
+      operationId: deleteGroupUsingDELETE
       parameters:
       - description: targeted for deletion group identifier. Expected string (max
           6 characters)
@@ -4628,7 +4628,7 @@ paths:
     get:
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
-      operationId: getGroupUsingGET_1
+      operationId: getGroupUsingGET
       parameters:
       - description: the Group Identifier. Expected string (max 6 characters)
         in: path
@@ -4674,7 +4674,7 @@ paths:
       description: 'Usage of this API will be reported in your access log under ''device_inventory''
         category.<br><br>Restricted to API keys with at least one of the following
         roles : DEVICE_W.'
-      operationId: updateGroupUsingPUT_1
+      operationId: updateGroupUsingPUT
       parameters:
       - description: identifier to update group. Expected string (max 6 characters)
         in: path
@@ -11237,7 +11237,7 @@ paths:
     get:
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
-      operationId: listGroupsUsingGET
+      operationId: listGroupsUsingGET_1
       parameters:
       - description: the maximum number of items per page (optional)
         in: query
@@ -11298,7 +11298,7 @@ paths:
       description: 'Usage of this API will be reported in your access log under ''device_inventory''
         category.<br><br>Restricted to API keys with at least one of the following
         roles : DEVICE_W.'
-      operationId: createGroupUsingPOST
+      operationId: createGroupUsingPOST_1
       parameters:
       - description: a valid API key
         in: header
@@ -11354,7 +11354,7 @@ paths:
       description: 'Usage of this API will be reported in your access log under ''device_inventory''
         category.<br><br>Restricted to API keys with at least one of the following
         roles : DEVICE_W.'
-      operationId: deleteGroupUsingDELETE
+      operationId: deleteGroupUsingDELETE_1
       parameters:
       - description: targeted for deletion group identifier. Expected string (max
           6 characters)
@@ -11397,7 +11397,7 @@ paths:
     get:
       description: 'Restricted to API keys with at least one of the following roles
         : DEVICE_R.'
-      operationId: getGroupUsingGET
+      operationId: getGroupUsingGET_1
       parameters:
       - description: the Group Identifier. Expected string (max 6 characters)
         in: path
@@ -11443,7 +11443,7 @@ paths:
       description: 'Usage of this API will be reported in your access log under ''device_inventory''
         category.<br><br>Restricted to API keys with at least one of the following
         roles : DEVICE_W.'
-      operationId: updateGroupUsingPUT
+      operationId: updateGroupUsingPUT_1
       parameters:
       - description: identifier to update group. Expected string (max 6 characters)
         in: path
@@ -11669,7 +11669,7 @@ paths:
     post:
       description: 'Restricted to API keys with at least one of the following roles
         : DATA_PROCESSING_W.'
-      operationId: testHttpPushUsingPOST
+      operationId: testHttpPushUsingPOST_1
       parameters:
       - description: a valid API key
         in: header
@@ -12972,51 +12972,50 @@ components:
       type: object
     Group:
       example:
-        parent: group1
         path: /group1/group2
-        groupId: groupId
-        lastUpdateTs: 123456
+        created: 2017-12-27T12:59:59.877Z
         pathNode: group2
         description: Moisture sensor
-        creationTs: 123456
+        id: IbN89a
+        updated: 2017-12-27T14:13:09.231Z
+        parentId: PjFg6J
       properties:
-        creationTs:
+        created:
           description: Date/time when group was first registered
-          example: 123456
-          format: int64
-          type: integer
+          example: 2017-12-27T12:59:59.877Z
+          type: string
         description:
-          description: group description
+          description: Group description
           example: Moisture sensor
           type: string
-        groupId:
+        id:
           description: Group identifier
+          example: IbN89a
           type: string
-        lastUpdateTs:
-          description: Date/time when group status has been lastly updated
-          example: 123456
-          format: int64
-          type: integer
-        parent:
-          description: parent
-          example: group1
+        parentId:
+          description: Parent group identifier
+          example: PjFg6J
           type: string
         path:
-          description: path
+          description: Path
           example: /group1/group2
           type: string
         pathNode:
-          description: path node
+          description: Path node
           example: group2
           type: string
+        updated:
+          description: Date/time when group status has been lastly updated
+          example: 2017-12-27T14:13:09.231Z
+          type: string
       required:
-      - creationTs
+      - created
       - description
-      - groupId
-      - lastUpdateTs
-      - parent
+      - id
+      - parentId
       - path
       - pathNode
+      - updated
       type: object
     ResourceAddReqWeb:
       description: body of add resource request
@@ -14793,14 +14792,14 @@ components:
       type: object
     GroupCreateRequest:
       example:
-        parent: "123456"
         pathNode: france
         description: description
+        parentId: "123456"
       properties:
         description:
           description: group description. Expected string (max 255 characters)
           type: string
-        parent:
+        parentId:
           description: reference to group's parent (id). Expected string (max 6 characters)
           example: "123456"
           type: string
@@ -16966,10 +16965,10 @@ components:
       type: object
     GroupUpdateRequest:
       example:
-        parent: "123456"
         pathNode: france
         description: description
         id: "123456"
+        parentId: "123456"
       properties:
         description:
           description: group description. Expected string (max 255 characters)
@@ -16978,7 +16977,7 @@ components:
           description: group id. Expected string (max 6 characters)
           example: "123456"
           type: string
-        parent:
+        parentId:
           description: reference to group's parent (id). Expected string (max 6 characters)
           example: "123456"
           type: string
@@ -21121,20 +21120,20 @@ components:
       example:
         size: 1
         data:
-        - parent: group1
-          path: /group1/group2
-          groupId: groupId
-          lastUpdateTs: 123456
+        - path: /group1/group2
+          created: 2017-12-27T12:59:59.877Z
           pathNode: group2
           description: Moisture sensor
-          creationTs: 123456
-        - parent: group1
-          path: /group1/group2
-          groupId: groupId
-          lastUpdateTs: 123456
+          id: IbN89a
+          updated: 2017-12-27T14:13:09.231Z
+          parentId: PjFg6J
+        - path: /group1/group2
+          created: 2017-12-27T12:59:59.877Z
           pathNode: group2
           description: Moisture sensor
-          creationTs: 123456
+          id: IbN89a
+          updated: 2017-12-27T14:13:09.231Z
+          parentId: PjFg6J
         page: 0
         totalCount: 1
       properties:

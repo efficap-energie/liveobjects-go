@@ -19,19 +19,10 @@ import (
 type DeviceParameterValue struct {
 	// configuration parameter value type (INT32, UINT32, FLOAT, STRING or BINARY)
 	Type *string `json:"type,omitempty"`
-	// configuration parameter value (number for INT32/UINT32 type, string for STRING type,float for FLOAT type, base64-encoded string for BINARY type) 
+	// configuration parameter value (number for INT32/UINT32 type, string for STRING type,float for FLOAT type, base64-encoded string for BINARY type)
 	Value *map[string]interface{} `json:"value,omitempty"`
 	// configuration parameter value associated date/time (ISO 8601)
 	Timestamp *string `json:"timestamp,omitempty"`
-}
-
-// NewDeviceParameterValue instantiates a new DeviceParameterValue object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewDeviceParameterValue() *DeviceParameterValue {
-	this := DeviceParameterValue{}
-	return &this
 }
 
 // NewDeviceParameterValueWithDefaults instantiates a new DeviceParameterValue object
@@ -187,5 +178,3 @@ func (v *NullableDeviceParameterValue) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
